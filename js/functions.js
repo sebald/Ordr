@@ -1,0 +1,1 @@
+$(document).ready(function() {    $('#username').val( $('#firstname').val() + $('#lastname').val() );  	$('#firstname').keyup(function() {	  $('#username').val( $('#firstname').val() + $('#lastname').val() );	});	$('#lastname').keyup(function() {	  $('#username').val( $('#firstname').val() + $('#lastname').val() );	});  	    });

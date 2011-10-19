@@ -1,0 +1,30 @@
+body { padding-top: 50px; }
+
+form label { font-weight: bold; }
+
+th { background-color: #F5F5BC; }
+
+.luckiest-guy {font-family: 'Luckiest Guy', cursive; }
+
+.rounded-box {
+ -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+         border-radius: 5px;
+  background-color:	#EEEEEE;
+  padding: 10px;
+}
+
+#welcome { padding: 15px 35px; margin-bottom: 25px; }
+#welcome h1 { font-size: 100px; line-height: 100px; text-transform: uppercase; margin: 0; }
+#welcome small p { padding: 15px 40px; }
+
+.brand { font-family: 'Luckiest Guy', cursive; }
+
+.topbar .brand { color: #F0F05B; font-size: 25px; padding-bottom: 0; }
+.topbar .brand:hover { text-decoration: none; }
+
+.topbar .pull-right input, .topbar .pull-right button { margin-left: 5px; }
+.topbar .pull-right button { padding-top: 4px; padding-bottom: 5px; }
+.topbar .pull-right input { box-shadow: none;}
+
+.vendor-adress { margin: 10px 0 0 150px; }

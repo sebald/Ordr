@@ -1,0 +1,81 @@
+<h1 class="page-header">Create an account <small>Not a user? Oh god! Go sign up, now!</small></h1>
+<?php
+    $attr_form = array(
+            'method'      => 'post'
+          );
+    $attr_input_first_name = array(
+            'name'        => 'first_name',
+            'id'          => 'firstname',
+            'class'       => 'large',
+            'size'        => '30'
+          );
+    $attr_input_last_name = array(
+            'name'        => 'last_name',
+            'id'          => 'lastname',
+            'class'       => 'large',
+            'size'        => '30'
+          );
+    $attr_input_email = array(
+            'name'        => 'email',
+            'id'          => 'email',
+            'class'       => 'large',
+            'size'        => '30',
+            'type'        => 'email',
+            'pattern'     => '[^ @]*@[^ @]*'
+          );            
+    $attr_input_pwd = array(
+            'name'        => 'password',
+            'id'          => 'password',
+            'class'       => 'large',
+            'size'        => '30'
+          );
+    $attr_input_pwd2 = array(
+            'name'        => 'password2',
+            'id'          => 'password2',
+            'class'       => 'large',
+            'size'        => '30'
+          );          
+?>
+
+<?php echo form_open('account/create', $attr_form); ?>
+    <div class="clearfix">
+      <label>Username</label>
+        <div class="input">
+          <input id="username" type="text" disabled="" size="30" name="disabledInput" id="disabledInput" class="large disabled">
+        </div>
+    </div>
+    <div class="clearfix">
+      <?php echo form_label('First name:', 'first_name'); ?>
+      <div class="input">
+          <?php echo form_input($attr_input_first_name, set_value('first_name')); ?>
+      </div>
+    </div>
+    <div class="clearfix">
+      <?php echo form_label('Last name:', 'last_name'); ?>
+      <div class="input">
+          <?php echo form_input($attr_input_last_name, set_value('last_name')); ?>
+      </div>
+    </div>    
+    <div class="clearfix">
+      <?php echo form_label('Email:', 'email'); ?>
+      <div class="input">
+          <?php echo form_input($attr_input_email, set_value('email')); ?>
+      </div>
+    </div>
+    <div class="clearfix">
+      <?php echo form_label('Password:', 'password'); ?>
+      <div class="input">
+          <?php echo form_password($attr_input_pwd); ?>
+      </div>
+    </div>
+    <div class="clearfix">
+      <?php echo form_label('Password confirm:', 'password2'); ?>
+      <div class="input">
+          <?php echo form_password($attr_input_pwd2); ?>
+      </div>
+    </div> 
+    <div class="actions">
+      <?php echo form_submit('register', 'Register', 'class="btn large primary"'); ?>
+    </div>
+<?php echo form_close(); ?>
+<?php echo validation_errors(); ?>
