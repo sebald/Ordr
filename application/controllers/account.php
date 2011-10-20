@@ -4,6 +4,8 @@ class Account extends CI_Controller {
 
     public function index() {
       $data['main_content'] = 'account/register_form';
+      if ( $this->session->userdata('is_logged_in') )
+        $data['main_content'] = 'orders/';
       $this->load->view('layout/template', $data);		
     }
 
@@ -18,7 +20,7 @@ class Account extends CI_Controller {
           'is_logged_in' => true
         );
         $this->session->set_userdata($data);
-        redirect('/');
+        redirect('orders/');
       } else {
         $this->index();
       }
