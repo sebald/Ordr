@@ -5,7 +5,7 @@ class Account extends CI_Controller {
     public function index() {
       $data['main_content'] = 'account/register_form';
       if ( $this->session->userdata('is_logged_in') )
-        $data['main_content'] = 'orders/';
+        $data['main_content'] = 'account/settings';
       $this->load->view('layout/template', $data);		
     }
 
