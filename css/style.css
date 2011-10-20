@@ -4,8 +4,6 @@ form label { font-weight: bold; }
 
 th { background-color: #F5F5BC; }
 
-.luckiest-guy {font-family: 'Luckiest Guy', cursive; }
-
 .rounded-box {
  -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -13,10 +11,6 @@ th { background-color: #F5F5BC; }
   background-color:	#EEEEEE;
   padding: 10px;
 }
-
-#welcome { padding: 15px 35px; margin-bottom: 25px; }
-#welcome h1 { font-size: 100px; line-height: 100px; text-transform: uppercase; margin: 0; }
-#welcome small p { padding: 15px 40px; }
 
 .brand { font-family: 'Luckiest Guy', cursive; }
 

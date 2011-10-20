@@ -3,7 +3,7 @@
 class Account extends CI_Controller {
 
     public function index() {
-      $data['main_content'] = 'account/signup_form';
+      $data['main_content'] = 'account/register_form';
       $this->load->view('layout/template', $data);		
     }
 
@@ -29,7 +29,7 @@ class Account extends CI_Controller {
 		$this->index();
 	}
  
-  	public function create() {
+  	public function register() {
       
       // field name, error message, validation rules
       $this->load->library('form_validation');
@@ -41,13 +41,13 @@ class Account extends CI_Controller {
       
       
       if($this->form_validation->run() == FALSE) {
-        $this->load->view('account/signup_form');
+        $this->load->view('account/register_form');
       } else {		
         $this->load->model('user_model');
         if($query = $this->user_model->create()) {
-          $this->load->view('account/signup_successful');
+          $this->load->view('account/register_successful');
         } else {
-          $this->load->view('account/signup_form');			
+          $this->load->view('account/register_form');			
         }
       }
       
