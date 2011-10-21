@@ -3,10 +3,11 @@
 class Account extends CI_Controller {
 
     public function index() {
-      $data['main_content'] = 'account/register_form';
-      if ( $this->session->userdata('is_logged_in') )
-        $data['main_content'] = 'account/settings';
-      $this->load->view('layout/template', $data);		
+      if ( $this->session->userdata('is_logged_in') ) {
+        redirect('account/settings');
+      } else {
+        redirect('account/register');
+      }
     }
 
     public function login() {		
@@ -43,22 +44,27 @@ class Account extends CI_Controller {
       
       
       if($this->form_validation->run() == FALSE) {
-        $this->load->view('account/register_form');
+        $data['main_content'] = 'account/register_form';
       } else {		
         $this->load->model('user_model');
         if($query = $this->user_model->create()) {
-          $this->load->view('account/register_successful');
+          $data['main_content'] = 'account/register_successful';
         } else {
-          $this->load->view('account/register_form');			
+          $data['main_content'] = 'account/register_form';			
         }
       }
-      
+      $this->load->view('layout/template', $data);
     }
 
     public function no_access() {
       $data['main_content'] = 'account/login_form';
       $data['no_access'] = TRUE;
       $this->load->view('layout/template', $data);    
+    }
+    
+    public function settings() {
+      $data['main_content'] = 'account/settings';
+      $this->load->view('layout/template', $data);
     }
     
 }
