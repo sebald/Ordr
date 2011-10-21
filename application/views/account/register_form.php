@@ -1,7 +1,8 @@
 <h1 class="page-header">Create an account <small>Not a user? Oh god! Go sign up, now!</small></h1>
 <?php
     $attr_form = array(
-            'method'      => 'post'
+            'method'      => 'post',
+            'class'       => 'register'
           );
     $attr_input_first_name = array(
             'name'        => 'first_name',
