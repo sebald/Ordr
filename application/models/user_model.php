@@ -27,6 +27,11 @@ class User_model extends CI_Model {
       $query = $this->db->get('users');   
       
       if($query->num_rows == 1) {
+        // is user active?
+        if ( $query->row(0)->role == 'inactive' )
+          return false;
+        
+        // is pwd correct?
         $hasher = new PasswordHash(8, false);
         $hasher->CheckPassword($this->input->post('password'), $query->row(0)->password);
         return $hasher;
