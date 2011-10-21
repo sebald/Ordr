@@ -22,7 +22,7 @@ class User_model extends CI_Model {
       return $insert;
     }
 
-    public function validate() {
+    public function validate() {    
       $this->db->where('username', $this->input->post('username'));
       $query = $this->db->get('users');   
       

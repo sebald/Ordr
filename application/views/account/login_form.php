@@ -1,3 +1,24 @@
+<?php if ( isset($error) ) : ?>
+<div class="alert-message block-message error">
+  <p><strong>Oh snap! You entered the wrong unsername and/or password.</strong> Try the following:</p>
+  <ul>
+    <li>Retry the log in process with your credentials.</li>
+    <li>Visit the help page.</li>
+    <li>Contact an admin from your office.</li>
+  </ul>
+</div>
+<?php endif; ?>
+<?php if ( isset($no_access) ) : ?>
+<div class="alert-message block-message warning">
+  <p><strong>Warning! You don't have the permission to view this page.</strong> If you should have permission please contact an admin from your office.</p>
+  <div class="alert-actions">
+    <?php if ( isset($_SERVER['HTTP_REFERER']) ) : ?>
+      <a href="<?php echo $_SERVER['HTTP_REFERER']?>" class="btn small">Go back.</a>
+    <? endif; ?>
+    <?php echo anchor('/', 'Go to start page.', 'class="btn small"'); ?>
+  </div>
+</div>
+<?php endif; ?>
 <h1 class="page-header">Login <small>Already registered? Login!</small></h1>
 <?php
     $attr_form = array(
@@ -22,7 +43,7 @@
   <?php echo form_label('Username: ', 'username'); ?>
   <div class="input">
     <?php
-      echo form_input($attr_input_username);
+      echo form_input($attr_input_username, set_value('username'));
     ?>
   </div>
 </div>
@@ -38,5 +59,3 @@
   <?php echo form_submit('login', 'Log in', 'class="btn primary"'); ?>
 </div>
 <?php echo form_close(); ?>
-
-<?php echo validation_errors(); ?>

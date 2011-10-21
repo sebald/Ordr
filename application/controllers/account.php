@@ -9,11 +9,9 @@ class Account extends CI_Controller {
       $this->load->view('layout/template', $data);		
     }
 
-    public function login()
-    {		
+    public function login() {		
       $this->load->model('user_model');
-      $query = $this->user_model->validate();
-      
+      $query = $this->user_model->validate();      
       if($query) {
         $data = array(
           'username' => $this->input->post('username'),
@@ -22,7 +20,9 @@ class Account extends CI_Controller {
         $this->session->set_userdata($data);
         redirect('orders/');
       } else {
-        $this->index();
+        $data['main_content'] = 'account/login_form';
+        $data['error'] = TRUE;
+        $this->load->view('layout/template', $data);
       }
     }    
  
@@ -55,4 +55,10 @@ class Account extends CI_Controller {
       
     }
 
+    public function no_access() {
+      $data['main_content'] = 'account/login_form';
+      $data['no_access'] = TRUE;
+      $this->load->view('layout/template', $data);    
+    }
+    
 }
