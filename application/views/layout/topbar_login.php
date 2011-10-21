@@ -1,25 +1,25 @@
 <?php
-    $attributes_form = array(
+    $attr_form = array(
             'class'        => 'pull-right'
           );
-    $attributes_input_user = array(
+    $attr_input_user = array(
             'class'        => 'input-small',
             'placeholder'  => 'Username'
           );
-    $attributes_input_pwd = array(
+    $attr_input_pwd = array(
             'class'        => 'input-small',
             'placeholder'  => 'Password'
           );
-    $attributes_input_btn = array(
+    $attr_input_btn = array(
             'class'        => 'btn',
             'type'         => 'submit',
-            'content'      => 'Sign in'
+            'content'      => 'Log in'
           );          
 
-    echo form_open('account/login', $attributes_form);
-    echo form_input($attributes_input_user);
-    echo form_password($attributes_input_pwd);
-    echo form_button($attributes_input_btn);
+    echo form_open('account/login', $attr_form);
+    echo form_input($attr_input_user);
+    echo form_password($attr_input_pwd);
+    echo form_button($attr_input_btn);
     echo form_close();
           
 ?>

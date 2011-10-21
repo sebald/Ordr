@@ -3,3 +3,8 @@
   <p>Portland keytar leggings, put a bird on it craft beer williamsburg readymade. Before they sold out retro readymade you probably haven't heard of them, sartorial mlkshk keffiyeh chambray hoodie wayfarers. Organic VHS etsy, helvetica yr raw denim farm-to-table brunch photo booth skateboard before they sold out echo park.</p>
   <p><a class="btn primary large">Learn more &raquo;</a></p>
 </div>
+<div class="row">
+    <div class="span7">
+      <?php $this->load->view('account/login_form'); ?>
+    </div>
+</div>

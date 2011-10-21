@@ -26,10 +26,10 @@ class Account extends CI_Controller {
       }
     }    
  
-	function logout() {
-		$this->session->sess_destroy();
-		redirect('/');
-	}
+    public function logout() {
+      $this->session->sess_destroy();
+      redirect('/');
+    }
  
   	public function register() {
       
