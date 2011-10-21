@@ -16,7 +16,7 @@
             'content'      => 'Sign in'
           );          
 
-    echo form_open('account/sign_in', $attributes_form);
+    echo form_open('account/login', $attributes_form);
     echo form_input($attributes_input_user);
     echo form_password($attributes_input_pwd);
     echo form_button($attributes_input_btn);

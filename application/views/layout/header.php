@@ -21,7 +21,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <?php $this->load->view('topbar_login_view'); ?>
+      <?php $this->load->view('layout/topbar_login'); ?>
     </div>
   </div>
 </header>

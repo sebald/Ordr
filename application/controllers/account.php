@@ -9,7 +9,7 @@ class Account extends CI_Controller {
       $this->load->view('layout/template', $data);		
     }
 
-    public function sign_in()
+    public function login()
     {		
       $this->load->model('user_model');
       $query = $this->user_model->validate();
@@ -17,7 +17,7 @@ class Account extends CI_Controller {
       if($query) {
         $data = array(
           'username' => $this->input->post('username'),
-          'is_logged_in' => true
+          'logged_in' => true
         );
         $this->session->set_userdata($data);
         redirect('orders/');
@@ -26,7 +26,7 @@ class Account extends CI_Controller {
       }
     }    
  
-	function sign_out() {
+	function logout() {
 		$this->session->sess_destroy();
 		$this->index();
 	}
