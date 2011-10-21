@@ -35,7 +35,7 @@
             'id'          => 'password2',
             'class'       => 'large',
             'size'        => '30'
-          );          
+          );       
 ?>
 
 <?php echo form_open('account/register', $attr_form); ?>

@@ -33,7 +33,6 @@ class Account extends CI_Controller {
     }
  
   	public function register() {
-      
       // field name, error message, validation rules
       $this->load->library('form_validation');
       $this->form_validation->set_rules('first_name', 'First Name', 'trim|required|alpha');
@@ -47,7 +46,7 @@ class Account extends CI_Controller {
         $data['main_content'] = 'account/register_form';
       } else {		
         $this->load->model('user_model');
-        if($query = $this->user_model->create()) {
+        if($this->user_model->create()) {
           $data['main_content'] = 'account/register_successful';
         } else {
           $data['main_content'] = 'account/register_form';			
@@ -63,6 +62,11 @@ class Account extends CI_Controller {
     }
     
     public function settings() {
+      // only accessible if logged in
+      if ( !$this->session->userdata('logged_in') ) { 
+        redirect('account/no_access');
+      }
+    
       $data['main_content'] = 'account/settings';
       $this->load->view('layout/template', $data);
     }
