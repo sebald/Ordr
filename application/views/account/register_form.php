@@ -50,35 +50,35 @@
       <?php echo form_label('First name:', 'first_name'); ?>
       <div class="input">
           <?php echo form_input($attr_input_first_name, set_value('first_name')); ?>
-          <?php echo form_error('first_name'); ?>
+          <?php echo form_error('first_name','<span class="help-inline">','</span>'); ?>
       </div>
     </div>
     <div class="clearfix <?php if(form_error('last_name')) echo 'error'; ?>">
       <?php echo form_label('Last name:', 'last_name'); ?>
       <div class="input">
           <?php echo form_input($attr_input_last_name, set_value('last_name')); ?>
-          <?php echo form_error('last_name'); ?>
+          <?php echo form_error('last_name','<span class="help-inline">','</span>'); ?>
       </div>
     </div>    
     <div class="clearfix <?php if(form_error('email')) echo 'error'; ?>">
       <?php echo form_label('Email:', 'email'); ?>
       <div class="input">
           <?php echo form_input($attr_input_email, set_value('email')); ?>
-          <?php echo form_error('email'); ?>
+          <?php echo form_error('email','<span class="help-inline">','</span>'); ?>
       </div>
     </div>
     <div class="clearfix <?php if(form_error('password')) echo 'error'; ?>">
       <?php echo form_label('Password:', 'password'); ?>
       <div class="input">
           <?php echo form_password($attr_input_pwd); ?>
-          <?php echo form_error('password'); ?>
+          <?php echo form_error('password','<span class="help-inline">','</span>'); ?>
       </div>
     </div>
     <div class="clearfix <?php if(form_error('password2')) echo 'error'; ?>">
       <?php echo form_label('Password confirm:', 'password2'); ?>
       <div class="input">
           <?php echo form_password($attr_input_pwd2); ?>
-          <?php echo form_error('password2'); ?>
+          <?php echo form_error('password2','<span class="help-inline">','</span>'); ?>
       </div>
     </div> 
     <div class="actions">
