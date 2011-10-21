@@ -21,7 +21,13 @@
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <?php $this->load->view('layout/topbar_login'); ?>
+      <?php
+        if ( $this->session->userdata('logged_in') ){
+          $this->load->view('layout/topbar_account_options');
+        } else {
+          $this->load->view('layout/topbar_login');
+        }
+      ?>
     </div>
   </div>
 </header>

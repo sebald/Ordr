@@ -5,7 +5,7 @@
       <li><a href="#">Settings</a></li>
       <li><a href="#">Help</a></li>
       <li class="divider"></li>
-      <li><a href="#">Logout</a></li>
+      <li><?php echo anchor('account/logout', 'Logout'); ?></li>
     </ul>
   </li>
 </ul>

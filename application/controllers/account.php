@@ -28,7 +28,7 @@ class Account extends CI_Controller {
  
 	function logout() {
 		$this->session->sess_destroy();
-		$this->index();
+		redirect('/');
 	}
  
   	public function register() {
