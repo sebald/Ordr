@@ -39,6 +39,7 @@
 ?>
 
 <?php echo form_open('account/login', $attr_form); ?>
+  <input type="hidden" name="redirect" value="<?php echo (isset($_POST['redirect']) ? $_POST['redirect'] : current_url() ); ?>" />
 <div class="clearfix">
   <?php echo form_label('Username: ', 'username'); ?>
   <div class="input">

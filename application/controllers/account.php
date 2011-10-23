@@ -19,7 +19,17 @@ class Account extends CI_Controller {
           'logged_in' => true
         );
         $this->session->set_userdata($data);
-        redirect('orders/');
+        // is there a redirect to handle?
+        if( !isset($_POST['redirect']) ) {
+          redirect('orders/');
+          return;
+        }
+        // check to make sure we aren't redirecting to the login page
+        if( $_POST['redirect'] === current_url() ) {
+          redirect('orders/');
+          return;
+        }
+        redirect($_POST['redirect']);
       } else {
         $data['main_content'] = 'account/login_form';
         $data['error'] = TRUE;
@@ -63,12 +73,11 @@ class Account extends CI_Controller {
     
     public function settings() {
       // only accessible if logged in
-      if ( !$this->session->userdata('logged_in') ) { 
+      if ( !$this->session->userdata('logged_in') ) {
         redirect('account/no_access');
+        return;
       }
-    
       $data['main_content'] = 'account/settings';
       $this->load->view('layout/template', $data);
     }
-    
 }
