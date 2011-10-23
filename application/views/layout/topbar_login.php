@@ -1,12 +1,14 @@
 <?php
-    $attr_form = array(
+    $attr_form = array(           
             'class'        => 'pull-right'
           );
     $attr_input_user = array(
+            'name'        => 'username',     
             'class'        => 'input-small',
             'placeholder'  => 'Username'
           );
     $attr_input_pwd = array(
+            'name'        => 'password',     
             'class'        => 'input-small',
             'placeholder'  => 'Password'
           );

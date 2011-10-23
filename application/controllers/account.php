@@ -10,7 +10,7 @@ class Account extends CI_Controller {
       }
     }
 
-    public function login() {		
+    public function login() {
       $this->load->model('user_model');
       $query = $this->user_model->validate();      
       if($query) {
