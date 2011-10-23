@@ -8,6 +8,6 @@
     <?php endforeach; ?>
   <?php else : ?>
     <li <?php echo uri_string() == 'account/register' ? 'class="active"' : '';?>><?php echo anchor('account/register', 'Register'); ?></li>
-    <li><?php echo anchor('/', 'About'); ?></li>
+    <li><?php echo anchor(base_url(), 'About'); ?></li>
   <?php endif; ?>
 </ul>
