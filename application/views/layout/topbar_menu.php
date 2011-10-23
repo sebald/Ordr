@@ -4,10 +4,10 @@
 <ul class="nav">
   <?php if ( $this->session->userdata('logged_in') ) : ?>
     <?php foreach($menu as $item): ?>
-    <li><a href="<?php echo base_url().$item.'/'; ?>"><?php echo ucfirst($item); ?></a></li>
+    <li <?php echo $this->uri->segment(1) == $item ? 'class="active"' : '';?>><?php echo anchor($item, ucfirst($item)); ?></li>
     <?php endforeach; ?>
   <?php else : ?>
-    <li><a href="<?php echo base_url().'account/register/'; ?>">Register</a></li>
-    <li><a href="http://example.com">About</a></li>
+    <li <?php echo uri_string() == 'account/register' ? 'class="active"' : '';?>><?php echo anchor('account/register', 'Register'); ?></li>
+    <li><?php echo anchor('/', 'About'); ?></li>
   <?php endif; ?>
 </ul>
