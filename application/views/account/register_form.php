@@ -7,19 +7,19 @@
     $attr_input_first_name = array(
             'name'        => 'first_name',
             'id'          => 'firstname',
-            'class'       => 'large',
+            'class'       => 'span4',
             'size'        => '30'
           );
     $attr_input_last_name = array(
             'name'        => 'last_name',
             'id'          => 'lastname',
-            'class'       => 'large',
+            'class'       => 'span4',
             'size'        => '30'
           );
     $attr_input_email = array(
             'name'        => 'email',
             'id'          => 'email',
-            'class'       => 'large',
+            'class'       => 'span4',
             'size'        => '30',
             'type'        => 'email',
             'pattern'     => '[^ @]*@[^ @]*'
@@ -27,13 +27,13 @@
     $attr_input_pwd = array(
             'name'        => 'password',
             'id'          => 'password',
-            'class'       => 'large',
+            'class'       => 'span4',
             'size'        => '30'
           );
     $attr_input_pwd2 = array(
             'name'        => 'password2',
             'id'          => 'password2',
-            'class'       => 'large',
+            'class'       => 'span4',
             'size'        => '30'
           );       
 ?>
@@ -42,7 +42,7 @@
     <div class="clearfix">
       <label>Username</label>
         <div class="input">
-          <input id="username" type="text" disabled="" size="30" name="disabledInput" id="disabledInput" class="large disabled">
+          <input id="username" type="text" disabled="" size="30" name="disabledInput" id="disabledInput" class="span4 disabled">
           <span class="help-inline">This is automatically generated for you.</span>
         </div>
     </div>
@@ -82,6 +82,6 @@
       </div>
     </div> 
     <div class="actions">
-      <?php echo form_submit('register', 'Register', 'class="btn large primary"'); ?>
+      <?php echo form_submit('register', 'Register', 'class="btn span4 primary"'); ?>
     </div>
 <?php echo form_close(); ?>
