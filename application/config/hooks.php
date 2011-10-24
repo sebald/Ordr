@@ -10,19 +10,6 @@
 |
 */
 
-// $hook['pre_controller'] = array(
-                        // 'class'  => 'Template',
-                        // 'function' => 'header',
-                        // 'filename' => 'template.php',
-                        // 'filepath' => 'hooks'
-                      // );
-                      
-$hook['post_controller'] = array(
-                        'class'  => 'Template',
-                        'function' => 'footer',
-                        'filename' => 'template.php',
-                        'filepath' => 'hooks'
-                      );  
 
 /* End of file hooks.php */
 /* Location: ./application/config/hooks.php */

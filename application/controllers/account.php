@@ -81,3 +81,6 @@ class Account extends CI_Controller {
       $this->load->view('layout/template', $data);
     }
 }
+
+/* End of file account.php */
+/* Location: ./application/controllers/account.php */
