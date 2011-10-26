@@ -16,7 +16,7 @@ class Account extends CI_Controller {
       if($query) {
         $data = array(
           'username' => $this->input->post('username'),
-          'logged_in' => true
+          'logged_in' => TRUE
         );
         $this->session->set_userdata($data);
         // is there a redirect to handle?
