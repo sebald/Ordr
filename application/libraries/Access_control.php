@@ -3,19 +3,15 @@
 class Access_control {
 
     public function hasPermission() {
-      
-      // if there exist no policy grant permission
-      if ( !isset($acl[$controller][$method]) )
+      // if there exist a policy for the controller: grant permission
+      if ( $acl[$role][$controller] === TRUE )
         return true;
-      
-      // else: has to be logged in and has a role 
-      if (  !$_SESSION['logged_in'] || !$_SESSION['role'] )
-        return false;
-      
-      // else: check if has permission
-      if( $acl[$_SESSION['role']][$controller][$method] === TRUE )
-        return true;
-      
+
+      // if there exist a policy for the controller method: grant permission
+      if ( $acl[$role][$controller][$method] === TRUE )
+        return true;        
+        
+      // else: doesn't have permission to access controler or method
       return false;
     }
 

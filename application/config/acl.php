@@ -1,5 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+// role => controller => method
+
 $acl = array (
         'admin' => array (
                 'account' => TRUE,
