@@ -34,7 +34,8 @@ class User_model extends CI_Model {
         // is pwd correct?
         $hasher = new PasswordHash(8, false);
         $hasher->CheckPassword($this->input->post('password'), $query->row(0)->password);
-        return $hasher;
+        if ($hasher)
+          return $query->row(0)->role;
       }
       return false;
     }
