@@ -16,10 +16,11 @@ $config['acl'] = array (
                     ),
                  'visitor' => array (
                         'account' => array (
-                            'index'     => TRUE,
-                            'register'  => TRUE,
-                            'login'     => TRUE,
-                            'logout'    => TRUE
+                            'index'             => TRUE,
+                            'register'          => TRUE,
+                            'login'             => TRUE,
+                            'logout'            => TRUE,
+                            'permission_denied' => TRUE
                         ),
                         'welcome' => TRUE
                     ),            

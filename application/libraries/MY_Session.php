@@ -2,23 +2,23 @@
 
 class MY_Session extends CI_Session {
 
-    private $acl;
+    private $acl = array();
 
     public function __construct() {
         parent::__construct();
-        $acl = $this->CI->config->item('acl');
+        $this->acl = $this->CI->config->item('acl');
     }
     
-    private function hasPermission($role, $controller, $method) {
-      // if there exist a policy for the controller: grant permission
-      if ( $acl[$role][$controller] === TRUE )
+    public function hasPermission($role, $controller, $method) {
+      // if there exist a policy for the controller: grant permission     
+      if ( isset($this->acl[$role][$controller]) && (@$this->acl[$role][$controller] === TRUE) )
         return true;
 
       // if there exist a policy for the controller method: grant permission
-      if ( $acl[$role][$controller][$method] === TRUE )
+      if ( isset($this->acl[$role][$controller][$method]) && (@$this->acl[$role][$controller][$method] === TRUE) )
         return true;        
         
-      // else: doesn't have permission to access controler or method
+      // else: deny permission
       return false;
     }
     

@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
 
-class Account extends CI_Controller {
+class Account extends MY_Controller {
 
     public function index() {
       if ( $this->session->userdata('logged_in') ) {
@@ -15,8 +15,9 @@ class Account extends CI_Controller {
       $query = $this->user_model->validate();      
       if($query) {
         $data = array(
-          'username' => $this->input->post('username'),
-          'logged_in' => TRUE
+          'username'  => $this->input->post('username'),
+          'logged_in' => TRUE,
+          'role'      => $query
         );
         $this->session->set_userdata($data);
         // is there a redirect to handle?
@@ -65,9 +66,9 @@ class Account extends CI_Controller {
       $this->load->view('layout/template', $data);
     }
 
-    public function no_access() {
+    public function permission_denied() {
       $data['main_content'] = 'account/login_form';
-      $data['no_access'] = TRUE;
+      $data['permission_denied'] = TRUE;
       $this->load->view('layout/template', $data);    
     }
     

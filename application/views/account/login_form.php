@@ -8,13 +8,10 @@
   </ul>
 </div>
 <?php endif; ?>
-<?php if ( isset($no_access) ) : ?>
+<?php if ( isset($permission_denied) ) : ?>
 <div class="alert-message block-message warning">
   <p><strong>Warning! You don't have the permission to view this page.</strong> If you should have permission please contact an admin from your office.</p>
   <div class="alert-actions">
-    <?php if ( isset($_SERVER['HTTP_REFERER']) ) : ?>
-      <a href="<?php echo $_SERVER['HTTP_REFERER']?>" class="btn small">Go back.</a>
-    <? endif; ?>
     <?php echo anchor('/', 'Go to start page.', 'class="btn small"'); ?>
   </div>
 </div>
