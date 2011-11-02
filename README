@@ -1,1 +1,16 @@
-nothing for now
+==============================================================
+            ORDR - An order management system
+==============================================================
+
+Ordr is a management system for the Chair of Chemistry &
+Physics of Interfac. It will replace the analog (paper sheet)
+version.
+
+==============================================================
+                       INSTALLATION
+==============================================================
+
+1. Copy Ordr to your server
+2. Execute the .sql files.
+3. Create a database.php file in application/config
+   (Codeigniter)
