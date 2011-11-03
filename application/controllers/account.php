@@ -74,11 +74,6 @@ class Account extends MY_Controller {
     }
     
     public function settings() {
-      // only accessible if logged in
-      if ( !$this->session->userdata('logged_in') ) {
-        redirect('account/no_access');
-        return;
-      }
       $data['main_content'] = 'account/settings';
       $this->load->view('layout/template', $data);
     }
