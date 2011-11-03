@@ -28,8 +28,14 @@ class User_model extends CI_Model {
       return $insert;
     }
 
-    public function validate() {    
-      $this->db->where('username', $this->input->post('username'));
+    public function validate($username = false, $pwd = false) {
+      
+      if ( $username == FALSE )
+        $username = $this->input->post('username');
+      if ( $pwd == FALSE )
+        $pwd = $this->input->post('password');
+      
+      $this->db->where('username', $username);
       $query = $this->db->get('users');   
       
       if($query->num_rows == 1) {
@@ -39,11 +45,11 @@ class User_model extends CI_Model {
         
         // is pwd correct?
         $hasher = new PasswordHash(8, false);
-        $hasher->CheckPassword($this->input->post('password'), $query->row(0)->password);
+        $hasher->CheckPassword($pwd, $query->row(0)->password);
         if ($hasher)
           return $query->row(0)->role;
       }
       return false;
     }
-  
+
 }
