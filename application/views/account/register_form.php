@@ -37,7 +37,15 @@
             'size'        => '30'
           );       
 ?>
-
+<?php if ( isset($user_already_exists) ) : ?>
+<div class="alert-message block-message error">
+  <p><strong>Oh snap! The user you want to create already exists.</strong> Try the following:</p>
+  <ul>
+    <li>Contact an admin from your office. Maybe (s)he already created a user for you.</li>
+    <li>Visit the help page.</li>
+  </ul>
+</div>
+<?php endif; ?>
 <?php echo form_open('account/register', $attr_form); ?>
     <div class="clearfix">
       <label>Username</label>

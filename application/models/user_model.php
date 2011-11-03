@@ -11,6 +11,12 @@ class User_model extends CI_Model {
         return false;
       }
     
+      // check if username already exists
+      $this->db->where('username', $this->input->post('first_name').$this->input->post('last_name'));
+      $query = $this->db->get('users');
+      if($query->num_rows == 1)
+        return false;
+    
       $new_user_data = array(
         'username' => $this->input->post('first_name').$this->input->post('last_name'),
         'first_name' => $this->input->post('first_name'),

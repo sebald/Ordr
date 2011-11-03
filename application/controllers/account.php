@@ -60,6 +60,7 @@ class Account extends MY_Controller {
         if($this->user_model->create()) {
           $data['main_content'] = 'account/register_successful';
         } else {
+          $data['user_already_exists'] = TRUE;
           $data['main_content'] = 'account/register_form';			
         }
       }
