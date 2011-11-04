@@ -1,4 +1,7 @@
 <ul class="nav secondary-nav">
+  <?php if ($this->session->userdata('role') == 'admin' ) : ?>
+  <li><?php echo anchor('admin', 'Admin'); ?></li>
+  <?php endif; ?>
   <li class="dropdown">
     <a class="dropdown-toggle" href="#">Account</a>
     <ul class="dropdown-menu">

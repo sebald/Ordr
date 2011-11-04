@@ -3,7 +3,6 @@
 class User_model extends CI_Model {
 
     public function create() {
-    
       // check if username already exists
       $this->db->where('username', $this->input->post('first_name').$this->input->post('last_name'));
       $query = $this->db->get('users');
