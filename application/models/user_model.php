@@ -24,8 +24,13 @@ class User_model extends CI_Model {
       return $insert;
     }
 
-    public function validate() {    
-      $this->db->where('username', $this->input->post('username'));
+    public function validate($username = FALSE, $pwd = FALSE) {
+      if ( $username == FALSE )
+        $username = $this->input->post('username');
+      if ( $pwd == FALSE )
+        $pwd = $this->input->post('password');        
+        
+      $this->db->where('username', $username);
       $query = $this->db->get('users');   
       
       if($query->num_rows == 1) {
@@ -35,11 +40,33 @@ class User_model extends CI_Model {
         
         // is pwd correct?
         $this->load->library('encrypt');
-        $hashedPassword = $this->encrypt->sha1($this->input->post('password'));
+        $hashedPassword = $this->encrypt->sha1($pwd);
         if ( $query->row(0)->password == $hashedPassword )
           return $query->row(0)->role;
       }
       return false;
     }
-
+    
+    public function get_settings() {
+      $this->db->where('username', $this->session->userdata('username'));
+      $query = $this->db->get('users');
+      if($query->num_rows == 1) {        
+        return $query->row(0);
+      }
+      return false;
+    }
+    
+    public function update() {
+      $data['email'] = $this->input->post('email');
+      
+      // update pwd?
+      if ( $this->input->post('newpassword') != '') {
+        $hashedPassword = $this->encrypt->sha1($this->input->post('newpassword'));
+        $data['password'] = $hashedPassword;
+      }
+      
+      // update
+      $this->db->where('username', $this->session->userdata('username'));
+      $this->db->update('users', $data); 
+    }
 }

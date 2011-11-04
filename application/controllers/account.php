@@ -53,7 +53,7 @@ class Account extends MY_Controller {
       $this->form_validation->set_rules('password2', 'Password Confirmation', 'trim|required|matches[password]');
       
       
-      if($this->form_validation->run() == FALSE) {
+      if( $this->form_validation->run() == FALSE ) {
         $data['main_content'] = 'account/register_form';
       } else {		
         $this->load->model('user_model');
@@ -74,9 +74,33 @@ class Account extends MY_Controller {
     }
     
     public function settings() {
-      $data['main_content'] = 'account/settings';
+      // load settings
+      $this->load->model('user_model');
+      $settings = $this->user_model->get_settings(); 
+      if ( $settings ) 
+        $data['settings'] = $settings;
+      else
+        $data['error'] = TRUE;      
+    
+      // set form validation
+      $this->load->library('form_validation');
+      $this->form_validation->set_rules('email', 'Email Address', 'trim|required|valid_email');
+      $this->form_validation->set_rules('newpassword', 'Password', 'trim|min_length[4]|max_length[32]');
+      $this->form_validation->set_rules('newpassword2', 'Password Confirmation', 'trim|matches[newpassword2]');        
+      
+      if( $this->form_validation->run() == FALSE ) {
+          // form error
+      } elseif ( !$this->user_model->validate($this->session->userdata('username'),$this->input->post('confirmation') ) ) {
+          // confirmation error
+          $data['confirmation_error'] = TRUE;
+      } else {      
+          // update settings
+          $this->user_model->update();
+          $data['settings_updated'] = TRUE;
+      }
+      $data['main_content'] = 'account/settings'; 
       $this->load->view('layout/template', $data);
-    }
+    } 
 }
 
 /* End of file account.php */
