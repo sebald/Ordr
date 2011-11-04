@@ -1,21 +1,17 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
 
-require_once('PasswordHash.php');
-
 class User_model extends CI_Model {
 
     public function create() {
-      $hasher = new PasswordHash(8, false);
-      $hashedPassword = $hasher->HashPassword($this->input->post('password'));
-      if (strlen($hashedPassword) < 20) {
-        return false;
-      }
     
       // check if username already exists
       $this->db->where('username', $this->input->post('first_name').$this->input->post('last_name'));
       $query = $this->db->get('users');
       if($query->num_rows == 1)
         return false;
+    
+      $this->load->library('encrypt');
+      $hashedPassword = $this->encrypt->sha1($this->input->post('password'));
     
       $new_user_data = array(
         'username' => $this->input->post('first_name').$this->input->post('last_name'),
@@ -28,14 +24,8 @@ class User_model extends CI_Model {
       return $insert;
     }
 
-    public function validate($username = false, $pwd = false) {
-      
-      if ( $username == FALSE )
-        $username = $this->input->post('username');
-      if ( $pwd == FALSE )
-        $pwd = $this->input->post('password');
-      
-      $this->db->where('username', $username);
+    public function validate() {    
+      $this->db->where('username', $this->input->post('username'));
       $query = $this->db->get('users');   
       
       if($query->num_rows == 1) {
@@ -44,9 +34,9 @@ class User_model extends CI_Model {
           return false;
         
         // is pwd correct?
-        $hasher = new PasswordHash(8, false);
-        $hasher->CheckPassword($pwd, $query->row(0)->password);
-        if ($hasher)
+        $this->load->library('encrypt');
+        $hashedPassword = $this->encrypt->sha1($this->input->post('password'));
+        if ( $query->row(0)->password == $hashedPassword )
           return $query->row(0)->role;
       }
       return false;
