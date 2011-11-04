@@ -1,11 +1,16 @@
 <h1 class="page-header">Account Settings <small>Update your information.</small></h1>
-<?php if ( isset($error) ) : ?>
-<div class="alert-message block-message error">
-  <p><strong>Oh snap! There was an problem with displaying your settings.</strong> Please try again.</p>
-</div>
-<?php endif; ?>
 <div class="row">
   <div class="span11">
+  <?php if ( isset($error) ) : ?>
+  <div class="alert-message block-message error">
+    <p><strong>Oh snap! There was an problem with displaying your settings.</strong> Please try again.</p>
+  </div>
+  <?php endif; ?>
+  <?php if ( isset($settings_updated) ) : ?>
+  <div class="alert-message block-message success">
+    <p><strong>Updated completed.</strong> Your account information has been updated successfully.</p>
+  </div>
+  <?php endif; ?>
   <?php
       $attr_form = array(
               'class'       => 'settings'
