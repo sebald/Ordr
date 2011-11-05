@@ -2,7 +2,7 @@ body { padding-top: 60px; }
 
 form label { font-weight: bold; }
 
-th { background-color: #F5F5BC; }
+
 
 .rounded-box {
  -webkit-border-radius: 5px;
@@ -22,3 +22,7 @@ th { background-color: #F5F5BC; }
 .topbar .pull-right input { box-shadow: none;}
 
 .vendor-adress { margin: 10px 0 0 150px; }
+
+.sort-asc:after { content: '▲'; }
+.sort-desc:after { content: '▼'; }
+
