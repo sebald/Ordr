@@ -8,7 +8,7 @@ class Admin extends MY_Controller {
     }
 
     public function users($by = 'title', $order = 'asc', $offset = 0) {   
-        $limit = 5;
+        $limit = 20;
         $data['fields'] = array(
                     'username'    => 'Username',
                     'first_name'  => 'First Name',
@@ -50,6 +50,12 @@ class Admin extends MY_Controller {
         $this->load->library('pagination');
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();        
+        
+        $data['page'] = FALSE;
+        if ($this->pagination->cur_page == 1)
+          $data['page'] = 'no-prev';
+        if ($this->pagination->cur_page >= ceil($this->pagination->total_rows / $this->pagination->per_page))
+          $data['page'] = 'no-next';
         
         $data['main_content'] = 'admin/users';
         $this->load->view('layout/template', $data);

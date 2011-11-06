@@ -2,7 +2,8 @@ body { padding-top: 60px; }
 
 form label { font-weight: bold; }
 
-
+th { cursor: pointer; background-color: #E0F3FF; }
+tbody tr:hover { background-color: #fafafa; }
 
 .rounded-box {
  -webkit-border-radius: 5px;
@@ -14,7 +15,7 @@ form label { font-weight: bold; }
 
 .brand { font-family: 'Luckiest Guy', cursive; }
 
-.topbar .brand { color: #F0F05B; font-size: 25px; padding-bottom: 0; }
+.topbar .brand { color: #f0f05b; font-size: 25px; padding-bottom: 0; }
 .topbar .brand:hover { text-decoration: none; }
 
 .topbar .pull-right input, .topbar .pull-right button { margin-left: 5px; }
