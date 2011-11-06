@@ -3,6 +3,7 @@ body { padding-top: 60px; }
 form label { font-weight: bold; }
 
 th { cursor: pointer; background-color: #E0F3FF; }
+th a { color: #049CDB; }
 tbody tr:hover { background-color: #fafafa; }
 
 .rounded-box {

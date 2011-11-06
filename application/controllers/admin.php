@@ -3,6 +3,23 @@
 class Admin extends MY_Controller {
 
     public function index() {
+        $data['fields'] = array(
+                    'username'    => 'Username',
+                    'first_name'  => 'First Name',
+                    'last_name'   => 'Last Name',
+                    'email'       => 'Email',
+                    'role'        => 'Role'
+        );   
+        $filter = array(
+          'role' => 'inactive'
+        );
+    
+        // get users
+        $this->load->model('user_model');
+        $query = $this->user_model->search(5, 0, 'date_created', 'asc', $filter);
+        $data['users'] = $query['users'];
+        $data['count'] = $query['count'];
+    
         $data['main_content'] = 'admin/index';
         $this->load->view('layout/template', $data);    
     }
