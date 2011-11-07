@@ -86,7 +86,6 @@ class User_model extends CI_Model {
             $query->where($key,$value);
         }
         $result['users'] = $query->get();
-        $result['users2'] = $this->db->get('users');
         
         // count table rows
         if ( $filters ) {
