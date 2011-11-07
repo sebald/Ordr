@@ -19,9 +19,7 @@
               'name'        => 'email',
               'id'          => 'email',
               'class'       => 'span4',
-              'size'        => '30',
-              'type'        => 'email',
-              'pattern'     => '[^ @]*@[^ @]*'
+              'size'        => '30'
             );       
       $attr_input_pwd = array(
               'name'        => 'newpassword',
