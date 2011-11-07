@@ -4,7 +4,7 @@ form label { font-weight: bold; }
 
 th { background-color: #E0F3FF; }
 .sortable th { cursor: pointer; background-color: #E0F3FF; }
-th a { color: #049CDB; }
+th, th a { color: #049CDB; }
 tbody tr:hover { background-color: #fafafa; }
 
 .rounded-box {
