@@ -69,14 +69,14 @@ class User_model extends CI_Model {
         $this->db->update('users', $data); 
     }
     
-    public function search($limit, $offset, $by, $order, $filters = FALSE) {
+    public function search($limit, $offset, $by, $order, $filters = FALSE, $select = 'username, first_name, last_name, email, role') {
         // error correction
         $order = ($order == 'desc') ? 'desc' : 'asc';
         $sortable = array('username', 'first_name', 'last_name', 'email', 'role');
         $by = (in_array($by, $sortable)) ? $by : 'username';
       
         // results query
-        $query =  $this->db->select('username, first_name, last_name, email, role')
+        $query =  $this->db->select($select)
                   ->from('users')
                   ->limit($limit, $offset)
                   ->order_by($by, $order);
@@ -86,6 +86,7 @@ class User_model extends CI_Model {
             $query->where($key,$value);
         }
         $result['users'] = $query->get();
+        $result['users2'] = $this->db->get('users');
         
         // count table rows
         if ( $filters ) {
