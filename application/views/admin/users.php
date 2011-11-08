@@ -1,5 +1,5 @@
 <h1 class="page-header">Manage Users <small>Activate, add, delete,...</small></h1>
-<table class="bordered-table">
+<table class="sortable">
   <thead>
     <?php foreach( $fields as $field_name => $field_display): ?>
     <th class="blue header<?php if ($by == $field_name) echo ($order == 'asc') ? ' headerSortUp' : ' headerSortDown'; ?>">

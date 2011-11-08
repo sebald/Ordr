@@ -1,11 +1,15 @@
-body { padding-top: 60px; }
+body { padding-top: 60px; background-color: #FCFCFC; }
 
 form label { font-weight: bold; }
 
-th { background-color: #E0F3FF; }
+thead { background-color: #E0F3FF; border-bottom: 2px solid #0064CD; }
 .sortable th { cursor: pointer; background-color: #E0F3FF; }
-th, th a { color: #049CDB; }
+th, th a { color: #0064CD; }
+th a:hover { text-decoration: none; color: #0064CD; }
 tbody tr:hover { background-color: #fafafa; }
+
+footer p, footer a{ font-size: 12px; color: #BBBBBB; }
+footer a:hover { color: #0069D6; text-decoration: none; }
 
 .rounded-box {
  -webkit-border-radius: 5px;
@@ -15,17 +19,79 @@ tbody tr:hover { background-color: #fafafa; }
   padding: 10px;
 }
 
-.brand { font-family: 'Luckiest Guy', cursive; }
+/*================================ BUTTONS ================================*/
 
-.topbar .brand { color: #f0f05b; font-size: 25px; padding-bottom: 0; }
+.btn-toolbar {
+  zoom: 1;
+}
+.btn-toolbar:before, .btn-toolbar:after {
+  display: table;
+  content: "";
+  zoom: 1;
+  *display: inline;
+}
+.btn-toolbar:after {
+  clear: both;
+}
+.btn-toolbar .btn-group {
+  float: left;
+  margin-right: 10px;
+}
+.btn-group {
+  zoom: 1;
+}
+.btn-group:before, .btn-group:after {
+  display: table;
+  content: "";
+  zoom: 1;
+  *display: inline;
+}
+.btn-group:after {
+  clear: both;
+}
+.btn-group .btn {
+  position: relative;
+  float: left;
+  margin-left: -1px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.btn-group .btn:first-child {
+  margin-left: 0;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  border-top-left-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  border-bottom-left-radius: 4px;
+}
+.btn-group .btn:last-child {
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  border-top-right-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  border-bottom-right-radius: 4px;
+}
+.btn-group .btn:hover, .btn-group .btn:focus, .btn-group .btn:active {
+  z-index: 2;
+}
+
+/*================================ HEADER ================================*/
+
+.brand { font-family: 'Anton', sans-serif; }
+
+.topbar .brand { color: #049CDB; font-size: 28px; padding-bottom: 0; padding-top: 4px; }
 .topbar .brand:hover { text-decoration: none; }
 
 .topbar .pull-right input, .topbar .pull-right button { margin-left: 5px; }
 .topbar .pull-right button { padding-top: 4px; padding-bottom: 5px; }
 .topbar .pull-right input { box-shadow: none;}
 
+.topbar #account { padding: 9px 10px 0; }
+
 .vendor-adress { margin: 10px 0 0 150px; }
 
-.sort-asc:after { content: '▲'; }
-.sort-desc:after { content: '▼'; }
+
 

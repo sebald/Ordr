@@ -9,7 +9,7 @@
   ?>
   <title>Ordr | <? echo $c ?> <? echo $f; ?></title>
 	
-	<link href='http://fonts.googleapis.com/css?family=Luckiest+Guy' rel='stylesheet' type='text/css'>	
+	<link href='http://fonts.googleapis.com/css?family=Anton&subset=latin,latin-ext' rel='stylesheet' type='text/css'>	
   
 	<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css" type="text/css" media="screen">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css" type="text/css" media="screen" />
@@ -19,7 +19,7 @@
 <header class="topbar">
   <div class="fill">
     <div class="container">
-      <a href="<?php echo base_url(); ?>" class="brand">Ordr</a>
+      <a href="<?php echo base_url(); ?>" class="brand">ordr</a>
       <?php $this->load->view('layout/topbar_menu'); ?>
       <?php
         if ( $this->session->userdata('logged_in') ){

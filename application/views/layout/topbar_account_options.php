@@ -3,7 +3,7 @@
   <li><?php echo anchor('admin', 'Admin'); ?></li>
   <?php endif; ?>
   <li class="dropdown">
-    <a class="dropdown-toggle" href="#">Account</a>
+    <a id="account" class="dropdown-toggle" href="#"><img alt="Account" src="<?php echo base_url(); ?>/img/account.png"></a>
     <ul class="dropdown-menu">
       <li><?php echo anchor('account/settings', 'Settings'); ?></li>
       <li><a href="#">Help</a></li>
