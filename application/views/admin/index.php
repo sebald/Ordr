@@ -1,29 +1,23 @@
 <h1 class="page-header">Administration <small>Beeing important.</small></h1>
 <div class="row">
   <aside class="span4">
-    <?php echo anchor('admin/users', 'Manage Users'); ?>
+    <ul class="unstyled">
+      <li><h4><?php echo anchor('admin/users', 'Manage Users', 'id="manage-users"'); ?></h4></li>
+      <li><h4><?php echo anchor('admin/users', 'Manage Users'); ?></h4></li>
+      <li><h4><?php echo anchor('admin/users', 'Manage Users'); ?></h4></li>
+    </ul>
   </aside>
   <div class="span12">
     <h3>There are new Registrarions <small> Displaying 5 of <?php echo $count; ?></small></h3>
     <?php echo $table_users; ?>
-    <div class="btn-toolbar">
+    <div class="table-actions">
+      <a class="btn" href="#">test</a>
+      <a class="btn" href="#">test</a>
+      <a class="btn" href="#">test</a>
       <div class="btn-group">
-        <a href="#" class="btn">1</a>
-        <a href="#" class="btn">2</a>
-        <a href="#" class="btn">3</a>
-        <a href="#" class="btn">4</a>
-        <a href="#" class="btn">5</a>
-      </div>
-      <div class="btn-group">
-        <a href="#" class="btn">6</a>
-        <a href="#" class="btn">7</a>
-        <a href="#" class="btn">8</a>
-      </div>
-      <div class="btn-group">
-        <a href="#" class="btn">9</a>
-      </div>
-      <div class="btn-group">
-        <a href="#" class="btn">10</a>
+        <a class="btn" href="#">test</a>
+        <a class="btn" href="#">test</a>
+        <a class="btn" href="#">test</a>
       </div>
     </div>
   </div>

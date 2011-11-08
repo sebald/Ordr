@@ -5,19 +5,22 @@ class Admin extends MY_Controller {
     public function index() {
         $data['fields'] = array(
                     'username'    => 'Username',
-                    'first_name'  => 'First Name',
-                    'last_name'   => 'Last Name',
                     'email'       => 'Email',
                     'role'        => 'Role'
         );   
         $filter = array(
           'role' => 'inactive'
         );
+        $select = 'username, email, role';
     
         // get users
         $this->load->model('user_model');
-        $query = $this->user_model->search(5, 0, 'date_created', 'asc', $filter);
-        $data['users'] = $query['users'];
+        $query = $this->user_model->search(5, 0, 'date_created', 'asc', $filter, $select);
+        
+        // generate table
+        $this->load->library('table');
+        $this->table->set_heading(array('Username', 'Email', 'Role'));
+        $data['table_users'] = $this->table->generate($query['users']);        
         $data['count'] = $query['count'];
     
         $data['main_content'] = 'admin/index';
@@ -25,7 +28,7 @@ class Admin extends MY_Controller {
     }
 
     public function users($by = 'title', $order = 'asc', $offset = 0) {   
-        $limit = 20;
+        $limit = 10;
         $data['fields'] = array(
                     'username'    => 'Username',
                     'first_name'  => 'First Name',
@@ -39,7 +42,7 @@ class Admin extends MY_Controller {
         // get users
         $this->load->model('user_model');
         $query = $this->user_model->search($limit, $offset, $by, $order);
-        $data['users'] = $query['users'];
+        $data['users'] = $query['users']->result();
         $data['count'] = $query['count'];
         
         // pagination config
