@@ -13,11 +13,11 @@ class User_model extends CI_Model {
         $hashedPassword = $this->encrypt->sha1($this->input->post('password'));
       
         $new_user_data = array(
-          'username' => $this->input->post('first_name').$this->input->post('last_name'),
-          'first_name' => $this->input->post('first_name'),
-          'last_name' => $this->input->post('last_name'),
-          'email' => $this->input->post('email'),			
-          'password' => $hashedPassword
+          'username' 	=> $this->input->post('first_name').$this->input->post('last_name'),
+          'first_name' 	=> $this->input->post('first_name'),
+          'last_name' 	=> $this->input->post('last_name'),
+          'email' 		=> $this->input->post('email'),			
+          'password' 	=> $hashedPassword
         );
         $insert = $this->db->insert('users', $new_user_data);
         return $insert;
@@ -69,7 +69,7 @@ class User_model extends CI_Model {
         $this->db->update('users', $data); 
     }
     
-    public function search($limit, $offset, $by, $order, $filters = FALSE, $select = 'username, first_name, last_name, email, role') {
+    public function search($limit, $offset, $by, $order, $where = FALSE, $select = 'username, first_name, last_name, email, role') {
         // error correction
         $order = ($order == 'desc') ? 'desc' : 'asc';
         $sortable = array('username', 'first_name', 'last_name', 'email', 'role');
@@ -81,15 +81,15 @@ class User_model extends CI_Model {
                   ->limit($limit, $offset)
                   ->order_by($by, $order);
         // where
-        if ( $filters ) {
-            foreach( $filters as $key => $value )
+        if ( $where ) {
+            foreach( $where as $key => $value )
             $query->where($key,$value);
         }
         $result['users'] = $query->get();
         
         // count table rows
-        if ( $filters ) {
-            foreach( $filters as $key => $value )
+        if ( $where ) {
+            foreach( $where as $key => $value )
             $query->where($key,$value);
         }        
         $result['count'] = $this->db->count_all_results('users');
