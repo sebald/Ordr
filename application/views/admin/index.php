@@ -8,17 +8,10 @@
     </ul>
   </aside>
   <div class="span12">
-    <h3>There are new Registrarions <small> Displaying 5 of <?php echo $count; ?></small></h3>
+    <h3>There are new Registrations <small> Displaying 5 of <?php echo $count; ?></small></h3>
     <?php echo $table_users; ?>
     <div class="table-actions">
-      <a class="btn" href="#">test</a>
-      <a class="btn" href="#">test</a>
-      <a class="btn" href="#">test</a>
-      <div class="btn-group">
-        <a class="btn" href="#">test</a>
-        <a class="btn" href="#">test</a>
-        <a class="btn" href="#">test</a>
-      </div>
+        <a class="btn-flat" href="<?php echo base_url(); ?>admin/users/role=inactive/username/asc/0/"><span class="list"></span>Show all</a>
     </div>
   </div>
 </div>
