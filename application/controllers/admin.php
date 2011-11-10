@@ -37,7 +37,8 @@ class Admin extends MY_Controller {
                     'role'        => 'Role'
         );
         $data['by'] = $by;
-        $data['order'] = $order;        
+        $data['order'] = $order;
+		$data['filter'] = $filter;        
         
 		$where = FALSE;
 		if ( $filter != 'all' )

@@ -3,7 +3,7 @@
   <thead>
     <?php foreach( $fields as $field_name => $field_display): ?>
     <th class="blue header<?php if ($by == $field_name) echo ($order == 'asc') ? ' headerSortUp' : ' headerSortDown'; ?>">
-      <?php echo anchor("admin/users/$field_name/" .
+      <?php echo anchor("admin/users/$filter/$field_name/" .
         (($order == 'asc' && $by == $field_name) ? 'desc' : 'asc') ,
         $field_display); ?>
     </th>
