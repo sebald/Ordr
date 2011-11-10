@@ -27,13 +27,7 @@
 <?php if (strlen($pagination)): ?>
 <div class="pagination">
   <ul>
-    <?php if ( $page == 'no-prev' ) : ?>
-      <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-    <?php endif; ?>
     <?php echo $pagination; ?>
-    <?php if ( $page == 'no-next' ) : ?>
-      <li class="next disabled"><a href="#">Next &rarr;</a></li>
-    <?php endif; ?>    
   </ul>
 </div>
 <?php endif; ?>

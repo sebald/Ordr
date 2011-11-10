@@ -57,29 +57,10 @@ class Admin extends MY_Controller {
         $config['uri_segment'] = 6;
         $config['num_links'] = 5;
         
-        // pagination layout
-        $config['prev_link'] = '&larr; Previous';
-        $config['prev_tag_open'] = '<li class="prev">';
-        $config['prev_tag_close'] = '</li>';
-        $config['next_link'] = 'Next &rarr;';
-        $config['next_tag_open'] = '<li class="next">';
-        $config['next_tag_close'] = '</li>';
-        
-        $config['cur_tag_open'] = '<li class="active"><a href="#">';
-        $config['cur_tag_close'] = '</a></li>';
-        $config['num_tag_open'] = '<li>';
-        $config['num_tag_close'] = '</li>';
-        
         // pagination
         $this->load->library('pagination');
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();        
-        
-        $data['page'] = FALSE;
-        if ($this->pagination->cur_page == 1)
-          $data['page'] = 'no-prev';
-        if ($this->pagination->cur_page >= ceil($this->pagination->total_rows / $this->pagination->per_page))
-          $data['page'] = 'no-next';
 		
         $data['main_content'] = 'admin/users';
         $this->load->view('layout/template', $data);
