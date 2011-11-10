@@ -5,32 +5,6 @@ body {
 form label {
 	font-weight: bold;
 }
-thead {
-	background-color: #E0F3FF;
-	border-bottom: 2px solid #0064CD;
-}
-.sortable th {
-	cursor: pointer;
-	background-color: #E0F3FF;
-}
-th, th a {
-	color: #0064CD;
-}
-th a:hover {
-	text-decoration: none;
-	color: #0064CD;
-}
-tbody tr:hover {
-	background-color: #fafafa;
-}
-footer p, footer a {
-	font-size: 12px;
-	color: #BBBBBB;
-}
-footer a:hover {
-	color: #0069D6;
-	text-decoration: none;
-}
 .rounded-box {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -41,6 +15,14 @@ footer a:hover {
 .brand {
 	font-family: 'Anton', sans-serif;
 }
+.pagination.center,
+.pagination.center ul {
+    float: left;
+    position: relative;
+}
+.pagination.center { left: 50%; margin-bottom: 0; }
+.pagination.center ul { left: -50%; }
+
 /*================================ BUTTONS ================================*/
 
 .table-actions {
@@ -187,3 +169,36 @@ a.btn-flat {
 
 /*================================ TABLES ================================*/
 
+thead {
+	background-color: #E0F3FF;
+	border-bottom: 2px solid #0064CD;
+}
+.sortable th {
+	cursor: pointer;
+	background-color: #E0F3FF;
+}
+th, th a {
+	color: #0064CD;
+}
+th a:hover {
+	text-decoration: none;
+	color: #0064CD;
+}
+tbody tr:hover {
+	background-color: #fafafa;
+}
+
+/*================================ FOOTER ================================*/
+
+footer {
+	clear: both;
+}
+
+footer p, footer a {
+	font-size: 12px;
+	color: #BBBBBB;
+}
+footer a:hover {
+	color: #0069D6;
+	text-decoration: none;
+}
