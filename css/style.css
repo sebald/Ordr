@@ -173,7 +173,7 @@ thead {
 	background-color: #E0F3FF;
 	border-bottom: 2px solid #0064CD;
 }
-.sortable th {
+th.sortable {
 	cursor: pointer;
 	background-color: #E0F3FF;
 }
