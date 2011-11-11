@@ -86,7 +86,7 @@ class Account extends MY_Controller {
       $this->load->library('form_validation');
       $this->form_validation->set_rules('email', 'Email Address', 'trim|required|valid_email');
       $this->form_validation->set_rules('newpassword', 'Password', 'trim|min_length[4]|max_length[32]');
-      $this->form_validation->set_rules('newpassword2', 'Password Confirmation', 'trim|matches[newpassword2]');        
+      $this->form_validation->set_rules('newpassword2', 'Password Confirmation', 'trim|matches[newpassword]');        
       
       if( $this->form_validation->run() == FALSE ) {
           // form error
