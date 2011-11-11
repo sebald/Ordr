@@ -46,8 +46,10 @@ class User_model extends CI_Model {
         return false;
     }
     
-    public function get_settings() {
-        $this->db->where('username', $this->session->userdata('username'));
+    public function get_settings($username = FALSE) {
+    	if ( $username == FALSE )
+			$username = $this->session->userdata('username');
+        $this->db->where('username', $username);
         $query = $this->db->get('users');
         if($query->num_rows == 1) {        
           return $query->row(0);
