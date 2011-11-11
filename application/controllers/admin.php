@@ -67,8 +67,31 @@ class Admin extends MY_Controller {
         $this->load->view('layout/template', $data);
     }
     
-	public function delete_user($username) {
+	public function users_delete() {
+		// deletion confirmed?
+		if( $this->input->post('submit-delete') ) {
+			$this->delete($this->input->post('users'), 'User(s)');
+			die();
+		}
+				
+		$this->load->model('user_model');
+		$query = $this->user_model->get($this->input->post('users'));
 		
+		$this->load->library('table');
+		$this->table->set_heading(array('Username', 'First Name', 'Last Name', 'Email', 'Role'));
+        $data['table_users'] = $this->table->generate($query); 
+		
+		$data['main_content'] = 'admin/users_delete';
+        $this->load->view('layout/template', $data);
+	}
+	
+	private function delete($data, $type){
+		$this->load->model('user_model');
+		$this->user_model->delete($data);
+		
+		$msg = create_alert_message('success', 'Deletion successfull!', count($data).' '.$type.' permantly deleted.');
+		$this->session->set_flashdata('message', $msg);
+		redirect('admin/users_view');	
 	}
 }
 

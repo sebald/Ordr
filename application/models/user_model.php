@@ -96,4 +96,32 @@ class User_model extends CI_Model {
         
         return $result;
     }
+	
+	public function get($users, $by = 'username', $select = 'username, first_name, last_name, email, role'){
+		// error correction
+		$fields = array('username', 'first_name', 'last_name', 'email', 'role');
+        $by = (in_array($by, $fields)) ? $by : 'username';
+		
+		// selected fields
+		$this->db->select($select);
+		
+		// get multiple users?
+		if( is_array($users)){
+			$this->db->where_in($by, $users);
+		} else {
+			$this->db->where($by, $users);
+		}
+		return $this->db->get('users');
+		
+	}
+	
+	public function delete($users, $by = 'username'){
+		// get multiple users?
+		if( is_array($users)){
+			$this->db->where_in($by, $users);
+		} else {
+			$this->db->where($by, $users);
+		}
+		return $this->db->delete('users');		
+	}
 }

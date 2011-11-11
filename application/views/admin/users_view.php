@@ -1,4 +1,5 @@
 <h1 class="page-header">Manage Users <small>Activate, add, delete,...</small></h1>
+<?php echo $this->session->flashdata('message'); ?>
 <table>
   <thead>
     <?php foreach( $fields as $field_name => $field_display): ?>
@@ -22,7 +23,7 @@
       </td>
       <?php endforeach; ?>
       <td>
-      	<?php echo table_action('delete', 'admin/delete_user/'.$user->username); ?>
+      	<?php echo table_action('users/delete', $user->username); ?>
       </td>
     </tr>
     <?php endforeach; ?>			
