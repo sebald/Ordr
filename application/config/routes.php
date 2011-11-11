@@ -38,6 +38,12 @@
 |
 */
 
+$route['admin/users/view'] = "admin/users_view";
+$route['admin/users/view/(:any)'] = "admin/users_view/$1";
+$route['admin/users/view/(:any)/(:any)'] = "admin/users_view/$1/$2";
+$route['admin/users/view/(:any)/(:any)/(asc|desc)'] = "admin/users_view/$1/$2/$3";
+$route['admin/users/view/(:any)/(:any)/(asc|desc)/(:num)'] = "admin/users_view/$1/$2/$3/$4";
+
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 

@@ -1,13 +1,16 @@
 <h1 class="page-header">Manage Users <small>Activate, add, delete,...</small></h1>
-<table class="sortable">
+<table>
   <thead>
     <?php foreach( $fields as $field_name => $field_display): ?>
-    <th class="blue header<?php if ($by == $field_name) echo ($order == 'asc') ? ' headerSortUp' : ' headerSortDown'; ?>">
-      <?php echo anchor("admin/users/$filter/$field_name/" .
+    <th class="sortable blue header<?php if ($by == $field_name) echo ($order == 'asc') ? ' headerSortUp' : ' headerSortDown'; ?>">
+      <?php echo anchor("admin/users/view/$filter/$field_name/" .
         (($order == 'asc' && $by == $field_name) ? 'desc' : 'asc') ,
         $field_display); ?>
     </th>
     <?php endforeach; ?>
+    <th>
+    	Actions
+    </th>
   </thead>
   
   <tbody>
@@ -18,6 +21,9 @@
         <?php echo $user->$field_name; ?>
       </td>
       <?php endforeach; ?>
+      <td>
+      	<?php echo table_action('delete', 'admin/delete_user/'.$user->username); ?>
+      </td>
     </tr>
     <?php endforeach; ?>			
   </tbody>
@@ -25,9 +31,10 @@
 </table>
 
 <?php if (strlen($pagination)): ?>
-<div class="pagination">
+<div class="pagination center">
   <ul>
     <?php echo $pagination; ?>
   </ul>
 </div>
+<div style="clear:both;"></div>
 <?php endif; ?>

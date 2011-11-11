@@ -27,7 +27,7 @@ class Admin extends MY_Controller {
         $this->load->view('layout/template', $data);    
     }
 
-    public function users($filter = 'all', $by = 'username', $order = 'asc', $offset = 0) {   
+    public function users_view($filter = 'all', $by = 'username', $order = 'asc', $offset = 0) {   
         $limit = 10;
         $data['fields'] = array(
                     'username'    => 'Username',
@@ -52,10 +52,10 @@ class Admin extends MY_Controller {
         
         // pagination config
         $config = array();
-        $config['base_url'] = site_url("admin/users/$filter/$by/$order");
+        $config['base_url'] = site_url("admin/users/view/$filter/$by/$order");
         $config['total_rows'] = $data['count'];
         $config['per_page'] = $limit;
-        $config['uri_segment'] = 6;
+        $config['uri_segment'] = 7;
         $config['num_links'] = 5;
         
         // pagination
@@ -63,10 +63,13 @@ class Admin extends MY_Controller {
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();        
 		
-        $data['main_content'] = 'admin/users';
+        $data['main_content'] = 'admin/users_view';
         $this->load->view('layout/template', $data);
     }
     
+	public function delete_user($username) {
+		
+	}
 }
 
 /* End of file admin.php */
