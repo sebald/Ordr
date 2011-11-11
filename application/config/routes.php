@@ -44,6 +44,8 @@ $route['admin/users/view/(:any)/(:any)'] = "admin/users_view/$1/$2";
 $route['admin/users/view/(:any)/(:any)/(asc|desc)'] = "admin/users_view/$1/$2/$3";
 $route['admin/users/view/(:any)/(:any)/(asc|desc)/(:num)'] = "admin/users_view/$1/$2/$3/$4";
 
+$route['admin/users/delete'] = "admin/users_delete";
+
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 
