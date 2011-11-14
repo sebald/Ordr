@@ -3,7 +3,7 @@
 <table>
   <thead>
   	<th class="span1 center">
-  		<?php echo form_checkbox('all', 'all'); ?>
+  		<?php echo form_checkbox('mark_all', 'all'); ?>
   	</th>
     <?php foreach( $fields as $field_name => $field_display): ?>
     <th class="sortable blue header<?php if ($by == $field_name) echo ($order == 'asc') ? ' headerSortUp' : ' headerSortDown'; ?>">
@@ -21,7 +21,7 @@
     <?php foreach($users as $user): ?>
     <tr>
       <td class="center">
-      	<?php echo form_checkbox('marked', $user->username); ?>
+      	<?php echo form_checkbox('marked[]', $user->username); ?>
       </td>
       <?php foreach($fields as $field_name => $field_display): ?>
       <td>
