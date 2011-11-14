@@ -97,9 +97,10 @@ class Admin extends MY_Controller {
 	
 	public function users_delete($users = FALSE) {
 		// single or multiple delete
-		if( $users == FALSE )
-			$users = $this->input->post('users');
-		
+		if( $users == FALSE ) {
+			$users = $this->input->post('marked');
+		}
+
 		// deletion confirmed?
 		if( $this->input->post('submit-delete') ) {
 			$this->delete($users, 'User(s)');
@@ -120,7 +121,7 @@ class Admin extends MY_Controller {
 	private function delete($data, $type){
 		$this->load->model('user_model');
 		$this->user_model->delete($data);
-		
+
 		$msg = create_alert_message('success', 'Deletion successfull!', count($data).' '.$type.' permantly deleted.');
 		$this->session->set_flashdata('message', $msg);
 		redirect('admin/users_view');	

@@ -1,5 +1,6 @@
 <h1 class="page-header">Manage Users <small>Activate, add, delete,...</small></h1>
 <?php echo $this->session->flashdata('message'); ?>
+<?php echo form_open('admin/users/delete'); ?>
 <table>
   <thead>
   	<th class="span1 center">
@@ -37,7 +38,11 @@
   </tbody>
   
 </table>
-
+<div class="table-actions">
+    <input type="submit" value="delete" class="btn-flat">
+</div>
+<?php echo form_close(); ?>
+    
 <?php if (strlen($pagination)): ?>
 <div class="pagination center">
   <ul>
