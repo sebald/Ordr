@@ -28,7 +28,8 @@ form label {
 .table-actions {
 	border-top: 1px solid #DDDDDD;
 	margin-top: -18px;
-	clear: both;
+	display: inline-block;
+	width: 100%;
 }
 .btn-flat {
 	text-decoration: none;
