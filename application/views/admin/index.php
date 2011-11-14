@@ -8,7 +8,7 @@
     </ul>
   </aside>
   <div class="span12">
-    <h3>There are new Registrations <small> Displaying 5 of <?php echo $count; ?></small></h3>
+    <h3>There are new Registrations <small> Displaying <?php echo ($count <= 5) ? $count : '5'; ?> of <?php echo $count; ?></small></h3>
     <?php echo $table_users; ?>
     <div class="table-actions">
         <a class="btn-flat" href="<?php echo base_url(); ?>admin/users/view/role=inactive/username/asc/0/"><span class="list"></span>Show all</a>
