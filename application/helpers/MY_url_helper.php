@@ -2,18 +2,21 @@
 
 if ( ! function_exists('table_action'))
 {
-	function table_action($type, $username) {
+	function table_action($type, $uri, $username) {
 		// addtitional data
 		$data = array(
-						'name'      => 'delete-'.$username,
+						'name'      => $type.'-'.$username,
 						'class'		=> 'action '.$type,
-						'value'     => 'delete',
+						'value'     => $type,
 						'type'		=> 'submit'
 		            );
 		$hidden = array ( 'users' => array ($username) );
 		
+		if ( $type == 'edit' )
+			$uri .= '/'.$username.'/';
+		
 		// create action HTML
-		$output = form_open('admin/users/delete','',$hidden);
+		$output = form_open($uri,'',$hidden);
 		$output .= form_input($data);		
 		$output .= form_close();
 		
