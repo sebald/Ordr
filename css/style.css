@@ -235,7 +235,7 @@ tbody tr:hover {
 	background-color: #fafafa;
 }
 
-table .center {
+td.center, th.center {
 	text-align: center;
 	vertical-align: middle;
 }
