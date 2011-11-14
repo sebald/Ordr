@@ -24,7 +24,7 @@
       <?php endforeach; ?>
       <td>
       	<?php echo anchor('admin/users/edit/'.$user->username, 'edit'); ?>
-      	<?php echo table_action('delete', 'admin/users/delete', $user->username); ?>
+      	<?php echo anchor('admin/users/delete/'.$user->username, 'delete'); ?>
       </td>
     </tr>
     <?php endforeach; ?>			

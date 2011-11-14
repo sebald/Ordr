@@ -95,15 +95,19 @@ class Admin extends MY_Controller {
         $this->load->view('layout/template', $data);
 	}
 	
-	public function users_delete() {
+	public function users_delete($users = FALSE) {
+		// single or multiple delete
+		if( $users == FALSE )
+			$users = $this->input->post('users');
+		
 		// deletion confirmed?
 		if( $this->input->post('submit-delete') ) {
-			$this->delete($this->input->post('users'), 'Users');
+			$this->delete($users, 'User(s)');
 			die();
 		}
 				
 		$this->load->model('user_model');
-		$query = $this->user_model->get($this->input->post('users'));
+		$query = $this->user_model->get($users);
 		
 		$this->load->library('table');
 		$this->table->set_heading(array('Username', 'First Name', 'Last Name', 'Email', 'Role'));
