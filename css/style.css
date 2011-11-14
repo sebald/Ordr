@@ -153,6 +153,15 @@ table .action {
 	-moz-transition: background-image 0.20s linear;
 	-o-transition: background-image 0.20s linear;
 	transition: background-image 0.20s linear;
+	zoom: 1;
+    filter: alpha(opacity=40);
+    opacity: 0.4;
+	
+}
+
+table .action:hover {
+    filter: alpha(opacity=100);
+    opacity: 1;	
 }
 
 table .action.delete {
@@ -223,6 +232,11 @@ th a:hover {
 }
 tbody tr:hover {
 	background-color: #fafafa;
+}
+
+table .center {
+	text-align: center;
+	vertical-align: middle;
 }
 
 /*================================ FOOTER ================================*/
