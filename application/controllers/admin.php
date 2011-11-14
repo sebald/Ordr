@@ -67,10 +67,38 @@ class Admin extends MY_Controller {
         $this->load->view('layout/template', $data);
     }
     
+	public function users_edit($username) {
+		$this->load->model('user_model');
+		$data['settings'] = $this->user_model->get($username)->row(0);
+
+		// set referer
+		if( !$this->session->flashdata('referer') ) {
+			$this->session->set_flashdata('referer', $_SERVER['HTTP_REFERER']);
+		} else {
+			$this->session->keep_flashdata('referer');
+		}
+
+		// set form validation
+      	$this->load->library('form_validation');
+      	$this->form_validation->set_rules('email', 'Email Address', 'trim|required|valid_email');
+
+	    if( $this->form_validation->run() == FALSE ) {
+	        // form error
+	    } else {      
+	        // update settings
+	        $this->user_model->update($username);
+	        $msg = create_alert_message('success', 'Updated completed.', 'The account information has been updated successfully.');
+			$this->session->set_flashdata('message', $msg);
+			redirect('admin/users_edit/'.$username);
+	    }
+		$data['main_content'] = 'admin/users_edit';
+        $this->load->view('layout/template', $data);
+	}
+	
 	public function users_delete() {
 		// deletion confirmed?
 		if( $this->input->post('submit-delete') ) {
-			$this->delete($this->input->post('users'), 'User(s)');
+			$this->delete($this->input->post('users'), 'Users');
 			die();
 		}
 				

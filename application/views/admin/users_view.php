@@ -23,7 +23,8 @@
       </td>
       <?php endforeach; ?>
       <td>
-      	<?php echo table_action('users/delete', $user->username); ?>
+      	<?php echo anchor('admin/users/edit/'.$user->username, 'edit'); ?>
+      	<?php echo table_action('delete', 'admin/users/delete', $user->username); ?>
       </td>
     </tr>
     <?php endforeach; ?>			

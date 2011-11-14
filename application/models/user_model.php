@@ -57,8 +57,12 @@ class User_model extends CI_Model {
         return false;
     }
     
-    public function update() {
+    public function update($username = FALSE) {
+    	if ( $username == FALSE )
+			$username = $this->session->userdata('username');    	
         $data['email'] = $this->input->post('email');
+		if ( $this->input->post('role') )
+			$data['role'] = $this->input->post('role');
         
         // update pwd?
         if ( $this->input->post('newpassword') != '') {
@@ -67,7 +71,7 @@ class User_model extends CI_Model {
         }
         
         // update
-        $this->db->where('username', $this->session->userdata('username'));
+        $this->db->where('username', $username);
         $this->db->update('users', $data); 
     }
     
