@@ -23,8 +23,8 @@
       </td>
       <?php endforeach; ?>
       <td>
-      	<?php echo anchor('admin/users/edit/'.$user->username, 'edit'); ?>
-      	<?php echo anchor('admin/users/delete/'.$user->username, 'delete'); ?>
+      	<?php echo anchor('admin/users/edit/'.$user->username, 'edit', 'class="action edit" title="Edit User"'); ?>
+      	<?php echo anchor('admin/users/delete/'.$user->username, 'delete', 'class="action delete" title="Delete User"'); ?>
       </td>
     </tr>
     <?php endforeach; ?>			
