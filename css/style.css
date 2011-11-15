@@ -30,6 +30,7 @@ form label {
 	margin-top: -18px;
 	display: inline-block;
 	width: 100%;
+	text-align: right;
 }
 .btn-flat {
 	text-decoration: none;
@@ -38,9 +39,8 @@ form label {
 	color: #444;
 	line-height: 17px;
 	display: inline-block;
-	float: right;
 	margin: 7px 0;
-	padding: 8px 10px 7px;
+	padding: 8px 12px 7px 6px;
 	background: #F3F3F3;
 	border: solid 1px #D9D9D9;
 	border-radius: 4px;
@@ -98,21 +98,34 @@ a.btn-flat {
 	-o-transition: background-image 0.20s linear;
 	transition: background-image 0.20s linear;
 }
-.btn-flat .check {
+.btn-flat.check span {
 	background-position: 0px 0px;
 }
-.btn-flat:hover .check {
+.btn-flat.check:hover span {
 	background-position: 0px -18px;
 }
-.btn-flat .list {
+.btn-flat.list span {
 	background-position: -18px 0px;
 }
-.btn-flat:hover .list {
+.btn-flat.list:hover span {
 	background-position: -18px -18px;
+}
+.btn-flat.delete span {
+	background-position: -36px 0px;	
+}
+.btn-flat.delete:hover span {
+	background-position: -36px -18px;	
+}
+.btn-flat.group span {
+	background-position: -54px 0px;	
+}
+.btn-flat.group:hover span {
+	background-position: -54px -18px;	
 }
 .table-actions .btn-group {
 	float: right;
 }
+
 .table-actions .btn-group .btn-flat {
 	position: relative;
 	float: left;
