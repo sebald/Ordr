@@ -70,8 +70,12 @@ class User_model extends CI_Model {
 	          $data['password'] = $hashedPassword;
 	        }			
 		}
-        // update
-        $this->db->where('username', $username);
+        // update multiple users?
+		if( is_array($users)){
+			$this->db->where_in('username', $users);
+		} else {
+			$this->db->where('username', $users);
+		}
         $this->db->update('users', $data); 
     }
     
