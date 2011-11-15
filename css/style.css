@@ -132,20 +132,56 @@ a.btn-flat {
 	background-position: -54px -18px;	
 }
 
-.btn-flat.dropdown {
+.dropdown {
+	display:inline-block;
+}
+
+.dropdown .btn-flat {
 	padding-right: 27px;
 }
 
-.btn-flat.dropdown:after {
+.dropdown .btn-flat:after {
 	content: '';
 	position: absolute;
-	top: 15px;
+	top: 22px;
 	right: 13px;	
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-top: 5px solid #444444;
 }
-
+.dropdown .dropdown-slider {
+	margin: 0 5px 0 3px;
+	display: none;
+	width: 90%;
+	position: absolute;
+	top: 42px;
+	right: 0;
+	text-align: left;
+	background: #F2F2F2;
+	border-right: solid 1px #D9D9D9;
+	border-bottom: solid 1px #D9D9D9;
+	border-left: solid 1px #D9D9D9;
+	-webkit-border-bottom-right-radius: 2px;
+	-webkit-border-bottom-left-radius: 2px;
+	-moz-border-radius-bottomright: 2px;
+	-moz-border-radius-bottomleft: 2px;
+	border-bottom-right-radius: 2px;
+	border-bottom-left-radius: 2px;
+	-webkit-transition: border-color .20s;
+	-moz-transition: border .20s;
+	-o-transition: border-color .20s;
+	transition: border-color .20s;
+}
+.dropdown .dropdown-slider li {
+	display: block;
+	border-top: 1px solid #FFFFFF;
+	border-bottom: 1px solid #D9D9D9;
+	cursor: pointer;
+	padding: 5px 8px;
+}
+.dropdown .dropdown-slider li:hover {
+	background-color: #F6F6F6;
+}
 .table-actions .btn-group {
 	float: right;
 }
