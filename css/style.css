@@ -32,6 +32,12 @@ form label {
 	width: 100%;
 	text-align: right;
 }
+.table-actions .legend {
+	color: #0064CD;
+	font-size: 14px;
+	font-weight: bold;
+	margin-right: 5px;
+}
 .btn-flat {
 	text-decoration: none;
 	text-shadow: 0 1px 0 #fff;
@@ -98,6 +104,9 @@ a.btn-flat {
 	-o-transition: background-image 0.20s linear;
 	transition: background-image 0.20s linear;
 }
+.btn-flat.none {
+	padding-left: 12px;
+}
 .btn-flat.check span {
 	background-position: 0px 0px;
 }
@@ -122,6 +131,21 @@ a.btn-flat {
 .btn-flat.group:hover span {
 	background-position: -54px -18px;	
 }
+
+.btn-flat.dropdown {
+	padding-right: 27px;
+}
+
+.btn-flat.dropdown:after {
+	content: '';
+	position: absolute;
+	top: 15px;
+	right: 13px;	
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #444444;
+}
+
 .table-actions .btn-group {
 	float: right;
 }
