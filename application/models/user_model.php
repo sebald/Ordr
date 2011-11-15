@@ -105,7 +105,7 @@ class User_model extends CI_Model {
 	
 	public function get($users, $by = 'username', $select = 'username, first_name, last_name, email, role'){
 		// no users given?
-		if ($users = '') return false;
+		if ($users == '') return false;
 		
 		// error correction
 		$fields = array('username', 'first_name', 'last_name', 'email', 'role');
