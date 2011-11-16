@@ -8,35 +8,12 @@
     </ul>
   </aside>
   <div class="span12">
+  	<?php if ( $table_users) : ?>
     <h3>There are new Registrations <small> Displaying <?php echo ($count <= 5) ? $count : '5'; ?> of <?php echo $count; ?></small></h3>
     <?php echo $table_users; ?>
     <div class="table-actions">
         <a class="btn-flat list" href="<?php echo base_url(); ?>admin/users/view/role=inactive/username/asc/0/"><span></span>Show all</a>
     </div>
+    <?php endif; ?>
   </div>
 </div>
-
-<?php
-
-function print_a(){
-	$numargs = func_num_args();
-	if($numargs>1){
-		$out = '';
-		ob_start();
-		echo "<div style='background-color:#FFCC33;border:1px solid black;margin:3px;padding:5px;'>";
-		for($a=0;$a<$numargs;$a++)
-		print_a(func_get_arg($a));
-		echo "</div>";
-		$out .= ob_get_contents();
-		ob_end_clean();
-		echo $out;
-	}else{
-		echo "<pre style='background-color:#FFDF80;border:1px solid #000;margin:3px;padding:5px;'>";
-		$a = func_get_arg(0);
-		$a = (is_bool($a))?(($a)?'true':'false'):$a;
-		print_r($a);
-		echo "</pre>";
-	}
-}
-
-?>
