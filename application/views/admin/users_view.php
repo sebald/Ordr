@@ -39,8 +39,10 @@
   
 </table>
 <div class="table-actions">
-	<button class="btn-flat group" name="action" type="submit" value="role"><span></span>Role</button>
-	<button class="btn-flat delete" name="action" type="submit" value="delete"><span></span>Delete</button>
+	<div class="btn-group">
+		<button class="btn-flat group" name="action" type="submit" value="role"><span></span>Role</button>
+		<button class="btn-flat delete" name="action" type="submit" value="delete"><span></span>Delete</button>	  
+	</div>
 </div>
 <?php echo form_close(); ?>
     

@@ -44,8 +44,12 @@ $route['admin/users/view/(:any)/(:any)'] = 'admin/users_view/$1/$2';
 $route['admin/users/view/(:any)/(:any)/(asc|desc)'] = 'admin/users_view/$1/$2/$3';
 $route['admin/users/view/(:any)/(:any)/(asc|desc)/(:num)'] = 'admin/users_view/$1/$2/$3/$4';
 
+$route['admin/users/actions'] = 'admin/users_actions';
+
 $route['admin/users/delete'] = 'admin/users_delete';
 $route['admin/users/delete/(:any)'] = 'admin/users_delete/$1';
+
+$route['admin/users/role'] = 'admin/users_role';
 
 $route['admin/users/edit/(:any)'] = 'admin/users_edit/$1';
 

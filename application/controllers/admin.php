@@ -27,6 +27,21 @@ class Admin extends MY_Controller {
         $this->load->view('layout/template', $data);    
     }
 
+	public function users_actions(){
+		$this->session->set_flashdata('marked', $users = $this->input->post('marked'));
+		switch ($_POST['action']) {
+			case 'role':
+				redirect('admin/users/role');
+				break;
+			case 'delete':
+				redirect('admin/users/delete');
+				break;				
+			default:
+				redirect('admin/users/view');
+				break;
+		}
+	}
+
     public function users_view($filter = 'all', $by = 'username', $order = 'asc', $offset = 0) {   
         $limit = 10;
         $data['fields'] = array(
@@ -95,12 +110,43 @@ class Admin extends MY_Controller {
         $this->load->view('layout/template', $data);
 	}
 	
+	public function users_role() {
+		$this->load->model('user_model');
+		$users = $this->session->flashdata('marked');
+		
+		// role change confirmed?
+		if( $this->input->post('submit-role') ) {
+			print_a($_POST);
+			print_a($this->session->flashdata('marked'));
+			foreach ($_POST['role'] as $user => $role) {
+				$data['role'] = $role;
+				$this->user_model->update($user, $data);
+			}
+			$msg = create_alert_message('success', 'Role update successfull!', count($_POST['role']).' users updated.');
+			$this->session->set_flashdata('message', $msg);
+			redirect('admin/users_view');
+		}		
+
+		$data['users'] = $this->user_model->get($users)->result();
+        $data['fields'] = array(
+                    'username'    => 'Username',
+                    'first_name'  => 'First Name',
+                    'last_name'   => 'Last Name',
+                    'email'       => 'Email',
+                    'role'        => 'Role'
+        );
+		
+		$data['main_content'] = 'admin/users_role';
+        $this->load->view('layout/template', $data);
+	}
+	
 	public function users_delete($users = FALSE) {
 		// single or multiple delete
 		if( $users == FALSE ) {
-			$users = $this->input->post('marked');
+			$users = $this->session->flashdata('marked');
 		}
-
+		$this->session->keep_flashdata('marked');
+		
 		// deletion confirmed?
 		if( $this->input->post('submit-delete') ) {
 			$this->delete($users, 'User(s)');
@@ -125,6 +171,27 @@ class Admin extends MY_Controller {
 		$msg = create_alert_message('success', 'Deletion successfull!', count($data).' '.$type.' permantly deleted.');
 		$this->session->set_flashdata('message', $msg);
 		redirect('admin/users_view');	
+	}
+}
+
+function print_a(){
+	$numargs = func_num_args();
+	if($numargs>1){
+		$out = '';
+		ob_start();
+		echo "<div style='background-color:#FFCC33;border:1px solid black;margin:3px;padding:5px;'>";
+		for($a=0;$a<$numargs;$a++)
+		print_a(func_get_arg($a));
+		echo "</div>";
+		$out .= ob_get_contents();
+		ob_end_clean();
+		echo $out;
+	}else{
+		echo "<pre style='background-color:#FFDF80;border:1px solid #000;margin:3px;padding:5px;'>";
+		$a = func_get_arg(0);
+		$a = (is_bool($a))?(($a)?'true':'false'):$a;
+		print_r($a);
+		echo "</pre>";
 	}
 }
 
