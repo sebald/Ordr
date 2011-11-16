@@ -16,13 +16,16 @@ class Admin extends MY_Controller {
         // get users
         $this->load->model('user_model');
         $query = $this->user_model->search(5, 0, 'date_created', 'asc', $filter, $select);
-        
+
         // generate table
-        $this->load->library('table');
-        $this->table->set_heading(array('Username', 'Email', 'Role'));
-        $data['table_users'] = $this->table->generate($query['users']);        
-        $data['count'] = $query['count'];
-    
+        $data['table_users'] = FALSE;
+		if ( $query['count'] > 0 ) {
+	        $this->load->library('table');
+	        $this->table->set_heading(array('Username', 'Email', 'Role'));
+	        $data['table_users'] = $this->table->generate($query['users']);        
+	        $data['count'] = $query['count'];
+		}
+	
         $data['main_content'] = 'admin/index';
         $this->load->view('layout/template', $data);    
     }
