@@ -174,26 +174,5 @@ class Admin extends MY_Controller {
 	}
 }
 
-function print_a(){
-	$numargs = func_num_args();
-	if($numargs>1){
-		$out = '';
-		ob_start();
-		echo "<div style='background-color:#FFCC33;border:1px solid black;margin:3px;padding:5px;'>";
-		for($a=0;$a<$numargs;$a++)
-		print_a(func_get_arg($a));
-		echo "</div>";
-		$out .= ob_get_contents();
-		ob_end_clean();
-		echo $out;
-	}else{
-		echo "<pre style='background-color:#FFDF80;border:1px solid #000;margin:3px;padding:5px;'>";
-		$a = func_get_arg(0);
-		$a = (is_bool($a))?(($a)?'true':'false'):$a;
-		print_r($a);
-		echo "</pre>";
-	}
-}
-
 /* End of file admin.php */
 /* Location: ./application/controllers/admin.php */
