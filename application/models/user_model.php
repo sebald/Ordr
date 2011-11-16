@@ -90,14 +90,14 @@ class User_model extends CI_Model {
         // where
         if ( $where ) {
             foreach( $where as $key => $value )
-            $query->where($key,$value);
+            $query->like($key,$value);
         }
         $result['users'] = $query->get();
         
         // count table rows
         if ( $where ) {
             foreach( $where as $key => $value )
-            $query->where($key,$value);
+            $query->like($key,$value);
         }        
         $result['count'] = $this->db->count_all_results('users');
         
