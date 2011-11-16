@@ -175,6 +175,10 @@ class Admin extends MY_Controller {
 		$this->session->set_flashdata('message', $msg);
 		redirect('admin/users_view');	
 	}
+	
+	public function users_search(){
+		redirect('admin/users/view/'.$_POST['filter-field']."=".$_POST['filter']);
+	}
 }
 
 /* End of file admin.php */
