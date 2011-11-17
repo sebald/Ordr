@@ -15,6 +15,9 @@ form label {
 .brand {
 	font-family: 'Anton', sans-serif;
 }
+.right {
+	text-align: right;
+}
 .pagination.center,
 .pagination.center ul {
     float: left;
@@ -256,6 +259,9 @@ table .action.edit:hover {
 
 /*================================ FORMS ================================*/
 
+.pre-table-action {
+	margin-bottom: 5px;
+}
 
 /*================================ HEADER ================================*/
 
