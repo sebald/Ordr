@@ -76,7 +76,7 @@ class User_model extends CI_Model {
         
     }
     
-    public function search($limit, $offset, $by, $order, $where = FALSE, $select = 'username, first_name, last_name, email, role') {
+    public function search($limit, $offset, $by, $order, $filter = FALSE, $select = 'username, first_name, last_name, email, role') {
         // error correction
         $order = ($order == 'desc') ? 'desc' : 'asc';
         $sortable = array('username', 'first_name', 'last_name', 'email', 'role');
@@ -87,17 +87,25 @@ class User_model extends CI_Model {
                   ->from('users')
                   ->limit($limit, $offset)
                   ->order_by($by, $order);
-        // where
-        if ( $where ) {
-            foreach( $where as $key => $value )
-            $query->like($key,$value);
+				  
+        // filter results?
+        if ( $filter ) {
+        	if( $filter['mode'] == 'filter') {
+	            foreach( $filter['terms'] as $key => $value )
+	            	$query->like($key,$value);
+			}
+			if( $filter['mode'] == 'search') {
+				$query->where('MATCH ('.$select.') AGAINST (\''.$filter['terms'].'\' IN BOOLEAN MODE)', NULL, FALSE);
+			}
         }
         $result['users'] = $query->get();
         
         // count table rows
-        if ( $where ) {
-            foreach( $where as $key => $value )
-            $query->like($key,$value);
+        if ( $filter ) {
+        	if( $filter['mode'] == 'filter') {
+	            foreach( $filter['terms'] as $key => $value )
+	            	$query->like($key,$value);
+			}
         }        
         $result['count'] = $this->db->count_all_results('users');
         
