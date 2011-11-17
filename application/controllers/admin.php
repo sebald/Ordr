@@ -56,7 +56,8 @@ class Admin extends MY_Controller {
         );
         $data['by'] = $by;
         $data['order'] = $order;
-		$data['filter'] = $filter;        
+		$data['filter'] = $filter;
+		        
         
 		$where = FALSE;
 		if ( $filter != 'all' )
@@ -176,8 +177,11 @@ class Admin extends MY_Controller {
 		redirect('admin/users_view');	
 	}
 	
-	public function users_search(){
-		redirect('admin/users/view/'.$_POST['filter-field']."=".$_POST['filter']);
+	public function users_filter(){
+		$filter = 'all';
+		if( isset($_POST['filter']) )
+			$filter = http_build_query( array($_POST['filter']['by'] => $_POST['filter']['term']) );
+		redirect('admin/users/view/'.$filter);
 	}
 }
 
