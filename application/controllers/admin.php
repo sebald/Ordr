@@ -8,7 +8,8 @@ class Admin extends MY_Controller {
                     'email'       => 'Email',
                     'role'        => 'Role'
         );   
-        $filter = array(
+		$filter['mode'] = 'filter';
+        $filter['terms'] = array(
           'role' => 'inactive'
         );
         $select = 'username, email, role';
