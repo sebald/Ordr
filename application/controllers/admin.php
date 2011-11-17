@@ -45,7 +45,7 @@ class Admin extends MY_Controller {
 		}
 	}
 
-    public function users_view($filter = 'all', $by = 'username', $order = 'asc', $offset = 0) {   
+    public function users_view($query = 'all', $by = 'username', $order = 'asc', $offset = 0) {   
         $limit = 10;
         $data['fields'] = array(
                     'username'    => 'Username',
@@ -56,22 +56,30 @@ class Admin extends MY_Controller {
         );
         $data['by'] = $by;
         $data['order'] = $order;
-		$data['filter'] = $filter;
-		        
-        
-		$where = FALSE;
-		if ( $filter != 'all' )
-			parse_str($filter, $where);
+		$data['query'] = $query;
+		
+		// filter or search?        
+		$filter = FALSE;
+		if ( $query != 'all' ) {
+			$filter['mode'] = 'filter';
+			parse_str($query, $filter['terms']);
+	
+			// mode = search?	
+			if( array_key_exists('search', $filter['terms']) ) {
+				$filter['mode'] = 'search';
+				$filter['terms'] = $filter['terms']['search'];
+			}
+		}
 
         // get users
         $this->load->model('user_model');
-        $query = $this->user_model->search($limit, $offset, $by, $order, $where);
+        $query = $this->user_model->search($limit, $offset, $by, $order, $filter);
         $data['users'] = $query['users']->result();
         $data['count'] = $query['count'];
         
         // pagination config
         $config = array();
-        $config['base_url'] = site_url("admin/users/view/$filter/$by/$order");
+        $config['base_url'] = site_url("admin/users/view/$query/$by/$order");
         $config['total_rows'] = $data['count'];
         $config['per_page'] = $limit;
         $config['uri_segment'] = 7;
@@ -182,6 +190,13 @@ class Admin extends MY_Controller {
 		if( isset($_POST['filter']) )
 			$filter = http_build_query( array($_POST['filter']['by'] => $_POST['filter']['term']) );
 		redirect('admin/users/view/'.$filter);
+	}
+	
+	public function users_search(){
+		$search= 'all';
+		if( isset($_POST['search']) )
+			$search = http_build_query( array( 'search' => $_POST['search'] ) );
+		redirect('admin/users/view/'.$search);
 	}
 }
 

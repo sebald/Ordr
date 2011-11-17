@@ -8,26 +8,41 @@
 	);
 	$attr_form_filter = array(
           'class'       => 'pre-table-action'
-	);	
+	);
+	$attr_input_search = array(
+          'name'        => 'search',
+          'class'       => 'span4',
+          'size'        => '30'
+	);
+	$attr_submit_search = array(
+          'class'       => 'btn primary'
+	);		
 	$attr_input_filter = array(
           'name'        => 'filter[term]',
           'class'       => 'span3',
           'size'        => '30'
 	);
 	$attr_submit_filter = array(
-          'name'        => 'filter-submit',
           'class'       => 'btn primary'
 	);
-	parse_str($filter, $filter);
+	parse_str($query, $filter);
 	$keys = array_keys($filter);
 	$vals = array_values($filter);		
 ?>
 <h1 class="page-header">Manage Users <small>Activate, add, delete,...</small></h1>
 <?php echo $this->session->flashdata('message'); ?>
+
+<?php echo form_open('admin/users/search', $attr_form_filter); ?>
+<div class="right">	
+	<?php echo form_input($attr_input_search, ($keys[0] == 'search') ? $vals[0] : ''); ?>
+	<?php echo form_submit($attr_submit_search, 'Search'); ?>
+</div>
+<?php echo form_close(); ?>  
+
 <?php echo form_open('admin/users/filter', $attr_form_filter); ?>
 <div class="right">
 	<?php echo form_dropdown('filter[by]', $options_field, $keys[0], 'class="span2"'); ?>	
-	<?php echo form_input($attr_input_filter, (isset($vals[0])) ? $vals[0] : ''); ?>
+	<?php echo form_input($attr_input_filter, (isset($vals[0]) && $keys[0] != 'search') ? $vals[0] : ''); ?>
 	<?php echo form_submit($attr_submit_filter, 'Filter'); ?>
 </div>
 <?php echo form_close(); ?>         
