@@ -1,5 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
 
+/**
+ * Admin Controller.
+ *
+ * @package		Ordr
+ * @subpackage	Controller
+ * @category	
+ * @author		Sebastian Sebald
+ */
 class Admin extends MY_Controller {
 
     public function index() {
@@ -31,6 +39,11 @@ class Admin extends MY_Controller {
         $this->load->view('layout/template', $data);    
     }
 
+	/**
+	 * 	Redirecting to the requested action.
+	 * 	The redirect is needed because there is only one form action, but there are more than
+	 * 	one actions for table data.
+	 */
 	public function users_actions(){
 		$this->session->set_flashdata('marked', $users = $this->input->post('marked'));
 		switch ($_POST['action']) {
@@ -46,38 +59,41 @@ class Admin extends MY_Controller {
 		}
 	}
 
+	/**
+	 * 	Displaying user data in a table and provide actions to manage users.
+	 */
     public function users_view($query = 'all', $by = 'username', $order = 'asc', $offset = 0) {   
         $limit = 10;
         $data['fields'] = array(
-                    'username'    => 'Username',
-                    'first_name'  => 'First Name',
-                    'last_name'   => 'Last Name',
-                    'email'       => 'Email',
-                    'role'        => 'Role'
+                    'username' 		=> 'Username',
+                    'first_name' 	=> 'First Name',
+                    'last_name' 	=> 'Last Name',
+                    'email' 		=> 'Email',
+                    'role' 			=> 'Role'
         );
         $data['by'] = $by;
         $data['order'] = $order;
 		$data['query'] = $query;
 		
-		// filter or search?        
+		// parse query      
 		$filter = FALSE;
 		if ( $query != 'all' ) {
-			$filter['mode'] = 'filter';
-			parse_str($query, $filter['terms']);
-	
-			// mode = search?	
-			if( array_key_exists('search', $filter['terms']) ) {
-				$filter['mode'] = 'search';
-				$filter['terms'] = $filter['terms']['search'];
+			parse_str($query, $filter);
+			// seperate display values with commas
+			$filter['display'] = explode(' ', $filter['display']);
+			// remove unwanted fields from table
+			foreach ($data['fields'] as $key => $value) {
+				if( !in_array($key, $filter['display']) )
+					unset($data['fields'][$key]);
 			}
 		}
 
         // get users
         $this->load->model('user_model');
-        $query = $this->user_model->search($limit, $offset, $by, $order, $filter);
-        $data['users'] = $query['users']->result();
-        $data['count'] = $query['count'];
-        
+        $result = $this->user_model->search($limit, $offset, $by, $order, $filter);
+        $data['users'] = $result['users']->result();
+        $data['count'] = $result['count'];
+
         // pagination config
         $config = array();
         $config['base_url'] = site_url("admin/users/view/$query/$by/$order");

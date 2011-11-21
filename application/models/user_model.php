@@ -2,6 +2,8 @@
 
 class User_model extends CI_Model {
 
+	private $fields = array('username', 'first_name', 'last_name', 'email', 'role');
+
     public function create() {
         // check if username already exists
         $this->db->where('username', $this->input->post('first_name').$this->input->post('last_name'));
@@ -76,39 +78,60 @@ class User_model extends CI_Model {
         
     }
     
-    public function search($limit, $offset, $by, $order, $filter = FALSE, $select = 'username, first_name, last_name, email, role') {
+	/**
+	 *	Search users. 
+	 *
+	 * 	@param filter	Has to be an array.
+	 * 					(1) display
+	 * 					(2) search
+	 * 	
+	 */
+    public function search($limit, $offset, $by, $order, $filter = FALSE) {
         // error correction
         $order = ($order == 'desc') ? 'desc' : 'asc';
-        $sortable = array('username', 'first_name', 'last_name', 'email', 'role');
-        $by = (in_array($by, $sortable)) ? $by : 'username';
-      
-        // results query
+        $by = (in_array($by, $this->fields)) ? $by : 'username';
+		
+		// field selection
+		if( array_key_exists('display', $filter) ) {
+			// remove unknown fields from display filter
+			foreach ($filter['display'] as $i => $field) {
+				if( !in_array($field, $this->fields) ) {
+					unset($filter['display'][$i]);
+				}
+			}
+			$select = implode(",", $filter['display']);
+		} else {
+			$select = implode(",", $this->fields);
+		}
+	
+        // query
+        $this->db->start_cache();
         $query =  $this->db->select($select)
                   ->from('users')
-                  ->limit($limit, $offset)
                   ->order_by($by, $order);
+		
+		// search query?
+		if ( isset($filter['search']) ) {
+			$query->where('MATCH ('.$select.') AGAINST (\''.$filter['search'].'\' IN BOOLEAN MODE)', NULL, FALSE);
+		}
 				  
-        // filter results?
+        // filter query ?
         if ( $filter ) {
-        	if( $filter['mode'] == 'filter') {
-	            foreach( $filter['terms'] as $key => $value )
-	            	$query->like($key,$value);
-			}
-			if( $filter['mode'] == 'search') {
-				$query->where('MATCH ('.$select.') AGAINST (\''.$filter['terms'].'\' IN BOOLEAN MODE)', NULL, FALSE);
-			}
+	        foreach ($filter as $field => $value) {
+				if( in_array($field, $this->fields) ) {
+					$query->like($field,$value);
+				}	            
+	        }       	
         }
-        $result['users'] = $query->get();
-        
-        // count table rows
-        if ( $filter ) {
-        	if( $filter['mode'] == 'filter') {
-	            foreach( $filter['terms'] as $key => $value )
-	            	$query->like($key,$value);
-			}
-        }        
-        $result['count'] = $this->db->count_all_results('users');
-        
+		$this->db->stop_cache();
+		
+		// count
+		$result['count'] = $this->db->count_all_results('users');
+		
+		$query->limit($limit, $offset);
+		$result['users'] = $query->get();
+       
+       	$this->db->flush_cache();
         return $result;
     }
 	
