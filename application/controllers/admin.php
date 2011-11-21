@@ -16,15 +16,12 @@ class Admin extends MY_Controller {
                     'email'       => 'Email',
                     'role'        => 'Role'
         );   
-		$filter['mode'] = 'filter';
-        $filter['terms'] = array(
-          'role' => 'inactive'
-        );
-        $select = 'username, email, role';
+		$filter['role'] = 'inactive';
+        $filter['display'] = array('username', 'email', 'role');
     
         // get users
         $this->load->model('user_model');
-        $query = $this->user_model->search(5, 0, 'date_created', 'asc', $filter, $select);
+        $query = $this->user_model->search(5, 0, 'date_created', 'asc', $filter);
 
         // generate table
         $data['table_users'] = FALSE;
