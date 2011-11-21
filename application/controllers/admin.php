@@ -84,12 +84,15 @@ class Admin extends MY_Controller {
 		$filter = FALSE;
 		if ( $query != 'all' ) {
 			parse_str($query, $filter);
-			// seperate display values with commas
-			$filter['display'] = explode(' ', $filter['display']);
-			// remove unwanted fields from table
-			foreach ($data['fields'] as $key => $value) {
-				if( !in_array($key, $filter['display']) )
-					unset($data['fields'][$key]);
+			// display options
+			if( isset($filter['display']) ) {
+				// seperate display values with commas
+				$filter['display'] = explode(' ', $filter['display']);
+				// remove unwanted fields from table
+				foreach ($data['fields'] as $key => $value) {
+					if( !in_array($key, $filter['display']) )
+						unset($data['fields'][$key]);
+				}
 			}
 		}
 

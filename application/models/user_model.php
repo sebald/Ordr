@@ -92,7 +92,7 @@ class User_model extends CI_Model {
         $by = (in_array($by, $this->fields)) ? $by : 'username';
 		
 		// field selection
-		if( array_key_exists('display', $filter) ) {
+		if( isset($filter['display']) ) {
 			// remove unknown fields from display filter
 			foreach ($filter['display'] as $i => $field) {
 				if( !in_array($field, $this->fields) ) {
