@@ -60,7 +60,12 @@ class Admin extends MY_Controller {
 	}
 
 	/**
-	 * 	Displaying user data in a table and provide actions to manage users.
+	 * 	Displaying user data in a table and provide actions to manage users. All parameters are
+	 * 	optional.
+	 * 	@param 	query	the query string
+	 * 	@param	by		field, which should be used to order the data
+	 * 	@param	order	asc or desc ordering
+	 * 	@param	offset	used by the CI pagination
 	 */
     public function users_view($query = 'all', $by = 'username', $order = 'asc', $offset = 0) {   
         $limit = 10;
@@ -111,11 +116,15 @@ class Admin extends MY_Controller {
         $this->load->view('layout/template', $data);
     }
     
+	/**
+	 * 	Edit a single user.
+	 * 	@param	username	username of the user, which should be edited
+	 */
 	public function users_edit($username) {
 		$this->load->model('user_model');
 		$data['settings'] = $this->user_model->get($username)->row(0);
 
-		// set referer
+		// set and keep referer for cancel button
 		if( !$this->session->flashdata('referer') ) {
 			$this->session->set_flashdata('referer', $_SERVER['HTTP_REFERER']);
 		} else {
@@ -126,6 +135,7 @@ class Admin extends MY_Controller {
       	$this->load->library('form_validation');
       	$this->form_validation->set_rules('email', 'Email Address', 'trim|required|valid_email');
 
+		// validate form
 	    if( $this->form_validation->run() == FALSE ) {
 	        // form error
 	    } else {      
@@ -135,10 +145,14 @@ class Admin extends MY_Controller {
 			$this->session->set_flashdata('message', $msg);
 			redirect('admin/users_edit/'.$username);
 	    }
+		
 		$data['main_content'] = 'admin/users_edit';
         $this->load->view('layout/template', $data);
 	}
 	
+	/**
+	 * 	Change the role of users. This is one of the table actions.
+	 */
 	public function users_role() {
 		$this->load->model('user_model');
 		$users = $this->session->flashdata('marked');
@@ -156,6 +170,7 @@ class Admin extends MY_Controller {
 			redirect('admin/users_view');
 		}		
 
+		// get users (by username)
 		$data['users'] = $this->user_model->get($users)->result();
         $data['fields'] = array(
                     'username'    => 'Username',
@@ -169,6 +184,9 @@ class Admin extends MY_Controller {
         $this->load->view('layout/template', $data);
 	}
 	
+	/**
+	 * 	Delete user(s). This is one of the table actions, but can also be used for "quick deleting" a single user.
+	 */
 	public function users_delete($users = FALSE) {
 		// single or multiple delete
 		if( $users == FALSE ) {
@@ -193,6 +211,9 @@ class Admin extends MY_Controller {
         $this->load->view('layout/template', $data);
 	}
 	
+	/**
+	 * 	Helper function for deleting user(s).
+	 */
 	private function delete($data, $type){
 		$this->load->model('user_model');
 		$this->user_model->delete($data);
