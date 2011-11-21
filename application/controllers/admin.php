@@ -91,6 +91,8 @@ class Admin extends MY_Controller {
 						unset($data['fields'][$key]);
 				}
 			}
+			if( isset($filter['search']) )
+				$data['search'] = $filter['search'];
 		}
 
         // get users
