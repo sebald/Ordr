@@ -42,6 +42,11 @@ class Admin extends MY_Controller {
 	 * 	one actions for table data.
 	 */
 	public function users_actions(){
+		if ( $this->input->post('marked') == FALSE ){
+	        $msg = create_alert_message('warning', 'No can do!', 'Please select some records and try again.');
+			$this->session->set_flashdata('message', $msg);			
+			redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->session->set_flashdata('marked', $users = $this->input->post('marked'));
 		switch ($_POST['action']) {
 			case 'role':
