@@ -345,20 +345,25 @@ aside .search label:active {
 	margin: 0;
 }
 
-.filter li {
-	padding: 5px 10px;
-}
 
 .filter li, .filter li label {
 	cursor: pointer;
 }
 
-.filter li:hover {
+.filter li:hover, .filter li a.active {
 	background-color: #F3F3F3;
 	-webkit-transition: background-color .20s;
 	-moz-transition: background-color .20s;
 	-o-transition: background-color .20s;
 	transition: background-color .20s;
+}
+
+.filter a {
+	display: block;
+}
+
+.filter a, .filter .checklist li {
+	padding: 5px 10px;
 }
 
 .filter a, .filter label {
