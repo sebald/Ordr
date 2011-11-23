@@ -41,11 +41,11 @@
 			<ul>
 				<?php $parameter = ( $query_display ) ? 'display='.$query_display.'&' : ''; ?>
 				<?php $parameter = ( isset($filter['search']) ) ? $parameter.'search='.$filter['search'].'&' : $parameter; ?>
-				<li><?php echo anchor('admin/users/view/'.substr($parameter, 0, -1),'Everyone'); ?></li>
-				<li><?php echo anchor('admin/users/view/'.$parameter.'role=inactive','Inactive'); ?></li>
-				<li><?php echo anchor('admin/users/view/'.$parameter.'role=user','User'); ?></li>
-				<li><?php echo anchor('admin/users/view/'.$parameter.'role=purchaser','Purchaser'); ?></li>
-				<li><?php echo anchor('admin/users/view/'.$parameter.'role=admin','Admin'); ?></li>
+				<li><?php echo anchor('admin/users/view/'.substr($parameter, 0, -1),'Everyone', (empty($filter['role'])) ? 'class="active"' : '' ); ?></li>
+				<li><?php echo anchor('admin/users/view/'.$parameter.'role=inactive','Inactive', @($filter['role'] == 'inactive') ? 'class="active"' : '' ); ?></li>
+				<li><?php echo anchor('admin/users/view/'.$parameter.'role=user','User', @($filter['role'] == 'user') ? 'class="active"' : '' ); ?></li>
+				<li><?php echo anchor('admin/users/view/'.$parameter.'role=purchaser','Purchaser', @($filter['role'] == 'purchaser') ? 'class="active"' : '' ); ?></li>
+				<li><?php echo anchor('admin/users/view/'.$parameter.'role=admin','Admin', @($filter['role'] == 'admin') ? 'class="active"' : '' ); ?></li>
 			</ul>
 		</div>
 		<div class="filter">

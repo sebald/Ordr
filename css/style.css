@@ -350,7 +350,7 @@ aside .search label:active {
 	cursor: pointer;
 }
 
-.filter li:hover, .filter li a.active {
+.filter li:hover {
 	background-color: #F3F3F3;
 	-webkit-transition: background-color .20s;
 	-moz-transition: background-color .20s;
@@ -393,6 +393,11 @@ aside .search label:active {
 .filter label input[type="checkbox"] {
 	float: left;
 	margin: 2px 0 0 -20px;
+}
+
+.filter a.active {
+	color: #404040;
+	font-weight: bold;
 }
 
 aside .btn-flat {
