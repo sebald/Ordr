@@ -1,4 +1,6 @@
 <?php
+	$query_display 	= (isset($filter['display'])) ? implode('+',$filter['display']) : '';
+print_a($filter);
 	$options_field = array (
 		'all'			=> 'Anyone',
 		'username' 		=> 'Username',
@@ -23,9 +25,9 @@
 <?php echo $this->session->flashdata('message'); ?>
 <div class="row">
 	<aside class="span3">
-		<?php echo form_open('admin/users/search'); ?>
+		<?php echo form_open('admin/users/search', '', (isset($filter['display'])) ? array( 'display' => $query_display ) : ''); ?>
 			<div class="input-append search">
-				<?php echo form_input($attr_input_search, (isset($search)) ? $search : ''); ?>
+				<?php echo form_input($attr_input_search, (isset($filter['search'])) ? $filter['search'] : ''); ?>
 				<label class="add-on">
 					<?php echo form_button($attr_submit_search); ?>
 				</label>
@@ -34,31 +36,33 @@
 		<div class="filter">
 			<h4>Role</h4>
 			<ul>
-				<li><?php echo anchor('admin/users/view','Everyone'); ?></li>
-				<li><?php echo anchor('admin/users/view/role=inactive','Inactive'); ?></li>
-				<li><?php echo anchor('admin/users/view/role=user','User'); ?></li>
-				<li><?php echo anchor('admin/users/view/role=purchaser','Purchaser'); ?></li>
-				<li><?php echo anchor('admin/users/view/role=admin','Admin'); ?></li>
+				<?php $parameter = ( $query_display ) ? 'display='.$query_display.'&' : ''; ?>
+				<?php $parameter = ( isset($filter['search']) ) ? $parameter.'search='.$filter['search'].'&' : $parameter; ?>
+				<li><?php echo anchor('admin/users/view/'.substr($parameter, 0, -1),'Everyone'); ?></li>
+				<li><?php echo anchor('admin/users/view/'.$parameter.'role=inactive','Inactive'); ?></li>
+				<li><?php echo anchor('admin/users/view/'.$parameter.'role=user','User'); ?></li>
+				<li><?php echo anchor('admin/users/view/'.$parameter.'role=purchaser','Purchaser'); ?></li>
+				<li><?php echo anchor('admin/users/view/'.$parameter.'role=admin','Admin'); ?></li>
 			</ul>
 		</div>
 		<div class="filter">
 			<h4>Display</h4>
 			<?php echo form_open('admin/users/changeview'); ?>
 			<ul>
-				<li <?php echo (in_array('username', $display)) ? 'class="active"' : ''; ?>>
+				<li <?php echo (in_array('username', $filter['display'])) ? 'class="active"' : ''; ?>>
 					<label class="disabled"><input type="checkbox" checked="checked" value="username" name="display[]" disabled="" ><span>Username</span></label>
 				</li>
-				<li <?php echo (in_array('first_name', $display)) ? 'class="active"' : ''; ?>>
-					<label><input type="checkbox" <?php echo (in_array('first_name', $display)) ? 'checked="checked"' : ''; ?> value="first_name" name="display[]"><span>First Name</span></label>
+				<li <?php echo (in_array('first_name', $filter['display'])) ? 'class="active"' : ''; ?>>
+					<label><input type="checkbox" <?php echo (in_array('first_name', $filter['display'])) ? 'checked="checked"' : ''; ?> value="first_name" name="display[]"><span>First Name</span></label>
 				</li>
-				<li <?php echo (in_array('last_name', $display)) ? 'class="active"' : ''; ?>>
-					<label><input type="checkbox" <?php echo (in_array('last_name', $display)) ? 'checked="checked"' : ''; ?> value="last_name" name="display[]"><span>Last Name</span></label>
+				<li <?php echo (in_array('last_name', $filter['display'])) ? 'class="active"' : ''; ?>>
+					<label><input type="checkbox" <?php echo (in_array('last_name', $filter['display'])) ? 'checked="checked"' : ''; ?> value="last_name" name="display[]"><span>Last Name</span></label>
 				</li>
-				<li <?php echo (in_array('email', $display)) ? 'class="active"' : ''; ?>>
-					<label><input type="checkbox" <?php echo (in_array('email', $display)) ? 'checked="checked"' : ''; ?> value="email" name="display[]"><span>Email</span></label>
+				<li <?php echo (in_array('email', $filter['display'])) ? 'class="active"' : ''; ?>>
+					<label><input type="checkbox" <?php echo (in_array('email', $filter['display'])) ? 'checked="checked"' : ''; ?> value="email" name="display[]"><span>Email</span></label>
 				</li>
-				<li <?php echo (in_array('role', $display)) ? 'class="active"' : ''; ?>>
-					<label><input type="checkbox" <?php echo (in_array('role', $display)) ? 'checked="checked"' : ''; ?> value="role" name="display[]"><span>Role</span></label>
+				<li <?php echo (in_array('role', $filter['display'])) ? 'class="active"' : ''; ?>>
+					<label><input type="checkbox" <?php echo (in_array('role', $filter['display'])) ? 'checked="checked"' : ''; ?> value="role" name="display[]"><span>Role</span></label>
 				</li>
 			</ul>
 			<hr />

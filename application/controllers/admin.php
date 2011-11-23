@@ -81,7 +81,6 @@ class Admin extends MY_Controller {
         $data['by'] = $by;
         $data['order'] = $order;
 		$data['query'] = $query;
-		$data['display'] = array ();
 		
 		// parse query      
 		$filter = FALSE;
@@ -91,15 +90,13 @@ class Admin extends MY_Controller {
 			if( isset($filter['display']) ) {
 				// seperate display values with commas
 				$filter['display'] = explode(' ', $filter['display']);
-				$data['display'] = $filter['display'];
 				// remove unwanted fields from table
 				foreach ($data['fields'] as $key => $value) {
 					if( !in_array($key, $filter['display']) )
 						unset($data['fields'][$key]);
 				}
 			}
-			if( isset($filter['search']) )
-				$data['search'] = $filter['search'];
+			$data['filter'] = $filter;
 		}
 
         // get users
@@ -243,6 +240,8 @@ class Admin extends MY_Controller {
 		$search= 'all';
 		if( isset($_POST['search']) )
 			$search = http_build_query( array( 'search' => $_POST['search'] ) );
+		if( isset($_POST['display']) && $search != 'all' )
+			$search = 'display='.$_POST['display'].'&'.$search;
 		redirect('admin/users/view/'.$search);
 	}
 
