@@ -56,6 +56,8 @@ $route['admin/users/edit/(:any)'] = 'admin/users_edit/$1';
 $route['admin/users/search'] = 'admin/users_search';
 $route['admin/users/filter'] = 'admin/users_filter';
 
+$route['admin/users/changeview'] = 'admin/users_change_view';
+
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 

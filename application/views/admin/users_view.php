@@ -17,7 +17,7 @@
 		  'type'		=> 'submit',
           'class'       => 'search',
           'content'		=> 'Search'
-	);	
+	);
 ?>
 <h1 class="page-header">Manage Users <small>Activate, add, delete,...</small></h1>
 <?php echo $this->session->flashdata('message'); ?>
@@ -43,15 +43,27 @@
 		</div>
 		<div class="filter">
 			<h4>Display</h4>
+			<?php echo form_open('admin/users/changeview'); ?>
 			<ul>
-				<li><label><input type="checkbox" value="username" name="display[]"><span>Username</span></label></li>
-				<li><label><input type="checkbox" value="first_name" name="display[]"><span>First Name</span></label></li>
-				<li><label><input type="checkbox" value="last_name" name="display[]"><span>Last Name</span></label></li>
-				<li><label><input type="checkbox" value="email" name="display[]"><span>Email</span></label></li>
-				<li><label><input type="checkbox" value="role" name="display[]"><span>Role</span></label></li>
+				<li <?php echo (in_array('username', $display)) ? 'class="active"' : ''; ?>>
+					<label class="disabled"><input type="checkbox" checked="checked" value="username" name="display[]" disabled="" ><span>Username</span></label>
+				</li>
+				<li <?php echo (in_array('first_name', $display)) ? 'class="active"' : ''; ?>>
+					<label><input type="checkbox" <?php echo (in_array('first_name', $display)) ? 'checked="checked"' : ''; ?> value="first_name" name="display[]"><span>First Name</span></label>
+				</li>
+				<li <?php echo (in_array('last_name', $display)) ? 'class="active"' : ''; ?>>
+					<label><input type="checkbox" <?php echo (in_array('last_name', $display)) ? 'checked="checked"' : ''; ?> value="last_name" name="display[]"><span>Last Name</span></label>
+				</li>
+				<li <?php echo (in_array('email', $display)) ? 'class="active"' : ''; ?>>
+					<label><input type="checkbox" <?php echo (in_array('email', $display)) ? 'checked="checked"' : ''; ?> value="email" name="display[]"><span>Email</span></label>
+				</li>
+				<li <?php echo (in_array('role', $display)) ? 'class="active"' : ''; ?>>
+					<label><input type="checkbox" <?php echo (in_array('role', $display)) ? 'checked="checked"' : ''; ?> value="role" name="display[]"><span>Role</span></label>
+				</li>
 			</ul>
 			<hr />
-			<button class="btn-flat" name="action" type="submit" value="role">Change View</button>
+			<button class="btn-flat" type="submit">Change View</button>
+			<?php echo form_close(); ?>
 		</div>
 	</aside>
 	<div class="span13">

@@ -153,7 +153,6 @@ class User_model extends CI_Model {
 			$this->db->where($by, $users);
 		}
 		return $this->db->get('users');
-		
 	}
 	
 	public function delete($users, $by = 'username'){

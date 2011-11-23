@@ -81,6 +81,7 @@ class Admin extends MY_Controller {
         $data['by'] = $by;
         $data['order'] = $order;
 		$data['query'] = $query;
+		$data['display'] = array ();
 		
 		// parse query      
 		$filter = FALSE;
@@ -90,6 +91,7 @@ class Admin extends MY_Controller {
 			if( isset($filter['display']) ) {
 				// seperate display values with commas
 				$filter['display'] = explode(' ', $filter['display']);
+				$data['display'] = $filter['display'];
 				// remove unwanted fields from table
 				foreach ($data['fields'] as $key => $value) {
 					if( !in_array($key, $filter['display']) )
@@ -243,6 +245,14 @@ class Admin extends MY_Controller {
 			$search = http_build_query( array( 'search' => $_POST['search'] ) );
 		redirect('admin/users/view/'.$search);
 	}
+
+	public function users_change_view(){
+		$display = 'display=username';
+		if( isset($_POST['display']) )
+			$display = 'display=username+'.implode('+',$_POST['display']);
+		redirect('admin/users/view/'.$display);
+	}
+	
 }
 
 /* End of file admin.php */
