@@ -1,6 +1,6 @@
 <?php
 	$query_display 	= (isset($filter['display'])) ? implode('+',$filter['display']) : '';
-print_a($filter);
+
 	$options_field = array (
 		'all'			=> 'Anyone',
 		'username' 		=> 'Username',

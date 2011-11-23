@@ -238,10 +238,12 @@ class Admin extends MY_Controller {
 	
 	public function users_search(){
 		$search= 'all';
-		if( isset($_POST['search']) )
+		if( $_POST['search'])
 			$search = http_build_query( array( 'search' => $_POST['search'] ) );
 		if( isset($_POST['display']) && $search != 'all' )
 			$search = 'display='.$_POST['display'].'&'.$search;
+		if( isset($_POST['display']) && $search == 'all' )
+			$search = 'display='.$_POST['display'];		
 		redirect('admin/users/view/'.$search);
 	}
 
