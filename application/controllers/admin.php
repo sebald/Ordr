@@ -248,9 +248,13 @@ class Admin extends MY_Controller {
 	}
 
 	public function users_change_view(){
-		$display = 'display=username';
+		$display = '';
 		if( isset($_POST['display']) )
 			$display = 'display=username+'.implode('+',$_POST['display']);
+		if( isset($_POST['role']) )
+			$display = $display.'&role='.$_POST['role'];
+		if( isset($_POST['search']) )
+			$display = $display.'&search='.str_replace(' ', '+', $_POST['search']);	
 		redirect('admin/users/view/'.$display);
 	}
 	

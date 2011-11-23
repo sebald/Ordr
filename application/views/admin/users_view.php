@@ -1,5 +1,8 @@
 <?php
 	$query_display 	= (isset($filter['display'])) ? implode('+',$filter['display']) : '';
+	$keep_query = '';
+	( isset($filter['search']) ) ? $keep_query['search'] = $filter['search'] : '' ;
+	( isset($filter['role']) ) ? $keep_query['role'] = $filter['role'] : '' ;
 
 	$options_field = array (
 		'all'			=> 'Anyone',
@@ -47,9 +50,9 @@
 		</div>
 		<div class="filter">
 			<h4>Display</h4>
-			<?php echo form_open('admin/users/changeview'); ?>
+			<?php echo form_open('admin/users/changeview', '', $keep_query ); ?>
 			<?php if( empty($filter['display']) ) $filter['display'] = array( 'username', 'first_name', 'last_name', 'email', 'role' ); ?>
-			<ul>
+			<ul class="checklist">
 				<li class="active">
 					<label class="disabled"><input type="checkbox" checked="checked" value="username" name="display[]" disabled="" ><span>Username</span></label>
 				</li>
