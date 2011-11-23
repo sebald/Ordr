@@ -382,6 +382,7 @@ aside .search label:active {
     text-align: left;
     white-space: normal;
     width: auto;
+    font-weight: normal;
 }
 
 .filter label input[type="checkbox"] {
