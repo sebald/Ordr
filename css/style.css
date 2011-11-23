@@ -2,6 +2,9 @@ body {
 	padding-top: 60px;
 	background-color: #FCFCFC;
 }
+form {
+	clear: both;
+}
 form label {
 	font-weight: bold;
 }
@@ -257,6 +260,12 @@ table .action.edit:hover {
 	background-position: -16px -52px;
 }
 
+.right .input-append {
+	display: inline-block;
+}
+
+
+
 /*================================ FORMS ================================*/
 
 .pre-table-action {
@@ -293,6 +302,103 @@ table .action.edit:hover {
 
 /*================================ ASIDE ================================*/
 
+aside form {
+	display: inline-block;
+	margin-bottom: 15px;
+}
+
+aside .search [type="text"]{
+	width: 122px;
+}
+
+aside .search [type="submit"]{
+	background-image: url(../img/sprite.png);
+	background-position: 0px -68px;
+	background-color: #F5F5F5;
+	height: 18px;
+	width: 18px;
+	display: inline-block;
+	overflow: hidden;
+	text-indent: -9999px;	
+}
+
+aside .search label:active {
+	border-color: #0069D6;
+	color: #0069D6;
+	-moz-box-shadow: inset 0 0 3px #D4D4D4;
+	-webkit-box-shadow: inset 0 0 3px #D4D4D4;
+	box-shadow: inset 0 0 3px #D4D4D4;
+}
+
+.filter {
+	margin-bottom: 15px;
+}
+
+.filter h4 {
+	color: #595959;
+	line-height: 18px;
+	border-bottom: 2px solid #595959;
+}
+
+.filter ul {
+	list-style: none;
+	margin: 0;
+}
+
+.filter li {
+	padding: 5px 10px;
+}
+
+.filter li, .filter li label {
+	cursor: pointer;
+}
+
+.filter li:hover {
+	background-color: #F3F3F3;
+	-webkit-transition: background-color .20s;
+	-moz-transition: background-color .20s;
+	-o-transition: background-color .20s;
+	transition: background-color .20s;
+}
+
+.filter a, .filter label {
+	color: #BFBFBF;
+	text-decoration: none;
+}
+
+.filter li:hover a, .filter li:hover label, .filter li.active label {
+	color: #404040;
+	-webkit-transition: color .20s;
+	-moz-transition: color .20s;
+	-o-transition: color .20s;
+	transition: color .20s
+}
+
+.filter label {
+    display: block;
+    float: none;
+    margin-left: 20px;
+    padding: 0;
+    text-align: left;
+    white-space: normal;
+    width: auto;
+}
+
+.filter label input[type="checkbox"] {
+	float: left;
+	margin: 2px 0 0 -20px;
+}
+
+aside .btn-flat {
+	font-size: 12px;
+	line-height: 12px;
+	margin: 0 33px;
+}
+
+aside hr {
+	margin: 0 0 5px 0;
+}
+
 /*================================ TABLES ================================*/
 
 thead {
@@ -311,7 +417,7 @@ th a:hover {
 	color: #0064CD;
 }
 tbody tr:hover {
-	background-color: #fafafa;
+	background-color: #FAFAFA;
 }
 
 td.center, th.center {
