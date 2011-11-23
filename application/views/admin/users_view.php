@@ -48,8 +48,9 @@
 		<div class="filter">
 			<h4>Display</h4>
 			<?php echo form_open('admin/users/changeview'); ?>
+			<?php if( empty($filter['display']) ) $filter['display'] = array( 'username', 'first_name', 'last_name', 'email', 'role' ); ?>
 			<ul>
-				<li <?php echo (in_array('username', $filter['display'])) ? 'class="active"' : ''; ?>>
+				<li class="active">
 					<label class="disabled"><input type="checkbox" checked="checked" value="username" name="display[]" disabled="" ><span>Username</span></label>
 				</li>
 				<li <?php echo (in_array('first_name', $filter['display'])) ? 'class="active"' : ''; ?>>
