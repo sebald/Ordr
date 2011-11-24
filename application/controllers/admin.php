@@ -69,7 +69,7 @@ class Admin extends MY_Controller {
 	 * 	@param	order	asc or desc ordering
 	 * 	@param	offset	used by the CI pagination
 	 */
-    public function users_view($query = 'all', $by = 'username', $order = 'asc', $offset = 0) {   
+    public function users_view($query = 'all', $by = 'username', $order = 'asc', $page = 1) {   
         $limit = 10;
         $data['fields'] = array(
                     'username' 		=> 'Username',
@@ -100,6 +100,7 @@ class Admin extends MY_Controller {
 		}
 
         // get users
+        $offset = ($page-1)*$limit;
         $this->load->model('user_model');
         $result = $this->user_model->search($limit, $offset, $by, $order, $filter);
         $data['users'] = $result['users']->result();

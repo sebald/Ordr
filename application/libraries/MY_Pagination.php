@@ -20,6 +20,8 @@ class MY_Pagination extends CI_Pagination {
 	var $next_tag_open_disabled		= '<li class="next disabled"><a href="#">';
 	var $next_tag_close_disabled	= '</a></li>';
 	
+	var $use_page_numbers = TRUE;
+	
 	function create_links() {
 		$output = parent::create_links();
 		// add previous (disabled) link
