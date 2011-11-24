@@ -35,6 +35,19 @@
 					<?php echo form_button($attr_submit_search); ?>
 				</label>
 		    </div>
+		    <?php if( isset($filter['search']) ) : ?>
+		    	<?php
+		    		$clear_url = base_url("admin/users/view").'/';
+					if( $query_display )
+						$clear_url .= 'display='.$query_display;
+					if( isset($filter['role']) ) {
+						if( $query_display )
+							$clear_url .= '&';
+						$clear_url .= 'role='.$filter['role'];
+					}
+		    	?>
+				<a class="clear-search" href="<?php echo $clear_url; ?>" title="Clear Search"><span></span>Clear Search</a>
+			<?php endif; ?>
 		<?php echo form_close(); ?>
 		<div class="filter">
 			<h4>Role</h4>

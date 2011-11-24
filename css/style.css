@@ -272,6 +272,28 @@ table .action.edit:hover {
 	margin-bottom: 5px;
 }
 
+.clear-search {
+	font-size: 12px;
+	color: #404040;
+	display: inline-block;
+	clear: both;
+	margin: 5px 0 0 70px;
+}
+
+.clear-search:hover {
+	text-decoration: none;
+}
+
+.clear-search span {
+	display: inline-block;
+	float: left;
+	height: 12px;
+	width: 12px;
+	margin: -1px 2px 0 0;
+	background-image: url(../img/sprite.png);
+	background-position: 0 -86px;
+}
+
 /*================================ HEADER ================================*/
 
 .topbar-inner, .topbar .fill {
