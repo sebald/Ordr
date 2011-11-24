@@ -173,7 +173,7 @@ class Admin extends MY_Controller {
 			}
 			$msg = create_alert_message('success', 'Role update successfull!', count($_POST['role']).' users updated.');
 			$this->session->set_flashdata('message', $msg);
-			redirect('admin/users_view');
+			redirect('admin/users/view');
 		}		
 
 		// get users (by username)
