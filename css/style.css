@@ -2,9 +2,11 @@ body {
 	padding-top: 60px;
 	background-color: #FCFCFC;
 }
+/*
 form {
 	clear: both;
 }
+*/
 form label {
 	font-weight: bold;
 }
