@@ -298,30 +298,8 @@ table .action.edit:hover {
 
 /*================================ HEADER ================================*/
 
-.topbar-inner, .topbar .fill {
-	background-image: none;
-}
-.topbar .brand {
+.navbar .brand {
 	color: #049CDB;
-	font-size: 28px;
-	padding-bottom: 0;
-	padding-top: 4px;
-}
-.topbar .brand:hover {
-	text-decoration: none;
-}
-.topbar .pull-right input, .topbar .pull-right button {
-	margin-left: 5px;
-}
-.topbar .pull-right button {
-	padding-top: 4px;
-	padding-bottom: 5px;
-}
-.topbar .pull-right input {
-	box-shadow: none;
-}
-.vendor-adress {
-	margin: 10px 0 0 150px;
 }
 
 /*================================ ASIDE ================================*/
