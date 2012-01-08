@@ -1,6 +1,6 @@
 <h1 class="page-header">Delete User(s) <small>Deletion is permantly, btw!</small></h1>
 <?php $seg = ($this->uri->segment(4)) ? '/'.$this->uri->segment(4) : '' ; ?>
-<?php echo form_open('admin/users/delete'.$seg,''); ?>
+<?php echo form_open('admin/users/delete'.$seg,'class="action"'); ?>
 	<h3>The following users will be deleted:</h3>
 	<?php echo $table_users; ?>
 	<div class="center">

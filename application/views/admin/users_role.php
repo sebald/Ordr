@@ -1,5 +1,5 @@
 <h1 class="page-header">Change Role of Users <small>Keep on rolling!</small></h1>
-<?php echo form_open('admin/users/role',''); ?>
+<?php echo form_open('admin/users/role','class="action"'); ?>
 <?php 
 	$options_role = array (
 		'inactive' => 'inactive',

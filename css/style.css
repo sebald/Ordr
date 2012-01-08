@@ -296,6 +296,10 @@ table .action.edit:hover {
 	background-position: 0 -86px;
 }
 
+form.action {
+	margin: 0 20px 18px;
+}
+
 /*================================ HEADER ================================*/
 
 .navbar .brand, .navbar .brand:hover {
@@ -486,10 +490,23 @@ table .header:after {
 	border-width: 4px 4px 0;
 }
 
+/*================================ ALARMS ================================*/
+
+.content .alert-message {
+	margin: 0 20px 18px;
+}
+
 /*================================ FOOTER ================================*/
 
 footer {
+	margin: 18px 20px 0 20px;;
+	padding: 
 	clear: both;
+	border-top: 1px solid #DDDDDD;
+}
+
+footer p {
+	padding: 5px 10px;	
 }
 
 footer p, footer a {
