@@ -1,0 +1,1 @@
+<p class="pull-right">Logged in as <?php echo anchor('account/settings', $this->session->userdata('username')); ?></p>

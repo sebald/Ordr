@@ -1,5 +1,5 @@
 <?php
-  $menu = array( 'orders' );
+  $menu = array( 'orders', 'admin' );
 ?>
 <ul class="nav">
   <?php if ( $this->session->userdata('logged_in') ) : ?>

@@ -18,12 +18,12 @@
 <body>
 <header class="navbar navbar-fixed">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="fluid-container">
           <a href="<?php echo base_url(); ?>" class="brand">ordr</a>
           <?php $this->load->view('layout/topbar_menu'); ?>
           <?php
 	        if ( $this->session->userdata('logged_in') ){
-	          $this->load->view('layout/topbar_account_options');
+	          $this->load->view('layout/topbar_logged_in');
 	        } else {
 	          $this->load->view('layout/topbar_login');
 	        }
