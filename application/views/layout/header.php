@@ -31,5 +31,5 @@
         </div>
       </div>
     </header>
-<div class="container">
+<div class="fliud-container">
   <div class="content">

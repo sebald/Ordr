@@ -14,7 +14,7 @@
 	);
 	$attr_input_search = array(
           'name'        => 'search',
-          'class'       => 'span2',
+          'type'		=> 'search',
           'size'        => '30',
           'placeholder' => 'Search'
 	);	
@@ -24,31 +24,33 @@
           'content'		=> 'Search'
 	);
 ?>
-<h1 class="page-header">Manage Users <small>Activate, add, delete,...</small></h1>
-<?php echo $this->session->flashdata('message'); ?>
-<div class="row">
-	<aside class="span3">
-		<?php echo form_open('admin/users/search', '', (isset($filter['display'])) ? array( 'display' => $query_display ) : ''); ?>
-			<div class="input-append search">
-				<?php echo form_input($attr_input_search, (isset($filter['search'])) ? $filter['search'] : ''); ?>
-				<label class="add-on">
-					<?php echo form_button($attr_submit_search); ?>
-				</label>
-		    </div>
-		    <?php if( isset($filter['search']) ) : ?>
-		    	<?php
-		    		$clear_url = base_url("admin/users/view").'/';
+<hgroup class="page-header">
+	<?php echo form_open('admin/users/search', '', (isset($filter['display'])) ? array( 'display' => $query_display ) : ''); ?>
+		<div class="input-append search">
+			<?php echo form_input($attr_input_search, (isset($filter['search'])) ? $filter['search'] : ''); ?>
+			<label class="add-on">
+				<?php echo form_button($attr_submit_search); ?>
+			</label>
+	    </div>
+	    <?php if( isset($filter['search']) ) : ?>
+	    	<?php
+	    		$clear_url = base_url("admin/users/view").'/';
+				if( $query_display )
+					$clear_url .= 'display='.$query_display;
+				if( isset($filter['role']) ) {
 					if( $query_display )
-						$clear_url .= 'display='.$query_display;
-					if( isset($filter['role']) ) {
-						if( $query_display )
-							$clear_url .= '&';
-						$clear_url .= 'role='.$filter['role'];
-					}
-		    	?>
-				<a class="clear-search" href="<?php echo $clear_url; ?>" title="Clear Search"><span></span>Clear Search</a>
-			<?php endif; ?>
-		<?php echo form_close(); ?>
+						$clear_url .= '&';
+					$clear_url .= 'role='.$filter['role'];
+				}
+	    	?>
+			<a class="clear-search" href="<?php echo $clear_url; ?>" title="Clear Search"><span></span>Clear Search</a>
+		<?php endif; ?>
+	<?php echo form_close(); ?>
+	<h1>Manage Users <small>Activate, add, delete,...</small></h1>
+</hgroup>
+<?php echo $this->session->flashdata('message'); ?>
+<div class="fluid-container sidebar-left">
+	<aside class="fluid-sidebar">
 		<div class="filter">
 			<h4>Role</h4>
 			<ul>
@@ -85,14 +87,13 @@
 			<hr />
 			<button class="btn-flat" type="submit">Change View</button>
 			<?php echo form_close(); ?>
-		</div>
+		</div>		
 	</aside>
-	<div class="span13">
-		
+	<div class="fluid-content">
 		<?php echo form_open('admin/users/actions'); ?>
 		<table>
 		  <thead>
-		  	<th class="span1 center">
+		  	<th class="center">
 		  		<?php echo form_checkbox('mark_all', 'all'); ?>
 		  	</th>
 		    <?php foreach( $fields as $field_name => $field_display): ?>
@@ -102,9 +103,7 @@
 		        $field_display); ?>
 		    </th>
 		    <?php endforeach; ?>
-		    <th>
-		    	Actions
-		    </th>
+		    <th>Actions</th>
 		  </thead>
 		  
 		  <tbody>
@@ -125,23 +124,22 @@
 		    </tr>
 		    <?php endforeach; ?>			
 		  </tbody>
-		  
-		</table>
-		<div class="table-actions">
-			<div class="btn-group">
-				<button class="btn-flat group" name="action" type="submit" value="role"><span></span>Role</button>
-				<button class="btn-flat delete" name="action" type="submit" value="delete"><span></span>Delete</button>	  
+			  
+			</table>
+			<div class="table-actions">
+				<div class="btn-group">
+					<button class="btn-flat group" name="action" type="submit" value="role"><span></span>Role</button>
+					<button class="btn-flat delete" name="action" type="submit" value="delete"><span></span>Delete</button>	  
+				</div>
 			</div>
-		</div>
-		<?php echo form_close(); ?>
-		    
-		<?php if (strlen($pagination)): ?>
-		<div class="pagination center">
-		  <ul>
-		    <?php echo $pagination; ?>
-		  </ul>
-		</div>
-		<div style="clear:both;"></div>
-		<?php endif; ?>
+			<?php echo form_close(); ?>
+			    
+			<?php if (strlen($pagination)): ?>
+			<div class="pagination center">
+			  <ul>
+			    <?php echo $pagination; ?>
+			  </ul>
+			</div>
+			<?php endif; ?>
 	</div>
 </div>
