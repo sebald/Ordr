@@ -2,14 +2,6 @@ body {
 	padding-top: 40px;
 	background-color: #FCFCFC;
 }
-/*
-form {
-	clear: both;
-}
-*/
-form label {
-	font-weight: bold;
-}
 .rounded-box {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
