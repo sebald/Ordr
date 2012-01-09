@@ -488,6 +488,16 @@ table .header:after {
 	margin: 0 20px 18px;
 }
 
+/*================================ MODALS ================================*/
+
+.modal-body .option {
+	font-size: 15px;
+}
+
+.modal-body .option a {
+	font-weight: bold;	
+}
+
 /*================================ FOOTER ================================*/
 
 footer {
