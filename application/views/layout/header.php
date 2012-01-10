@@ -30,6 +30,5 @@
 	      ?>
         </div>
       </div>
-    </header>
-<div class="fliud-container">
-  <div class="content">
+</header>
+<div class="content">
