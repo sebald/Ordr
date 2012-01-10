@@ -306,24 +306,13 @@ form.action {
 	height: 36px;
 }
 
-.page-header h1, .page-header .actions, .page-header form {
+.page-header h1, .page-header .actions, .page-header form, .page-header .btn-flat.single {
 	float: left;
 }
 
 .page-header h1 {
 	margin-right: 35px;
 	width: 200px;
-}
-
-.page-header h1 i {
-	background-image: url(../img/sprite.png);
-	height: 30px;
-	margin-top: 2px;
-}
-
-.page-header h1 i.orders {
-	background-position: 0px -98px;
-	width: 24px;
 }
 
 .page-header .actions {
@@ -335,7 +324,7 @@ form.action {
 	margin: 3px 0 0;
 }
 
-.page-header .search [type="search"]{
+.page-header .search [type="search"] {
 	padding: 5px 4px;
 	width: 160px;
 }
@@ -344,9 +333,20 @@ form.action {
 	padding: 5px;
 }
 
-.page-header .search [type="submit"]{
+.page-header .search [type="submit"] {
 	background-image: url(../img/sprite.png);
 	background-position: 0px -68px;
+	background-color: #F5F5F5;
+	height: 18px;
+	width: 18px;
+	display: inline-block;
+	overflow: hidden;
+	text-indent: -9999px;	
+}
+
+.page-header .search .autocomplete {
+	background-image: url(../img/sprite.png);
+	background-position: -18px -68px;
 	background-color: #F5F5F5;
 	height: 18px;
 	width: 18px;

@@ -7,7 +7,6 @@
 	);	
 	$attr_submit_search = array(
 		  'type'		=> 'submit',
-          'class'       => 'search',
           'content'		=> 'Search'
 	);
 ?>	
@@ -22,12 +21,10 @@
 	    </div>
 	<?php echo form_close(); ?>			
 	
-	<h1><i class="orders"></i> Orders</h1>
+	<h1>Orders</h1>
 	
 	<div class="actions">
-		<?php echo form_open('orders/new', ''); ?>
-				<button rel="twipsy" data-original-title="New" value="new" type="submit" name="action" class="btn-flat single"><i class="shop"></i></button> 
-		<?php echo form_close(); ?>		
+		<a href="<?php echo base_url();?>orders/new" rel="twipsy" data-original-title="New" class="btn-flat single"><i class="shop"></i></a> 
 		<?php echo form_open('orders/action', '', (isset($filter['display'])) ? array( 'display' => $query_display ) : ''); ?>
 			<div class="btn-group">
 				<button rel="twipsy" data-original-title="Edit" value="edit" type="submit" name="action" class="btn-flat"><i class="pencil"></i></button>

@@ -7,4 +7,9 @@ class Orders extends MY_Controller {
       $this->load->view('layout/template', $data);		
     }    
 
+	public function new_order() {
+      $data['main_content'] = 'orders/new_order';
+      $this->load->view('layout/template', $data);			
+	}
+
 }

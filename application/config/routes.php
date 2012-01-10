@@ -58,6 +58,8 @@ $route['admin/users/filter'] = 'admin/users_filter';
 
 $route['admin/users/changeview'] = 'admin/users_change_view';
 
+$route['orders/new'] = 'orders/new_order';
+
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 
