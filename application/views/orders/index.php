@@ -44,9 +44,16 @@
 <?php echo $this->session->flashdata('message'); ?>
 <div class="fluid-container sidebar-left">
 	<aside class="fluid-sidebar well side-nav">
-		<h6 class="nav-label">Work Status</h6>
+		<h6 class="nav-label">My Orders</h6>
         <ul class="nav-group">
           <li class="active"><a href="#" class="nav-item">All</a></li>
+          <li><a href="#" class="nav-item">Open</a></li>
+          <li><a href="#" class="nav-item">On order</a></li>
+          <li><a href="#" class="nav-item">Completed</a></li>
+        </ul>		
+		<h6 class="nav-label">Work Status</h6>
+        <ul class="nav-group">
+          <li><a href="#" class="nav-item">All</a></li>
           <li><a href="#" class="nav-item">Open</a></li>
           <li><a href="#" class="nav-item">On order</a></li>
           <li><a href="#" class="nav-item">Completed</a></li>
@@ -256,6 +263,7 @@
               <h3>Display Options</h3>
             </div>
             <div class="modal-body">
+            	<p class="help-block"><span class="label notice">Notice</span> If the displayed information is too cluttered, deselect some fields below. This will temporaly remove them from your view and should help you stay on top of things.</p>
 				<form class="checklist">
 					<fieldset class="left">
 			            <label class="checkbox">

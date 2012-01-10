@@ -591,7 +591,6 @@ table .header:after {
 
 .modal-body .checklist .checkbox {
 	margin-bottom: 10px;
-	color: #0088CC;
 }
 
 .modal-body .checklist .left {
@@ -605,6 +604,10 @@ table .header:after {
 
 .modal-body .checklist .checkbox input {
 	margin-left: -20px;
+}
+
+.modal-body .help-block {
+	margin-bottom: 15px;
 }
 
 /*================================ FOOTER ================================*/
