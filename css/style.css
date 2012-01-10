@@ -58,7 +58,7 @@ body {
 	transition: border-color .20s;
 }
 a.btn-flat {
-	height: 18px;
+	cursor: pointer;
 }
 .btn-flat:hover {
 	text-decoration: none;
@@ -182,11 +182,11 @@ a.btn-flat {
 .dropdown .dropdown-slider li:hover {
 	background-color: #F6F6F6;
 }
-.table-actions .btn-group {
+.btn-group {
 	float: right;
 }
 
-.table-actions .btn-group .btn-flat {
+.btn-group .btn-flat {
 	position: relative;
 	float: left;
 	margin-left: -1px;
@@ -301,17 +301,47 @@ form.action {
 .page-header {
 	background-color: #F1F1F1;
 	border-bottom: 1px solid #D2D2D2;
-	padding: 8px 15px;
+	padding: 8px 20px;
 	margin-bottom: 20px;
+	height: 36px;
+}
+
+.page-header h1, .page-header .actions, .page-header form {
+	float: left;
+}
+
+.page-header h1 {
+	margin-right: 35px;
+	width: 200px;
+}
+
+.page-header h1 i {
+	background-image: url(../img/sprite.png);
+	height: 30px;
+	margin-top: 2px;
+}
+
+.page-header h1 i.orders {
+	background-position: 0px -98px;
+	width: 24px;
+}
+
+.page-header .actions {
+	margin-top: 3px;
+}
+
+.page-header .search-form {
+	float: right;
+	margin: 3px 0 0;
 }
 
 .page-header .search [type="search"]{
+	padding: 5px 4px;
 	width: 160px;
 }
 
-.page-header form {
-	float: right;
-	margin: 5px 5px 0 0;
+.page-header .add-on {
+	padding: 5px;
 }
 
 .page-header .search [type="submit"]{
@@ -333,10 +363,67 @@ form.action {
 	box-shadow: inset 0 0 3px #D4D4D4;
 }
 
+.page-header .input-append.search {
+	margin-left: 15px;
+}
+
+.page-header .btn-flat {
+	margin-top: 0;
+	padding: 5px 15px;
+}
+
+.page-header .btn-flat.single {
+	margin-right: 15px;
+}
+
+.page-header .btn-flat i {
+	background-image: url(../img/sprite.png);
+	height: 18px;
+	width: 18px;
+}
+
+.page-header .btn-group {
+	margin-right: 15px;
+}
+
+.btn-flat i.pencil {
+	background-position: -72px 0px;
+}
+.btn-flat:hover i.pencil {
+	background-position: -72px -18px;
+}
+
+.btn-flat i.trash {
+	background-position: -90px 0px;
+}
+.btn-flat:hover i.trash {
+	background-position: -90px -18px;
+}
+
+.btn-flat i.shop {
+	background-position: -108px 0px;
+}
+.btn-flat:hover i.shop {
+	background-position: -108px -18px;
+}
+
+.btn-flat i.abacus {
+	background-position: -126px 0px;
+}
+.btn-flat:hover i.abacus {
+	background-position: -126px -18px;
+}
+
+.btn-flat i.eye {
+	background-position: -144px 0px;
+}
+.btn-flat:hover i.eye {
+	background-position: -144px -18px;
+}
+
 /*================================ ASIDE ================================*/
 
 .fluid-sidebar {
-    margin: 0 20px 18px;
     width: 200px;
 }
 
@@ -496,6 +583,28 @@ table .header:after {
 
 .modal-body .option a {
 	font-weight: bold;	
+}
+
+.modal-body .checklist {
+	margin: 0 20px;
+}
+
+.modal-body .checklist .checkbox {
+	margin-bottom: 10px;
+	color: #0088CC;
+}
+
+.modal-body .checklist .left {
+	float: left;
+	width: 50%;
+}
+
+.modal-body .checklist .right {
+	text-align: start;
+}
+
+.modal-body .checklist .checkbox input {
+	margin-left: -20px;
 }
 
 /*================================ FOOTER ================================*/
