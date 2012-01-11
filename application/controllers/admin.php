@@ -16,7 +16,7 @@ class Admin extends MY_Controller {
                     'email'       => 'Email',
                     'role'        => 'Role'
         );   
-		$filter['role'] = 'inactive';
+		$filter['role'] = 'new';
         $filter['display'] = array('username', 'email', 'role');
     
         // get users
