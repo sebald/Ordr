@@ -40,21 +40,19 @@
 </hgroup>
 <?php echo $this->session->flashdata('message'); ?>
 <div class="fluid-container sidebar-left">
-	<aside class="fluid-sidebar well side-nav">
-		<h6 class="nav-label">My Orders</h6>
-        <ul class="nav-group">
-          <li class="active"><a href="#" class="nav-item">All</a></li>
-          <li><a href="#" class="nav-item">Open</a></li>
-          <li><a href="#" class="nav-item">On order</a></li>
-          <li><a href="#" class="nav-item">Completed</a></li>
-        </ul>		
-		<h6 class="nav-label">Work Status</h6>
-        <ul class="nav-group">
-          <li><a href="#" class="nav-item">All</a></li>
-          <li><a href="#" class="nav-item">Open</a></li>
-          <li><a href="#" class="nav-item">On order</a></li>
-          <li><a href="#" class="nav-item">Completed</a></li>
-        </ul>
+	<aside class="fluid-sidebar">
+		<ul class="well nav list">
+			<li class="nav-header">My Orders</li>
+	        <li class="active"><a href="#" class="nav-item">All</a></li>
+	        <li><a href="#" class="nav-item">Open</a></li>
+	        <li><a href="#" class="nav-item">On order</a></li>
+	        <li><a href="#" class="nav-item">Completed</a></li>	
+			<li class="nav-header">Work Status</li>
+	        <li><a href="#" class="nav-item">All</a></li>
+	        <li><a href="#" class="nav-item">Open</a></li>
+	        <li><a href="#" class="nav-item">On order</a></li>
+	        <li><a href="#" class="nav-item">Completed</a></li>		
+		</ul>
 	</aside>
 	<div class="fluid-content">
 		<table>
