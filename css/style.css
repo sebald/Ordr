@@ -298,6 +298,19 @@ form.action {
 	color: #049CDB;
 }
 
+#user-options a {
+	color: #555555;
+	text-shadow: none;
+}
+
+#user-options .user-name {
+	color: #0088CC;
+}
+
+#user-options:hover .user-name {
+	text-decoration: underline;
+}
+
 .page-header {
 	background-color: #F1F1F1;
 	border-bottom: 1px solid #D2D2D2;
