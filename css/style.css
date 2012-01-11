@@ -626,13 +626,15 @@ table .header:after {
 /*================================ FOOTER ================================*/
 
 footer {
-	margin: 18px 20px 0 20px;;
-	padding: 
+	position:absolute;
+   	bottom:0;
+   	width: 100%;
 	clear: both;
-	border-top: 1px solid #DDDDDD;
 }
 
 footer p {
+	border-top: 1px solid #DDDDDD;
+	margin: 18px 20px 10px 20px;
 	padding: 5px 10px;	
 }
 
