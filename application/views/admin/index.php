@@ -1,19 +1,29 @@
-<h1 class="page-header">Administration <small>Beeing important.</small></h1>
-<div class="row">
-  <aside class="span4">
-    <ul class="unstyled">
-      <li><h4><?php echo anchor('admin/users/view', 'Manage Users', 'id="manage-users"'); ?></h4></li>
-      <li><h4><?php echo anchor('admin/users/view', 'Manage Users'); ?></h4></li>
-      <li><h4><?php echo anchor('admin/users/view', 'Manage Users'); ?></h4></li>
-    </ul>
-  </aside>
-  <div class="span12">
-  	<?php if ( $table_users) : ?>
-    <h3>There are new Registrations <small> Displaying <?php echo ($count <= 5) ? $count : '5'; ?> of <?php echo $count; ?></small></h3>
-    <?php echo $table_users; ?>
-    <div class="table-actions">
-        <a class="btn-flat list" href="<?php echo base_url(); ?>admin/users/view/role=inactive/username/asc/0/"><span></span>Show all</a>
-    </div>
-    <?php endif; ?>
-  </div>
+<h1 class="page-header">Overview</h1>
+<div class="fluid-container">
+	<?php if ( $new_users) : ?>
+	<div class="row">
+	  <div class="span12">
+	  	<div class="alert-message block-message warning">
+	        <p><strong>New Registrations!</strong> There have been <?php echo $new_users; ?> new registrations that need your attention. Please take a look at them and confirm or reject the registration by setting the role accordingly. This message will disappear when all new registrations have been processed.</p>
+	        <div class="alert-actions">
+	          <a href="<?php echo base_url(); ?>admin/users/view/role=new/" class="btn small">Show new Userss</a>
+	        </div>
+      	</div>	    
+	  </div>
+	</div>
+	<?php endif; ?>
+	<div class="row admin-options">
+		<a href="<?php echo base_url(); ?>admin/users/view/">
+			<div class="span4 rounded-box">
+				<div class="option user"></div>
+				<h2>Mangage Users</h2>
+			</div>
+		</a>
+		<a href="<?php echo base_url(); ?>admin/consumables/view/">
+			<div class="span4 rounded-box">
+				<div class="option shop"></div>
+				<h2>Manage Consumables</h2>
+			</div>
+		</a>
+	</div>
 </div>

@@ -582,12 +582,6 @@ table .header:after {
 	border-width: 4px 4px 0;
 }
 
-/*================================ ALARMS ================================*/
-
-.content .alert-message {
-	margin: 0 20px 18px;
-}
-
 /*================================ MODALS ================================*/
 
 .modal-body .option {
@@ -645,4 +639,35 @@ footer p, footer a {
 footer a:hover {
 	color: #0069D6;
 	text-decoration: none;
+}
+
+/*============================== ADMIN AREA ==============================*/
+
+.admin-options a:hover [class*="span"] {
+	background-color: #EEEEEE;
+	-webkit-transition: background-color 0.50s linear;
+	-moz-transition: background-color 0.50s linear;
+	-o-transition: background-color 0.50s linear;
+	transition: background-color 0.50s linear;	
+}
+
+.admin-options .option {
+	background-image: url(../img/sprite.png);
+	background-position: 0px -86px;
+	margin: 0 auto;
+	width: 128px;
+	height: 128px;
+}
+
+.admin-options .option.shop {
+	background-position: -128px -86px;
+}
+
+.admin-options h2 {
+	text-align: center;
+}
+
+.admin-options [class*="span"] {
+	padding: 20px 0;
+	background-color: #F7F7F7;
 }
