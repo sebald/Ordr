@@ -25,7 +25,8 @@
 	);
 ?>
 <hgroup class="page-header">
-	<?php echo form_open('admin/users/search', '', (isset($filter['display'])) ? array( 'display' => $query_display ) : ''); ?>
+	
+	<?php echo form_open('admin/users/search', 'class="search-form"', (isset($filter['display'])) ? array( 'display' => $query_display ) : ''); ?>
 		<div class="input-append search">
 			<?php echo form_input($attr_input_search, (isset($filter['search'])) ? $filter['search'] : ''); ?>
 			<label class="add-on">
@@ -43,51 +44,35 @@
 					$clear_url .= 'role='.$filter['role'];
 				}
 	    	?>
-			<a class="clear-search" href="<?php echo $clear_url; ?>" title="Clear Search"><span></span>Clear Search</a>
 		<?php endif; ?>
 	<?php echo form_close(); ?>
-	<h1>Manage Users <small>Activate, add, delete,...</small></h1>
+	
+	<h1>Users</h1>
+	
+	<div class="actions">
+		<div class="btn-group">
+			<button rel="twipsy" data-original-title="Change Role" class="btn-flat group" name="action" type="submit" value="role"><i class="group"></i></button>
+			<button rel="twipsy" data-original-title="Delete" class="btn-flat delete" name="action" type="submit" value="delete"><i class="trash"></i></button>	  
+		</div>
+		<a href="#modal-display" rel="twipsy" data-original-title="Display Options" class="btn-flat single" data-toggle="modal"><i class="eye"></i></a>
+	</div>		
+	
 </hgroup>
 <?php echo $this->session->flashdata('message'); ?>
 <div class="fluid-container sidebar-left">
 	<aside class="fluid-sidebar">
-		<div class="filter">
-			<h4>Role</h4>
-			<ul>
-				<?php $parameter = ( $query_display ) ? 'display='.$query_display.'&' : ''; ?>
-				<?php $parameter = ( isset($filter['search']) ) ? $parameter.'search='.$filter['search'].'&' : $parameter; ?>
-				<li><?php echo anchor('admin/users/view/'.substr($parameter, 0, -1),'Everyone', (empty($filter['role'])) ? 'class="active"' : '' ); ?></li>
-				<li><?php echo anchor('admin/users/view/'.$parameter.'role=inactive','Inactive', @($filter['role'] == 'inactive') ? 'class="active"' : '' ); ?></li>
-				<li><?php echo anchor('admin/users/view/'.$parameter.'role=user','User', @($filter['role'] == 'user') ? 'class="active"' : '' ); ?></li>
-				<li><?php echo anchor('admin/users/view/'.$parameter.'role=purchaser','Purchaser', @($filter['role'] == 'purchaser') ? 'class="active"' : '' ); ?></li>
-				<li><?php echo anchor('admin/users/view/'.$parameter.'role=admin','Admin', @($filter['role'] == 'admin') ? 'class="active"' : '' ); ?></li>
-			</ul>
-		</div>
-		<div class="filter">
-			<h4>Display</h4>
-			<?php echo form_open('admin/users/changeview', '', $keep_query ); ?>
-			<?php if( empty($filter['display']) ) $filter['display'] = array( 'username', 'first_name', 'last_name', 'email', 'role' ); ?>
-			<ul class="checklist">
-				<li class="active">
-					<label class="disabled"><input type="checkbox" checked="checked" value="username" name="display[]" disabled="" ><span>Username</span></label>
-				</li>
-				<li <?php echo (in_array('first_name', $filter['display'])) ? 'class="active"' : ''; ?>>
-					<label><input type="checkbox" <?php echo (in_array('first_name', $filter['display'])) ? 'checked="checked"' : ''; ?> value="first_name" name="display[]"><span>First Name</span></label>
-				</li>
-				<li <?php echo (in_array('last_name', $filter['display'])) ? 'class="active"' : ''; ?>>
-					<label><input type="checkbox" <?php echo (in_array('last_name', $filter['display'])) ? 'checked="checked"' : ''; ?> value="last_name" name="display[]"><span>Last Name</span></label>
-				</li>
-				<li <?php echo (in_array('email', $filter['display'])) ? 'class="active"' : ''; ?>>
-					<label><input type="checkbox" <?php echo (in_array('email', $filter['display'])) ? 'checked="checked"' : ''; ?> value="email" name="display[]"><span>Email</span></label>
-				</li>
-				<li <?php echo (in_array('role', $filter['display'])) ? 'class="active"' : ''; ?>>
-					<label><input type="checkbox" <?php echo (in_array('role', $filter['display'])) ? 'checked="checked"' : ''; ?> value="role" name="display[]"><span>Role</span></label>
-				</li>
-			</ul>
-			<hr />
-			<button class="btn-flat" type="submit">Change View</button>
-			<?php echo form_close(); ?>
-		</div>		
+		<ul class="well nav list">
+			<li class="nav-header">Role</li>
+	        <?php $parameter = ( $query_display ) ? 'display='.$query_display.'&' : ''; ?>
+			<?php $parameter = ( isset($filter['search']) ) ? $parameter.'search='.$filter['search'].'&' : $parameter; ?>
+			<li <?php echo empty($filter['role']) ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.substr($parameter, 0, -1),'All' ); ?></li>
+			<li <?php echo @($filter['role'] == 'new') ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.$parameter.'role=new','New' ); ?></li>
+			<li <?php echo @($filter['role'] == 'inactive') ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.$parameter.'role=inactive','Inactive' ); ?></li>
+			<li <?php echo @($filter['role'] == 'user') ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.$parameter.'role=user','User' ); ?></li>
+			<li <?php echo @($filter['role'] == 'purchaser') ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.$parameter.'role=purchaser','Purchaser' ); ?></li>
+			<li <?php echo @($filter['role'] == 'admin') ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.$parameter.'role=admin','Admin' ); ?></li>	
+		</ul>		
+	
 	</aside>
 	<div class="fluid-content">
 		<?php echo form_open('admin/users/actions'); ?>
@@ -126,20 +111,56 @@
 		  </tbody>
 			  
 			</table>
-			<div class="table-actions">
-				<div class="btn-group">
-					<button class="btn-flat group" name="action" type="submit" value="role"><span></span>Role</button>
-					<button class="btn-flat delete" name="action" type="submit" value="delete"><span></span>Delete</button>	  
-				</div>
-			</div>
 			<?php echo form_close(); ?>
 			    
 			<?php if (strlen($pagination)): ?>
-			<div class="pagination center">
+			<div class="pagination centered">
 			  <ul>
 			    <?php echo $pagination; ?>
 			  </ul>
 			</div>
 			<?php endif; ?>
 	</div>
+</div>
+<div id="modal-display" class="modal hide fade">
+	<?php echo form_open('admin/users/changeview', 'class="checklist"', $keep_query ); ?>
+	<?php if( empty($filter['display']) ) $filter['display'] = array( 'username', 'first_name', 'last_name', 'email', 'role' ); ?>
+            <div class="modal-header">
+              <a href="#" class="close" data-dismiss="modal">×</a>
+              <h3>Display Options</h3>
+            </div>
+            <div class="modal-body">
+            	<p class="help-block"><span class="label notice">Notice</span> If the displayed information is too cluttered, deselect some fields below. This will temporaly remove them from your view and should help you stay on top of things.</p>
+				<div class="checklist">
+					<fieldset class="left">
+						<label class="checkbox">
+				        <input type="checkbox" checked="checked" value="username" name="display[]" disabled="" >
+				              Username
+				        </label>
+				        <label class="checkbox">
+				              <input type="checkbox" <?php echo (in_array('first_name', $filter['display'])) ? 'checked="checked"' : ''; ?> value="first_name" name="display[]">
+				              First Name
+				        </label>
+				        <label class="checkbox">
+				              <input type="checkbox" <?php echo (in_array('last_name', $filter['display'])) ? 'checked="checked"' : ''; ?> value="last_name" name="display[]">
+				              Last Name
+				        </label>
+					</fieldset>
+					<fieldset class="right">
+				        <label class="checkbox">
+				              <input type="checkbox" <?php echo (in_array('email', $filter['display'])) ? 'checked="checked"' : ''; ?> value="email" name="display[]">
+				              Email
+				        </label>
+				        <label class="checkbox">
+				              <input type="checkbox" <?php echo (in_array('role', $filter['display'])) ? 'checked="checked"' : ''; ?> value="role" name="display[]">
+				              Role
+				        </label>					
+					</fieldset>
+				</div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn primary" type="submit">Apply Changes</button>
+              <a data-dismiss="modal" class="btn" href="#">Close</a>
+            </div>
+	<?php echo form_close(); ?>
 </div>

@@ -15,13 +15,6 @@ body {
 .right {
 	text-align: right;
 }
-.pagination.center,
-.pagination.center ul {
-    float: left;
-    position: relative;
-}
-.pagination.center { left: 50%; margin-bottom: 0; }
-.pagination.center ul { left: -50%; }
 
 /*================================ BUTTONS ================================*/
 
@@ -183,7 +176,7 @@ a.btn-flat {
 	background-color: #F6F6F6;
 }
 .btn-group {
-	float: right;
+	float: left;
 }
 
 .btn-group .btn-flat {
@@ -324,7 +317,7 @@ form.action {
 }
 
 .page-header h1 {
-	margin-right: 35px;
+	margin-right: 38px;
 	width: 200px;
 }
 
@@ -432,6 +425,14 @@ form.action {
 }
 .btn-flat:hover i.eye {
 	background-position: -144px -18px;
+}
+
+.btn-flat i.group {
+	background-position: -54px 0;
+}
+
+.btn-flat:hover i.group {
+	background-position: -54px -18px;
 }
 
 /*================================ ASIDE ================================*/
@@ -584,6 +585,10 @@ table .header:after {
 
 /*================================ MODALS ================================*/
 
+.modal form {
+	margin: 0;
+}
+
 .modal-body .option {
 	font-size: 15px;
 }
@@ -596,6 +601,14 @@ table .header:after {
 	margin: 0 20px;
 }
 
+.modal-body .checklist:after {
+	content: ".";
+   	visibility: hidden;
+   	display: block;
+   	height: 0;
+   	clear: both;
+}
+
 .modal-body .checklist .checkbox {
 	margin-bottom: 10px;
 }
@@ -606,6 +619,8 @@ table .header:after {
 }
 
 .modal-body .checklist .right {
+	float: right;
+	width: 50%;
 	text-align: start;
 }
 
