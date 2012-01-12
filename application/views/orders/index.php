@@ -28,7 +28,7 @@
 		<?php echo form_open('orders/action', '', (isset($filter['display'])) ? array( 'display' => $query_display ) : ''); ?>
 			<div class="btn-group">
 				<button rel="twipsy" data-original-title="Edit" value="edit" type="submit" name="action" class="btn-flat"><i class="pencil"></i></button>
-				<button rel="twipsy" data-original-title="Remove" value="delete" type="submit" name="action" class="btn-flat"><i class="trash"></i></button>	  
+				<button rel="twipsy" data-original-title="Delete" value="delete" type="submit" name="action" class="btn-flat"><i class="trash"></i></button>	  
 			</div>
 		<?php echo form_close(); ?>
 		<div class="btn-group">
