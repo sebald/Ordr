@@ -24,43 +24,13 @@
           'content'		=> 'Search'
 	);
 ?>
-<hgroup class="page-header">
-	
-	<?php echo form_open('admin/users/search', 'class="search-form"', (isset($filter['display'])) ? array( 'display' => $query_display ) : ''); ?>
-		<div class="input-append search">
-			<?php echo form_input($attr_input_search, (isset($filter['search'])) ? $filter['search'] : ''); ?>
-			<label class="add-on">
-				<?php echo form_button($attr_submit_search); ?>
-			</label>
-	    </div>
-	    <?php if( isset($filter['search']) ) : ?>
-	    	<?php
-	    		$clear_url = base_url("admin/users/view").'/';
-				if( $query_display )
-					$clear_url .= 'display='.$query_display;
-				if( isset($filter['role']) ) {
-					if( $query_display )
-						$clear_url .= '&';
-					$clear_url .= 'role='.$filter['role'];
-				}
-	    	?>
-		<?php endif; ?>
-	<?php echo form_close(); ?>
-	
-	<h1>Users</h1>
-	
-	<div class="actions">
-		<div class="btn-group">
-			<button rel="twipsy" data-original-title="Change Role" class="btn-flat group" name="action" type="submit" value="role"><i class="group"></i></button>
-			<button rel="twipsy" data-original-title="Delete" class="btn-flat delete" name="action" type="submit" value="delete"><i class="trash"></i></button>	  
-		</div>
-		<a href="#modal-display" rel="twipsy" data-original-title="Display Options" class="btn-flat single" data-toggle="modal"><i class="eye"></i></a>
-	</div>		
-	
-</hgroup>
+
 <?php echo $this->session->flashdata('message'); ?>
 <div class="fluid-container sidebar-left">
 	<aside class="fluid-sidebar">
+		<div class="page-header">
+			<h1>Users</h1>
+		</div>
 		<ul class="well nav list">
 			<li class="nav-header">Role</li>
 	        <?php $parameter = ( $query_display ) ? 'display='.$query_display.'&' : ''; ?>
@@ -74,52 +44,76 @@
 		</ul>		
 	
 	</aside>
+	
 	<div class="fluid-content">
 		<?php echo form_open('admin/users/actions'); ?>
+		<div class="page-header">
+
+			<div class="input-append search">
+				<?php echo form_input($attr_input_search, (isset($filter['search'])) ? $filter['search'] : ''); ?>
+				<label class="add-on">
+					<?php echo form_button($attr_submit_search); ?>
+				</label>
+		    </div>
+	
+			<div class="actions">
+				
+				<a href="#modal-display" rel="twipsy" data-original-title="Display Options" class="btn-flat single" data-toggle="modal"><i class="eye"></i></a>
+				
+				<div class="btn-group">
+					<button rel="twipsy" data-original-title="Change Role" class="btn-flat group" name="action" type="submit" value="role"><i class="group"></i></button>
+					<button rel="twipsy" data-original-title="Delete" class="btn-flat delete" name="action" type="submit" value="delete"><i class="trash"></i></button>	  
+				</div>
+				
+			</div>		
+			
+		</div>
 		<table>
-		  <thead>
-		  	<th class="center">
-		  		<?php echo form_checkbox('mark_all', 'all'); ?>
-		  	</th>
-		    <?php foreach( $fields as $field_name => $field_display): ?>
-		    <th class="sortable blue header<?php if ($by == $field_name) echo ($order == 'asc') ? ' headerSortUp' : ' headerSortDown'; ?>">
-		      <?php echo anchor("admin/users/view/$query/$field_name/" .
-		        (($order == 'asc' && $by == $field_name) ? 'desc' : 'asc') ,
-		        $field_display); ?>
-		    </th>
-		    <?php endforeach; ?>
-		    <th>Actions</th>
-		  </thead>
-		  
-		  <tbody>
-		    <?php foreach($users as $user): ?>
-		    <tr>
-		      <td class="center">
-		      	<?php echo form_checkbox('marked[]', $user->username); ?>
-		      </td>
-		      <?php foreach($fields as $field_name => $field_display): ?>
-		      <td>
-		        <?php echo $user->$field_name; ?>
-		      </td>
-		      <?php endforeach; ?>
-		      <td>
-		      	<?php echo anchor('admin/users/edit/'.$user->username, 'edit', 'class="action edit" title="Edit User"'); ?>
-		      	<?php echo anchor('admin/users/delete/'.$user->username, 'delete', 'class="action delete" title="Delete User"'); ?>
-		      </td>
-		    </tr>
-		    <?php endforeach; ?>			
-		  </tbody>
+			
+			  <thead>
+			  	<th class="center">
+			  		<?php echo form_checkbox('mark_all', 'all'); ?>
+			  	</th>
+			    <?php foreach( $fields as $field_name => $field_display): ?>
+			    <th class="sortable blue header<?php if ($by == $field_name) echo ($order == 'asc') ? ' headerSortUp' : ' headerSortDown'; ?>">
+			      <?php echo anchor("admin/users/view/$query/$field_name/" .
+			        (($order == 'asc' && $by == $field_name) ? 'desc' : 'asc') ,
+			        $field_display); ?>
+			    </th>
+			    <?php endforeach; ?>
+			    <th>Actions</th>
+			  </thead>
 			  
-			</table>
-			<?php echo form_close(); ?>
-			    
-			<?php if (strlen($pagination)): ?>
-			<div class="pagination centered">
-			  <ul>
-			    <?php echo $pagination; ?>
-			  </ul>
-			</div>
-			<?php endif; ?>
+			  <tbody>
+			    <?php foreach($users as $user): ?>
+			    <tr>
+			      <td class="center">
+			      	<?php echo form_checkbox('marked[]', $user->username); ?>
+			      </td>
+			      <?php foreach($fields as $field_name => $field_display): ?>
+			      <td>
+			        <?php echo $user->$field_name; ?>
+			      </td>
+			      <?php endforeach; ?>
+			      <td>
+			      	<?php echo anchor('admin/users/edit/'.$user->username, 'edit', 'class="action edit" title="Edit User"'); ?>
+			      	<?php echo anchor('admin/users/delete/'.$user->username, 'delete', 'class="action delete" title="Delete User"'); ?>
+			      </td>
+			    </tr>
+			    <?php endforeach; ?>			
+			  </tbody>
+				  
+		</table>
+		
+		<?php if (strlen($pagination)): ?>
+		<div class="pagination centered">
+		  <ul>
+		    <?php echo $pagination; ?>
+		  </ul>
+		</div>
+		<?php endif; ?>
+		
+		<?php echo form_close(); ?>
 	</div>
 </div>
 <div id="modal-display" class="modal hide fade">
