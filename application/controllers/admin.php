@@ -38,13 +38,22 @@ class Admin extends MY_Controller {
 	 * 	one actions for table data.
 	 */
 	public function users_actions(){
+		print_a($_POST);
+		
+		// request search
+		if ( $this->input->post('action') == 'search' ) {
+			$this->session->set_flashdata('search', $this->input->post('search'));
+			redirect('admin/users/search');
+		}
+		// nothing selected for action => deny request
 		if ( $this->input->post('marked') == FALSE ){
 	        $msg = create_alert_message('warning', 'No can do!', 'Please select some records and try again.');
 			$this->session->set_flashdata('message', $msg);			
 			redirect($_SERVER['HTTP_REFERER']);
 		}
+		// request based on action parameter
 		$this->session->set_flashdata('marked', $users = $this->input->post('marked'));
-		switch ($_POST['action']) {
+		switch ($this->input->post('action')) {
 			case 'role':
 				redirect('admin/users/role');
 				break;
@@ -235,8 +244,8 @@ class Admin extends MY_Controller {
 	
 	public function users_search(){
 		$search= 'all';
-		if( $_POST['search'])
-			$search = http_build_query( array( 'search' => $_POST['search'] ) );
+		if( $this->session->flashdata('search') )
+			$search = http_build_query( array( 'search' => $this->session->flashdata('search') ) );
 		if( isset($_POST['display']) && $search != 'all' )
 			$search = 'display='.$_POST['display'].'&'.$search;
 		if( isset($_POST['display']) && $search == 'all' )

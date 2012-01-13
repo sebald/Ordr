@@ -21,11 +21,12 @@
 	$attr_submit_search = array(
 		  'type'		=> 'submit',
           'class'       => 'search',
-          'content'		=> 'Search'
+          'content'		=> 'Search',
+          'name'		=> 'action',
+          'value'		=> 'search'
 	);
 ?>
 
-<?php echo $this->session->flashdata('message'); ?>
 <div class="fluid-container sidebar-left">
 	<aside class="fluid-sidebar">
 		<div class="page-header">
@@ -58,16 +59,19 @@
 	
 			<div class="actions">
 				
-				<a href="#modal-display" rel="twipsy" data-original-title="Display Options" class="btn-flat single" data-toggle="modal"><i class="eye"></i></a>
-				
 				<div class="btn-group">
 					<button rel="twipsy" data-original-title="Change Role" class="btn-flat group" name="action" type="submit" value="role"><i class="group"></i></button>
 					<button rel="twipsy" data-original-title="Delete" class="btn-flat delete" name="action" type="submit" value="delete"><i class="trash"></i></button>	  
 				</div>
 				
+				<a href="#modal-display" rel="twipsy" data-original-title="Display Options" class="btn-flat single" data-toggle="modal"><i class="eye"></i></a>
+				
 			</div>		
 			
 		</div>
+		
+		<?php echo $this->session->flashdata('message'); ?>
+		
 		<table>
 			
 			  <thead>
