@@ -59,7 +59,7 @@
 	
 			<div class="actions">
 				
-				<div class="btn-group">
+				<div class="btn-group marking-needed">
 					<button rel="twipsy" data-original-title="Change Role" class="btn-flat group" name="action" type="submit" value="role"><i class="group"></i></button>
 					<button rel="twipsy" data-original-title="Delete" class="btn-flat delete" name="action" type="submit" value="delete"><i class="trash"></i></button>	  
 				</div>

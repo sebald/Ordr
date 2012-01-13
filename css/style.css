@@ -194,6 +194,9 @@ a.btn-flat {
 	box-shadow: inset 0 0 3px #D4D4D4;
 }
 
+.btn-group.marking-needed, .btn-flat.marking-needed {
+	display: none;
+}
 
 /*================================ HEADER ================================*/
 
