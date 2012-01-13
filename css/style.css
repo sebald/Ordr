@@ -270,6 +270,47 @@ table .header:after {
 	border-width: 4px 4px 0;
 }
 
+table .action {
+background-image: url(../img/sprite.png);
+margin-bottom: -5px;
+margin-right: 2px;
+height: 16px;
+width: 16px;
+display: inline-block;
+overflow: hidden;
+text-indent: -9999px;
+background-repeat: no-repeat;
+-webkit-transition: background-image 0.20s linear;
+-moz-transition: background-image 0.20s linear;
+-o-transition: background-image 0.20s linear;
+transition: background-image 0.20s linear;
+zoom: 1;
+    filter: alpha(opacity=40);
+    opacity: 0.4;
+
+}
+
+table .action:hover {
+    filter: alpha(opacity=100);
+    opacity: 1;
+}
+
+table .action.delete {
+	background-position: 0px -36px;
+}
+
+table .action.delete:hover {
+	background-position: 0px -52px;
+}
+
+table .action.edit {
+	background-position: -16px -36px;
+}
+
+table .action.edit:hover {
+	background-position: -16px -52px;
+}
+
 /*================================ MODALS ================================*/
 
 .modal form {
