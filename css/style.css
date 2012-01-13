@@ -121,6 +121,10 @@ a.btn-flat {
 	display: block;
 }
 
+.btn-group {
+	margin-right: 15px;
+}
+
 .btn-group .btn-flat {
 	position: relative;
 	float: left;
