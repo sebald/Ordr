@@ -1,5 +1,7 @@
-<h1 class="page-header">Overview</h1>
 <div class="fluid-container">
+	<div class="page-header">
+		<h1>Overview</h1>
+	</div>
 	<?php if ( $new_users) : ?>
 	<div class="row">
 	  <div class="span12">
