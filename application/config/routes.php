@@ -58,7 +58,19 @@ $route['admin/users/filter'] = 'admin/users_filter';
 
 $route['admin/users/changeview'] = 'admin/users_change_view';
 
+
+
+$route['admin/consumables/view'] = 'admin/consumables_view';
+$route['admin/consumables/view/(:any)'] = 'admin/consumables_view/$1';
+$route['admin/consumables/view/(:any)/(:any)'] = 'admin/consumables_view/$1/$2';
+$route['admin/consumables/view/(:any)/(:any)/(asc|desc)'] = 'admin/consumables_view/$1/$2/$3';
+$route['admin/consumables/view/(:any)/(:any)/(asc|desc)/(:num)'] = 'admin/consumables_view/$1/$2/$3/$4';
+
+$route['admin/consumables/new'] = 'admin/consumables_new';
+
 $route['orders/new'] = 'orders/new_order';
+
+
 
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';

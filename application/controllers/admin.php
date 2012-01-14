@@ -32,6 +32,11 @@ class Admin extends MY_Controller {
         $this->load->view('layout/template', $data);    
     }
 
+
+	/********************************************************/
+	/*					ADMIN - USERS						*/
+	/********************************************************/
+
 	/**
 	 * 	Redirecting to the requested action.
 	 * 	The redirect is needed because there is only one form action, but there are more than
@@ -72,7 +77,7 @@ class Admin extends MY_Controller {
 	 * 	@param 	query	the query string
 	 * 	@param	by		field, which should be used to order the data
 	 * 	@param	order	asc or desc ordering
-	 * 	@param	offset	used by the CI pagination
+	 * 	@param	page	used by the CI pagination
 	 */
     public function users_view($query = 'all', $by = 'username', $order = 'asc', $page = 1) {   
         $limit = 10;
@@ -262,6 +267,58 @@ class Admin extends MY_Controller {
 		if( isset($_POST['search']) )
 			$display = $display.'&search='.str_replace(' ', '+', $_POST['search']);	
 		redirect('admin/users/view/'.$display);
+	}
+
+	/********************************************************/
+	/*			  	    ADMIN - CONSUMABLES					*/
+	/********************************************************/
+	
+		/**
+	 * 	Displaying common consumables in a table and provide actions to manage them. All parameters are
+	 * 	optional.
+	 * 	@param 	query	the query string
+	 * 	@param	by		field, which should be used to order the data
+	 * 	@param	order	asc or desc ordering
+	 * 	@param	page	used by the CI pagination
+	 */
+	public function consumables_view($query = 'all', $by = 'description', $order = 'asc', $page = 1){
+		
+		
+		$data['main_content'] = 'admin/consumables_view';
+        $this->load->view('layout/template', $data);
+	}
+	
+	public function consumables_new(){
+		// field name, error message, validation rules
+	    $this->load->library('form_validation');
+	    $this->form_validation->set_rules('CAS_description', 'CAS / Description', 'trim|required|is_unique[c_consumables.CAS_description]');
+	    $this->form_validation->set_rules('category', 'Category', 'trim|required');
+	    $this->form_validation->set_rules('catalog_number', 'Catalog Number', 'trim|required');
+		$this->form_validation->set_rules('vendor', 'Vendor', 'trim|required');
+		$this->form_validation->set_rules('package_size', 'Package Size', 'trim|required');
+		$this->form_validation->set_rules('price_unit', 'Unit Price', 'trim|required');
+		$this->form_validation->set_rules('comment', 'Comment', 'trim|max_length[140]');
+
+		// load some additionals stuff
+		$this->load->helper('taxonomies');
+		$data['currencies'] = convert_for_typeahead(get_currencies());
+		$data['consumable_categories'] = get_consumable_categories();
+
+	    if( $this->form_validation->run() == FALSE ) {
+	        $data['main_content'] = 'admin/consumables_new';
+	    } else {		
+	        $this->load->model('consumables_model');
+	        if($this->consumables_model->create()) {
+	        	$msg = create_alert_message('success', 'Consumables added successfull!!', '<em>'.$this->input->post('CAS_description').'</em> added to the databse.');
+				$this->session->set_flashdata('message', $msg);
+	        	redirect('admin/consumables_view');
+	    	} else {
+	        	$msg = create_alert_message('error', 'Something went wrong!!', 'The consumables has not been added to the databse.');
+				$this->session->set_flashdata('message', $msg);
+	        	$data['main_content'] = 'admin/consumables_new';			
+	        }
+	    }		
+        $this->load->view('layout/template', $data);
 	}
 	
 }
