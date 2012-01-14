@@ -24,7 +24,7 @@
 			    </div>
 			<?php echo form_close(); ?>	
 			
-			<h1>Consumables</h1>
+			<h1>New Order</h1>
 			
 		</div>
 		<div class="row">
@@ -38,6 +38,16 @@
 			          <label for="input01" class="control-label">CAS / Description</label>
 			          <div class="controls">
 			            <input type="text" name="input01" class="span3">
+			          </div>
+			        </fieldset>
+			        <fieldset class="control-group">
+			          <label for="input01" class="control-label">Category</label>
+			          <div class="controls">
+			            <select name="category">
+			              <option>Chemical</option>
+			              <option>Equipment</option>
+			              <option>Solvent</option>
+			            </select>
 			          </div>
 			        </fieldset>
 			        <fieldset class="control-group">
