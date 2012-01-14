@@ -13,7 +13,7 @@ class Consumables_model extends CI_Model {
           'CAS_description' 	=> $this->input->post('CAS_description'),
           'category' 			=> $this->input->post('category'),			
           'package_size' 		=> $this->input->post('package_size'),
-          'price_unit'			=> $this->input->post('price_unit'),
+          'price_unit'			=> str_replace(',', '.', $this->input->post('price_unit')),
           'currency'			=> $this->input->post('currency'),
           'comment'				=> $this->input->post('comment')
         );
@@ -28,7 +28,7 @@ class Consumables_model extends CI_Model {
           'CAS_description' 	=> $this->input->post('CAS_description'),
           'category' 			=> $this->input->post('category'),			
           'package_size' 		=> $this->input->post('package_size'),
-          'price_unit'			=> $this->input->post('price_unit'),
+          'price_unit'			=> str_replace(',', '.', $this->input->post('price_unit')),
           'currency'			=> $this->input->post('currency'),
           'comment'				=> $this->input->post('comment'),
           'date_modified'		=> date('Y-m-d H:i:s')
