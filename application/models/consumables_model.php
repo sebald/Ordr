@@ -50,7 +50,7 @@ class Consumables_model extends CI_Model {
 		
         // query
         $this->db->start_cache();
-        $query =  $this->db->select('*')
+        $query =  $this->db->select(implode(",", $this->fields))
                   ->from('c_consumables')
                   ->order_by($by, $order);
 		$this->db->stop_cache();

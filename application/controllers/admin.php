@@ -281,8 +281,38 @@ class Admin extends MY_Controller {
 	 * 	@param	order	asc or desc ordering
 	 * 	@param	page	used by the CI pagination
 	 */
-	public function consumables_view($query = 'all', $by = 'description', $order = 'asc', $page = 1){
-		
+	public function consumables_view($by = 'description', $order = 'asc', $page = 1){
+		$limit = 15;
+        $data['fields'] = array(
+                    'CAS_description' 		=> 'CAS / Description',
+                    'category' 				=> 'Category',
+                    'catalog_number' 		=> 'Catalog Number',
+                    'vendor' 				=> 'Vendor',
+                    'package_size' 			=> 'Package Size',
+                    'price_unit'			=> 'Unit Price'
+        );
+        $data['by'] = $by;
+        $data['order'] = $order;
+
+        // get users
+        $offset = ($page-1)*$limit;
+        $this->load->model('consumables_model');
+        $result = $this->consumables_model->search($limit, $offset, $by, $order);
+        $data['consumables'] = $result['consumables']->result();
+        $data['count'] = $result['count'];
+
+        // pagination config
+        $config = array();
+        $config['base_url'] = site_url("admin/consumables/view/$by/$order");
+        $config['total_rows'] = $data['count'];
+        $config['per_page'] = $limit;
+        $config['uri_segment'] = 6;
+        $config['num_links'] = 5;
+        
+        // pagination
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+        $data['pagination'] = $this->pagination->create_links(); 		
 		
 		$data['main_content'] = 'admin/consumables_view';
         $this->load->view('layout/template', $data);

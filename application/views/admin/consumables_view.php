@@ -40,6 +40,45 @@
 		
 		<?php echo $this->session->flashdata('message'); ?>
 		
+		<table>
+			
+			  <thead>
+			    <?php foreach( $fields as $field_name => $field_display): ?>
+			    <th class="sortable blue header<?php if ($by == $field_name) echo ($order == 'asc') ? ' headerSortUp' : ' headerSortDown'; ?>">
+			      <?php echo anchor("admin/consumables/view/$field_name/" .
+			        (($order == 'asc' && $by == $field_name) ? 'desc' : 'asc') ,
+			        $field_display); ?>
+			    </th>
+			    <?php endforeach; ?>
+			    <th>Actions</th>
+			  </thead>
+			  
+			  <tbody>
+			    <?php foreach($consumables as $consumable): ?>
+			    <tr>
+			      <?php foreach($fields as $field_name => $field_display): ?>
+			      <td>
+			        <?php echo $consumable->$field_name; ?>
+			      </td>
+			      <?php endforeach; ?>
+			      <td>
+			      	<?php echo anchor('admin/consumables/edit/'.$consumable->id, 'edit', 'class="action edit" title="Edit User"'); ?>
+			      	<?php echo anchor('admin/consumables/delete/'.$consumable->id, 'delete', 'class="action delete" title="Delete User"'); ?>
+			      </td>
+			    </tr>
+			    <?php endforeach; ?>			
+			  </tbody>
+				  
+		</table>		
+		
+		<?php if (strlen($pagination)): ?>
+		<div class="pagination centered">
+		  <ul>
+		    <?php echo $pagination; ?>
+		  </ul>
+		</div>
+		<?php endif; ?>		
+		
 	</div>
 	
 </div>
