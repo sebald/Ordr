@@ -233,6 +233,10 @@ a.btn-flat {
 	line-height: 30px;
 }
 
+.page-header form {
+	margin-bottom: 0;
+}
+
 .page-header .input-append.search {
 	float: right;
 }

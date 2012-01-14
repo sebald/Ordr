@@ -11,22 +11,22 @@
           'content'		=> 'Search'
 	);
 ?>	
-<hgroup class="page-header">
-	
-	<?php echo form_open('orders/search', 'class="search-form"', (isset($filter['display'])) ? array( 'display' => $query_display ) : ''); ?>
-		<div class="input-append search">
-			<?php echo form_input($attr_input_search, (isset($filter['search'])) ? $filter['search'] : ''); ?>
-			<label class="add-on">
-				<?php echo form_button($attr_submit_search); ?>
-			</label>
-	    </div>
-	<?php echo form_close(); ?>		
-		
-	<h1>New Order</h1>
-	
-</hgroup>
 <div class="fluid-container">
 	<div class="fluid-content">
+		<div class="page-header">
+			
+			<?php echo form_open('orders/search', 'class="search-form"', (isset($filter['display'])) ? array( 'display' => $query_display ) : ''); ?>
+				<div class="input-append search">
+					<?php echo form_input($attr_input_search, (isset($filter['search'])) ? $filter['search'] : ''); ?>
+					<label class="add-on">
+						<?php echo form_button($attr_submit_search); ?>
+					</label>
+			    </div>
+			<?php echo form_close(); ?>	
+			
+			<h1>Consumables</h1>
+			
+		</div>
 		<div class="row">
 			<div class="span8">
 				<div class="alert-message block-message info">
@@ -50,6 +50,12 @@
 			          <label for="input01" class="control-label">Vendor</label>
 			          <div class="controls">
 			            <input type="text" name="input01" class="span3">
+			          </div>				          			          
+			        </fieldset>
+			        <fieldset class="control-group">
+			          <label for="input01" class="control-label">Package Size</label>
+			          <div class="controls">
+			            <input type="text" name="input01" class="span2">
 			          </div>				          			          
 			        </fieldset>
 					<legend>Pricing</legend>
