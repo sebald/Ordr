@@ -12,9 +12,6 @@ body {
 .brand {
 	font-family: 'Anton', sans-serif;
 }
-.right {
-	text-align: right;
-}
 
 .content:before {
 	background: none repeat scroll 0 0 #F1F1F1;
@@ -352,7 +349,6 @@ table .action.edit:hover {
 .modal-body .checklist .right {
 	float: right;
 	width: 50%;
-	text-align: start;
 }
 
 .modal-body .checklist .checkbox input {
