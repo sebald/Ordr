@@ -43,6 +43,28 @@ class Consumables_model extends CI_Model {
 		return $this->db->delete('c_consumables');
 	}
 	
+	public function search($limit, $offset, $by, $order){
+		// error correction
+        $order = ($order == 'desc') ? 'desc' : 'asc';
+        $by = (in_array($by, $this->fields)) ? $by : 'CAS_description';
+		
+        // query
+        $this->db->start_cache();
+        $query =  $this->db->select('*')
+                  ->from('c_consumables')
+                  ->order_by($by, $order);
+		$this->db->stop_cache();
+		
+		// count
+		$result['count'] = $this->db->count_all_results('c_consumables');
+		
+		$query->limit($limit, $offset);
+		$result['consumables'] = $query->get();
+       
+       	$this->db->flush_cache();
+        return $result;		
+	}
+	
 	public function get($consumables, $by = 'CAS_description', $select = FALSE) {
 		// error correction	
 		if ( $consumables = '' ) return false;
