@@ -4,14 +4,6 @@
 	( isset($filter['search']) ) ? $keep_query['search'] = $filter['search'] : '' ;
 	( isset($filter['role']) ) ? $keep_query['role'] = $filter['role'] : '' ;
 
-	$options_field = array (
-		'all'			=> 'Anyone',
-		'username' 		=> 'Username',
-		'first_name' 	=> 'First Name',
-		'last_name' 	=> 'Last Name',
-		'email' 		=> 'Email',
-		'role'			=> 'Role'
-	);
 	$attr_input_search = array(
           'name'        => 'search',
           'type'		=> 'search',
