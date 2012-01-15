@@ -33,4 +33,4 @@
         </div>
       </div>
 </header>
-<div class="content">
+<div class="content<?php echo ($controls) ? ' controls' : ''; ?>">
