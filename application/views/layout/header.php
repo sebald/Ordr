@@ -3,11 +3,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
   
-  <?php
-    $c = ucfirst($this->router->class);
-    $f = $this->router->method != 'index' ? '| '.ucfirst($this->router->method) : '';
-  ?>
-  <title>Ordr | <? echo $c ?> <? echo $f; ?></title>
+  	<?php
+  		$page = '';
+  		if ( $this->router->method != 'index' )
+			$page = ' | ' . ucwords(str_replace('_', ' | ', $this->router->method));
+		$title = ucfirst($this->router->class) . $page;
+  	?>
+  	<title>Ordr | <? echo $title ?></title>
 	
 	<link href='http://fonts.googleapis.com/css?family=Anton&subset=latin,latin-ext' rel='stylesheet' type='text/css'>	
   
