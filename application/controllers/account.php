@@ -58,6 +58,7 @@ class Account extends MY_Controller {
       } else {		
         $this->load->model('user_model');
         if($this->user_model->create()) {
+          $data['username'] = $this->input->post('first_name').$this->input->post('last_name');
           $data['controls'] = FALSE;
           $data['main_content'] = 'account/register_successful';
         } else {

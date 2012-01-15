@@ -416,6 +416,27 @@ footer a:hover {
 	font-size: 16px;
 }
 
+/*============================= ACCOUNT =============================*/
+
+#register-successful {
+	margin: 90px 0 50px;
+	text-align: center;	
+}
+
+#register-successful h1 {
+    font-family: 'Anton',sans-serif;
+    font-size: 80px;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+hgroup .info {
+	color: #878787;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+
 /*============================== ADMIN AREA ==============================*/
 
 .admin-options a:hover [class*="span"] {
@@ -446,4 +467,14 @@ footer a:hover {
 .admin-options [class*="span"] {
 	padding: 20px 0;
 	background-color: #F7F7F7;
+}
+
+/*============================== FAQ ==============================*/
+
+.faq h2 {
+	font-family: 'Anton',sans-serif;
+    font-size: 60px;
+    line-height: 1;
+    margin: 30px 0;
+    text-align: center;
 }
