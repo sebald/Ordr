@@ -10,37 +10,14 @@
           'content'		=> 'Search'
 	);
 ?>	
-<hgroup class="page-controls">
-
-	<?php echo form_open('orders/search', 'class="search-form"', (isset($filter['display'])) ? array( 'display' => $query_display ) : ''); ?>
-		<div class="input-append search">
-			<?php echo form_input($attr_input_search, (isset($filter['search'])) ? $filter['search'] : ''); ?>
-			<label class="add-on">
-				<?php echo form_button($attr_submit_search); ?>
-			</label>
-	    </div>
-	<?php echo form_close(); ?>			
-	
-	<h1>Orders</h1>
-	
-	<div class="actions">
-		<a href="<?php echo base_url();?>orders/new" rel="twipsy" data-original-title="New" class="btn-flat single"><i class="shop"></i></a> 
-		<?php echo form_open('orders/action', '', (isset($filter['display'])) ? array( 'display' => $query_display ) : ''); ?>
-			<div class="btn-group">
-				<button rel="twipsy" data-original-title="Edit" value="edit" type="submit" name="action" class="btn-flat"><i class="pencil"></i></button>
-				<button rel="twipsy" data-original-title="Delete" value="delete" type="submit" name="action" class="btn-flat"><i class="trash"></i></button>	  
-			</div>
-		<?php echo form_close(); ?>
-		<div class="btn-group">
-			<a href="#modal-filter" rel="twipsy" data-original-title="Filter Options" class="btn-flat" data-toggle="modal"><i class="abacus"></i></a>
-			<a href="#modal-display" rel="twipsy" data-original-title="Display Options" class="btn-flat" data-toggle="modal"><i class="eye"></i></a>
-		</div>	
-	</div>
-	
-</hgroup>
-<?php echo $this->session->flashdata('message'); ?>
 <div class="fluid-container sidebar-left">
+	
 	<aside class="fluid-sidebar">
+		
+		<div class="page-controls">
+			<h1>Orders</h1>
+		</div>
+		
 		<ul class="well nav list">
 			<li class="nav-header">My Orders</li>
 	        <li class="active"><a href="#" class="nav-item">All</a></li>
@@ -53,8 +30,39 @@
 	        <li><a href="#" class="nav-item">On order</a></li>
 	        <li><a href="#" class="nav-item">Completed</a></li>		
 		</ul>
+		
 	</aside>
+	
 	<div class="fluid-content">
+		
+		<div class="page-controls">
+
+			<div class="input-append search">
+				<?php echo form_input($attr_input_search, (isset($filter['search'])) ? $filter['search'] : ''); ?>
+				<label class="add-on">
+					<?php echo form_button($attr_submit_search); ?>
+				</label>
+		    </div>		
+			
+			<div class="actions">
+				
+				<a href="<?php echo base_url();?>orders/new" rel="twipsy" data-original-title="New" class="btn-flat single"><i class="shop"></i></a> 
+				
+				<div class="btn-group marking-needed">
+					<button rel="twipsy" data-original-title="Edit" value="edit" type="submit" name="action" class="btn-flat"><i class="pencil"></i></button>
+					<button rel="twipsy" data-original-title="Delete" value="delete" type="submit" name="action" class="btn-flat"><i class="trash"></i></button>	  
+				</div>
+				
+				<div class="btn-group">
+					<a href="#modal-filter" rel="twipsy" data-original-title="Filter Options" class="btn-flat" data-toggle="modal"><i class="abacus"></i></a>
+					<a href="#modal-display" rel="twipsy" data-original-title="Display Options" class="btn-flat" data-toggle="modal"><i class="eye"></i></a>
+				</div>	
+				
+			</div>		
+		</div>
+		
+		<?php echo $this->session->flashdata('message'); ?>
+		
 		<table>
 		  <thead>
 		  	<tr><th class="center">

@@ -15,6 +15,22 @@ body {
 	color: #049CDB;
 }
 
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+.clear:after {
+	content: ".";
+   	visibility: hidden;
+   	display: block;
+   	height: 0;
+   	clear: both;
+}
+
 /*================================= LAYOUT =================================*/
 
 .content.controls:before {
@@ -117,13 +133,17 @@ a.btn-flat {
 	background-position: -54px -18px;
 }
 
-.btn-group, .page-controls .actions, .page-controls .btn-flat {
+.page-controls .btn-group, .page-controls .actions, .page-controls .btn-flat {
 	float: left;
 	display: block;
 }
 
-.btn-group {
+.page-controls .btn-group {
 	margin-right: 15px;
+}
+
+.btn-group + .btn-group {
+    margin-left: 0;
 }
 
 .btn-group .btn-flat {
@@ -493,4 +513,10 @@ hgroup .info {
 
 .faq section {
 	margin-bottom: 35px;
+}
+
+/*============================= ACTIONS =============================*/
+
+.action-header {
+	margin-bottom: 15px;
 }

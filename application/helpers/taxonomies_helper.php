@@ -12,6 +12,12 @@ if (!function_exists('get_consumable_categories')) {
 	}
 }
 
+if (!function_exists('get_user_categories')) {
+	function get_user_categories() {
+		return array( 'Inactive', 'User', 'Purchaser', 'Admin' );	
+	}
+}
+
 if (!function_exists('convert_for_typeahead')) {
 	function convert_for_typeahead($array) {
 		if ( !is_array($array) )

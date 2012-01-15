@@ -160,8 +160,11 @@ class Admin extends MY_Controller {
 	        $this->user_model->update($username);
 	        $msg = create_alert_message('success', 'Updated completed.', 'The account information has been updated successfully.');
 			$this->session->set_flashdata('message', $msg);
-			redirect('admin/users_edit/'.$username);
+			redirect('admin/users/edit/'.$username);
 	    }
+		
+		$this->load->helper('taxonomies');
+		$data['user_categories'] = get_user_categories();
 		
 		$data['main_content'] = 'admin/users_edit';
         $this->load->view('layout/template', $data);
@@ -196,6 +199,9 @@ class Admin extends MY_Controller {
                     'email'       => 'Email',
                     'role'        => 'Role'
         );
+		
+		$this->load->helper('taxonomies');
+		$data['user_categories'] = get_user_categories();
 		
 		$data['main_content'] = 'admin/users_role';
         $this->load->view('layout/template', $data);

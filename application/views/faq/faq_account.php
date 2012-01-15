@@ -18,7 +18,7 @@
 	
 	<div class="well">
 		<h3>Why can I only edit my email after I registered?</h3>
-		<p>Your username depends on your first and last name. Changing the username is not allowed, therefore you are also not allowed to change your first and last name afterwards. Which role take is choosen by the admins.</p>		
+		<p>Your username depends on your first and last name. Changing the username is not allowed, therefore you are also not allowed to change your first and last name afterwards. Even admins can not change your first/last name and your username.</p>		
 	</div>
 		
 </section>

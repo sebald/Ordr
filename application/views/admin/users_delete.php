@@ -1,9 +1,34 @@
-<h1 class="page-header">Delete User(s) <small>Deletion is permantly, btw!</small></h1>
-<?php $seg = ($this->uri->segment(4)) ? '/'.$this->uri->segment(4) : '' ; ?>
-<?php echo form_open('admin/users/delete'.$seg,'class="action"'); ?>
-	<h3>The following users will be deleted:</h3>
-	<?php echo $table_users; ?>
-	<div class="center">
-    	<input name="submit-delete" type="submit" value="Delete" class="btn danger">&nbsp;<a class="btn" type="reset" href="<?php echo $_SERVER['HTTP_REFERER']; ?>" >Cancel</a>
+<div class="fluid-container">
+	<div class="fluid-content">
+		
+		<div class="page-controls">
+			<h1>Delete User(s)</h1>
+		</div>
+		
+		<div class="row">
+			<div class="span10">
+
+				<div class="action-header">
+					<h3>The following user(s) will be deleted:</h3>  				
+				</div>
+				
+				<?php $seg = ($this->uri->segment(4)) ? '/'.$this->uri->segment(4) : '' ; ?>
+				<?php echo form_open('admin/users/delete'.$seg,'class="action"'); ?>
+					
+					<?php echo $table_users; ?>
+					
+					<fieldset class="form-actions">
+						<div class="right">
+				    		<button name="submit-delete" type="submit" value="Submit" class="btn large danger">Submit</button>
+				    		<a href="<?php echo @$_SERVER['HTTP_REFERER']; ?>" type="reset" class="btn large">Cancel</a>							
+						</div>
+					</fieldset>
+					
+				<?php echo form_close(); ?>
+				
+			</div>
+		</div>
+		
 	</div>
-<?php echo form_close(); ?>
+</div>
+

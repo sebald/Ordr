@@ -1,55 +1,72 @@
-<h1 class="page-header">Change Role of Users <small>Keep on rolling!</small></h1>
-<?php echo form_open('admin/users/role','class="action"'); ?>
-<?php 
-	$options_role = array (
-		'inactive' => 'inactive',
-		'user' => 'User',
-		'purchaser' => 'Purchaser',
-		'admin' => 'Admin'
-    );
-?>
-	<h3>The role of the following users will be changed:</h3>
-	
-	<table>
-	  <thead>
-	    <?php foreach( $fields as $field_name => $field_display): ?>
-	    <th>
-	      <?php echo $field_display; ?>
-	    </th>
-	    <?php endforeach; ?>
-	  </thead>
-	  
-	  <tbody>
-	    <?php foreach($users as $user): ?>
-	    <tr>
-	      <?php foreach($fields as $field_name => $field_display): ?>
-	      <td>
-	      	<?php
-		      	if( $field_name == 'role' ) {
-			    	echo form_dropdown('role['.$user->username.']', $options_role, $user->$field_name, 'id="role-'.$user->username.'" class="span3"');
-		      	} else {
-		        	echo $user->$field_name;
-		        }
-			?>
-	      </td>
-	      <?php endforeach; ?>
-	    </tr>
-	    <?php endforeach; ?>			
-	  </tbody>
-	  
-	</table>
-	
-	<div class="table-actions">
-		<div class="dropdown">
-			<a class="btn-flat group" href="#"><span></span>Set Roles to</a>
-			<ul id="set-role" class="dropdown-slider">
-				<li data-value="inactive">Inactive</li>
-				<li data-value="user">User</li>
-				<li data-value="purchaser">Purchaser</li>	
-			</ul>
+<div class="fluid-container">
+	<div class="fluid-content">
+		
+		<div class="page-controls">
+			<h1>Change Role of User(s)</h1>
 		</div>
+		
+		<div class="row">
+			<div class="span11">
+
+				<div class="action-header">
+					<h3>The role of the following user(s) will be changed:</h3>  				
+				</div>
+				
+				<?php echo form_open('admin/users/role'); ?>
+					<table>
+						
+					  <thead>
+					    <?php foreach( $fields as $field_name => $field_display): ?>
+					    <th>
+					      <?php echo $field_display; ?>
+					    </th>
+					    <?php endforeach; ?>
+					  </thead>
+					  
+					  <tbody>
+					    <?php foreach($users as $user): ?>
+					    <tr>
+					      <?php foreach($fields as $field_name => $field_display): ?>
+					      <td>
+					      	<?php if( $field_name == 'role' ) : ?>
+							    <select id="role-<?php echo $user->username;?>" name="role[]" class="span2">
+							    		<option value="new">New</option>
+					            	<?php foreach ($user_categories as $c) { ?>
+										<option value="<?php echo $c; ?>"><?php echo $c; ?></option>
+									<?php } ?>
+					            </select>
+						    <?php else :
+						        	echo $user->$field_name;
+								endif;
+							?>
+					      </td>
+					      <?php endforeach; ?>
+					    </tr>
+					    <?php endforeach; ?>			
+					  </tbody>
+					
+					</table>
+					
+					<fieldset class="form-actions">
+						<div class="right">
+				    		<button name="submit-role" type="submit" value="Submit" class="btn large danger">Submit</button>
+				    		<a href="<?php echo @$_SERVER['HTTP_REFERER']; ?>" type="reset" class="btn large">Cancel</a>							
+						</div>
+						
+						<div class="btn-group quick-action left" data-action="role">
+			              <a data-value="user" href="#" class="btn large primary">Set all to User</a>
+			              <a href="#" data-toggle="dropdown" class="btn large primary dropdown-toggle"><span class="caret"></span></a>
+			              <ul class="dropdown-menu">
+			                <li><a data-value="inactive" href="#">Set all to Inactive</a></li>
+			                <li><a data-value="purchaser" href="#">Set all to Purchaser</a></li>
+			              </ul>
+			            </div>						
+						
+					</fieldset> 
+							
+				<?php echo form_close(); ?>				
+			</div>
+		</div>		
+
 	</div>
-	<div class="center">
-    	<input name="submit-role" type="submit" value="Submit" class="btn danger">&nbsp;<a class="btn" type="reset" href="<?php echo @$_SERVER['HTTP_REFERER']; ?>" >Cancel</a>
-	</div>
-<?php echo form_close(); ?>
+</div>

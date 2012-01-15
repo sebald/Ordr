@@ -40,14 +40,15 @@
 			            <input type="text" name="input01" class="span3">
 			          </div>
 			        </fieldset>
-			        <fieldset class="control-group">
-			          <label for="input01" class="control-label">Category</label>
+			        <fieldset class="control-group<?php if(form_error('category')) echo ' error'; ?>">
+			          <label for="category" class="control-label">Category</label>
 			          <div class="controls">
-			            <select name="category">
-			              <option>Chemical</option>
-			              <option>Equipment</option>
-			              <option>Solvent</option>
+			            <select name="category" class="span2">
+			            	<?php foreach ($consumable_categories as $c) { ?>
+								<option><?php echo $c; ?></option>
+							<?php } ?>
 			            </select>
+			            <?php echo form_error('category','<span class="help-inline">','</span>'); ?>
 			          </div>
 			        </fieldset>
 			        <fieldset class="control-group">
@@ -73,7 +74,7 @@
 			          <label for="input01" class="control-label">Unit Price</label>
 			          <div class="controls">
 			            <input type="text" name="input01" class="span2">
-			            <input type="text" name="input01" class="span1">
+			            <input type="text" name="currency" class="span1" value="EUR" data-provide="typeahead" data-data='<?php echo $currencies; ?>'>
 			          </div>
 			        </fieldset>
 			        <fieldset class="control-group">
