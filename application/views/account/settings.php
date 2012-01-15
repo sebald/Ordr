@@ -1,5 +1,8 @@
-<h1 class="page-header">Account Settings <small>Update your information.</small></h1>
 <div class="fluid-container">
+	<div class="page-controls">
+		<h1>Account Settings</h1>
+	</div>
+	
   <?php if ( isset($error) ) : ?>
   <div class="alert-message block-message error">
     <p><strong>Oh snap! There was an problem with displaying your settings.</strong> Please try again.</p>
@@ -12,7 +15,7 @@
   <?php endif; ?>
   <?php
       $attr_form = array(
-              'class'       => 'settings horizontal-form'
+              'class'       => 'settings form-horizontal'
             );
       $attr_input_email = array(
               'name'        => 'email',
