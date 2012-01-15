@@ -5,7 +5,7 @@
 	<?php if ( $new_users) : ?>
 	<div class="row">
 	  <div class="span12">
-	  	<div class="alert-message block-message warning">
+	  	<div class="alert info-alert">
 	        <p><strong>New Registrations!</strong> There have been <?php echo $new_users; ?> new registrations that need your attention. Please take a look at them and confirm or reject the registration by setting the role accordingly. This message will disappear when all new registrations have been processed.</p>
 	        <div class="alert-actions">
 	          <a href="<?php echo base_url(); ?>admin/users/view/role=new/" class="btn small">Show new Userss</a>
