@@ -1,10 +1,10 @@
 <?php
-  $menu = array( 'orders' );
+  $menu = array( 'Orders', 'FAQ' );
 ?>
 <ul class="nav">
   <?php if ( $this->session->userdata('logged_in') ) : ?>
     <?php foreach($menu as $item): ?>
-    	<li <?php echo $this->uri->segment(1) == $item ? 'class="active"' : '';?>><?php echo anchor($item, ucfirst($item)); ?></li>
+    	<li <?php echo $this->uri->segment(1) == strtolower($item) ? 'class="active"' : '';?>><?php echo anchor(strtolower($item), $item); ?></li>
     <?php endforeach; ?>
     <?php if ( $this->session->userdata('role') == 'admin') : ?>
     	<li <?php echo $this->uri->segment(1) == 'admin' ? 'class="active"' : '';?>><?php echo anchor('admin', 'Admin'); ?></li>
