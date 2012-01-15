@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css" type="text/css" media="screen" />
 	
 </head>  
-<body>
+<body class="<?php echo $this->router->class; ?>">
 <header class="navbar navbar-fixed">
       <div class="navbar-inner">
         <div class="fluid-container">
