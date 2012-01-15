@@ -8,9 +8,9 @@
 			<div class="span10">
 				<?php echo $this->session->flashdata('message'); ?>
 				
-				<?php echo form_open('account/register', 'class="horizontal-form register"'); ?>
+				<?php echo form_open('account/register', 'class="form-horizontal register"'); ?>
 					<fieldset class="control-group">
-			          <label for="disabledInput" class="control-label">Username</label>
+			          <label for="username" class="control-label">Username</label>
 			          <div class="controls">
 			            <input type="text" disabled="" name="username" id="username" class="span3 disabled">
 			            <span class="help-inline">This is automatically generated for you.</span>

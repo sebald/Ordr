@@ -32,7 +32,7 @@
 				<div class="alert-message block-message info">
 			        <p><strong>Notice!</strong> If you want to order a common consumable use the <em>search on the right</em>. Maybe the consumable is already in the data base. If so, the order form will be filled out for you.</p>
 			    </div>
-				<form class="horizontal-form">
+				<form class="form-horizontal">
 					<legend>Item Information</legend>
 					<fieldset class="control-group">
 			          <label for="input01" class="control-label">CAS / Description</label>

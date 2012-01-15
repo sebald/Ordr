@@ -9,7 +9,7 @@
 			<div class="span8">
 				<?php echo $this->session->flashdata('message'); ?>
 				
-				<?php echo form_open('admin/consumables/new', 'class="horizontal-form" autocomplete="off"'); ?>
+				<?php echo form_open('admin/consumables/new', 'class="form-horizontal" autocomplete="off"'); ?>
 					<legend>Item Information</legend>
 					<fieldset class="control-group<?php if(form_error('CAS_description')) echo ' error'; ?>">
 			          <label for="CAS_description" class="control-label">CAS / Description</label>
