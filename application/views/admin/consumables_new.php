@@ -1,8 +1,8 @@
 <div class="fluid-container">
 	<div class="fluid-content">
 		
-		<div class="page-header">
-			<h1>Consumables</h1>
+		<div class="page-controls">
+			<h1>New Consumables</h1>
 		</div>
 		
 		<div class="row">

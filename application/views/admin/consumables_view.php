@@ -23,7 +23,7 @@
 	
 	<aside class="fluid-sidebar">
 		
-		<div class="page-header">
+		<div class="page-controls">
 			<h1>Consumables</h1>
 		</div>	
 		
@@ -32,7 +32,7 @@
 	
 	<div class="fluid-content">
 
-		<div class="page-header">		
+		<div class="page-controls">		
 			<div class="actions">
 				<a href="<?php echo base_url();?>admin/consumables/new/" rel="twipsy" data-original-title="New" class="btn-flat single"><i class="shop"></i></a> 
 			</div>

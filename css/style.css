@@ -113,7 +113,7 @@ a.btn-flat {
 	background-position: -54px -18px;
 }
 
-.btn-group, .page-header .actions, .page-header .btn-flat {
+.btn-group, .page-controls .actions, .page-controls .btn-flat {
 	float: left;
 	display: block;
 }
@@ -214,14 +214,14 @@ a.btn-flat {
 	text-decoration: underline;
 }
 
-.page-header {
+.page-controls {
 	display: block;
     height: 30px;
     margin-bottom: 25px;
     padding: 8px 0;
 }
 
-.page-header:after {
+.page-controls:after {
 	content: ".";
    	visibility: hidden;
    	display: block;
@@ -229,15 +229,15 @@ a.btn-flat {
    	clear: both;
 }
 
-.page-header h1 {
+.page-controls h1 {
 	line-height: 30px;
 }
 
-.page-header form {
+.page-controls form {
 	margin-bottom: 0;
 }
 
-.page-header .input-append.search {
+.page-controls .input-append.search {
 	float: right;
 }
 

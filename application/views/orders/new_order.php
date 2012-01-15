@@ -13,7 +13,7 @@
 ?>	
 <div class="fluid-container">
 	<div class="fluid-content">
-		<div class="page-header">
+		<div class="page-controls">
 			
 			<?php echo form_open('orders/search', 'class="search-form"', (isset($filter['display'])) ? array( 'display' => $query_display ) : ''); ?>
 				<div class="input-append search">

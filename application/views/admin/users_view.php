@@ -21,7 +21,7 @@
 
 <div class="fluid-container sidebar-left">
 	<aside class="fluid-sidebar">
-		<div class="page-header">
+		<div class="page-controls">
 			<h1>Users</h1>
 		</div>
 		<ul class="well nav list">
@@ -40,7 +40,7 @@
 	
 	<div class="fluid-content">
 		<?php echo form_open('admin/users/actions'); ?>
-		<div class="page-header">
+		<div class="page-controls">
 
 			<div class="input-append search">
 				<?php echo form_input($attr_input_search, (isset($filter['search'])) ? $filter['search'] : ''); ?>
