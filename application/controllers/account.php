@@ -58,9 +58,11 @@ class Account extends MY_Controller {
       } else {		
         $this->load->model('user_model');
         if($this->user_model->create()) {
+          $data['controls'] = FALSE;
           $data['main_content'] = 'account/register_successful';
         } else {
-          $data['user_already_exists'] = TRUE;
+          $msg = create_alert_message('warning', 'Sorry! The user you want to create already exists.', 'Please contact an admin. Maybe (s)he has already created an user for you.');
+		  $this->session->set_flashdata('message', $msg);
           $data['main_content'] = 'account/register_form';			
         }
       }
