@@ -2,6 +2,7 @@ body {
 	padding-top: 40px;
 	background-color: #FCFCFC;
 }
+
 .rounded-box {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -11,7 +12,10 @@ body {
 }
 .brand {
 	font-family: 'Anton', sans-serif;
+	color: #049CDB;
 }
+
+/*================================= LAYOUT =================================*/
 
 .content.controls:before {
 	background: none repeat scroll 0 0 #F1F1F1;
@@ -275,23 +279,22 @@ table .header:after {
 }
 
 table .action {
-background-image: url(../img/sprite.png);
-margin-bottom: -5px;
-margin-right: 2px;
-height: 16px;
-width: 16px;
-display: inline-block;
-overflow: hidden;
-text-indent: -9999px;
-background-repeat: no-repeat;
--webkit-transition: background-image 0.20s linear;
--moz-transition: background-image 0.20s linear;
--o-transition: background-image 0.20s linear;
-transition: background-image 0.20s linear;
-zoom: 1;
+	background-image: url(../img/sprite.png);
+	margin-bottom: -5px;
+	margin-right: 2px;
+	height: 16px;
+	width: 16px;
+	display: inline-block;
+	overflow: hidden;
+	text-indent: -9999px;
+	background-repeat: no-repeat;
+	-webkit-transition: background-image 0.20s linear;
+	-moz-transition: background-image 0.20s linear;
+	-o-transition: background-image 0.20s linear;
+	transition: background-image 0.20s linear;
+	zoom: 1;
     filter: alpha(opacity=40);
     opacity: 0.4;
-
 }
 
 table .action:hover {
@@ -384,6 +387,33 @@ footer p, footer a {
 footer a:hover {
 	color: #0069D6;
 	text-decoration: none;
+}
+
+/*============================= WELCOME PAGE =============================*/
+
+.welcome .content {
+	background: url(../img/bg.png) repeat-x scroll 0 0 #FCFCFC;
+}
+
+#welcome {
+	margin: 90px 0 80px;
+	text-align: center;
+}
+
+#welcome h1 {
+    font-family: 'Anton',sans-serif;
+    font-size: 120px;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+#welcome .brand {
+	text-transform: none;
+}
+
+#welcome .quote {
+	color: #878787;
+	font-size: 16px;
 }
 
 /*============================== ADMIN AREA ==============================*/
