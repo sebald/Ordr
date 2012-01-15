@@ -27,8 +27,8 @@ if (!function_exists('create_alert_message')) {
 		$types = array('warning', 'error', 'success', 'info');
 		$type = (in_array($type, $types)) ? $type : 'error';
 
-		$output = '<div class="alert-message block-message fade in ' . $type . '"><a class="close" href="#" data-dismiss="alert">×</a>';
-		$output .= '<p><strong>' . $msg_header . '</strong> ' . $msg_body . '</p>';
+		$output = '<div class="alert ' . $type . '-alert fade in"><a class="close" href="#" data-dismiss="alert">×</a>';
+		$output .= '<strong>' . $msg_header . '</strong> ' . $msg_body;
 		$output .= '</div>';
 
 		return $output;
