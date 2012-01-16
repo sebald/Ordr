@@ -102,7 +102,7 @@
 		</table>
 		
 		<?php if (strlen($pagination)): ?>
-		<div class="pagination centered">
+		<div class="pagination pagination-centered">
 		  <ul>
 		    <?php echo $pagination; ?>
 		  </ul>
