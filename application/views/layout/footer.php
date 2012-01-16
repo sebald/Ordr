@@ -1,6 +1,9 @@
   </div>
   <footer>
-    <p>Created by <a href="http://www.distractedbysquirrels.com">Sebastian Sebald</a></p>
+    
+    <a class="icon-html" href="http://www.w3.org/html/" title="HTML5 Powered with CSS3 / Styling, and Semantics"></a>
+    <a class="icon-dbs" title="This software was written by Sebastian Sebald." target="_blank" href="http://distractedbysquirrels.com/"></a>
+    
   </footer>
 	<script src="<?php echo base_url();?>js/jquery.js"></script>
 	<script src="<?php echo base_url();?>js/bootstrap-transition.js"></script>
