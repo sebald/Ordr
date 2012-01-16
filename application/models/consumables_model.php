@@ -5,7 +5,7 @@ class Consumables_model extends CI_Model {
 	private $fields = array('id', 'vendor', 'catalog_number', 'CAS_description', 'category', 
 							'package_size', 'price_unit', 'currency', 'comment', 'date_created',
 							'date_modified');
-							
+						
 	public function create() {      
         $new_consumable = array(
           'vendor' 				=> $this->input->post('vendor'),
@@ -38,8 +38,8 @@ class Consumables_model extends CI_Model {
         return $this->db->update('c_consumables', $data);			
 	}
 	
-	public function delete($CAS_description) {
-		$this->db->where('CAS_description', $this->input->post('CAS_description'));
+	public function delete($id) {
+		$this->db->where('id', $id);
 		return $this->db->delete('c_consumables');
 	}
 	

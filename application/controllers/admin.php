@@ -395,7 +395,7 @@ class Admin extends MY_Controller {
 				$this->session->set_flashdata('message', $msg);
 	        	redirect('admin/consumables/view');
 	    	} else {
-	        	$msg = create_alert_message('error', 'Something went wrong!!', 'The consumables has not been updated.');
+	        	$msg = create_alert_message('error', 'Something went wrong!!', 'The consumables could not be updated.');
 				$this->session->set_flashdata('message', $msg);
 	        	redirect('admin/consumables/edit/'.$this->input->post('id'));			
 	        }
@@ -404,7 +404,29 @@ class Admin extends MY_Controller {
 	}
 	
 	public function consumables_delete($id) {
+		if( $this->input->post('submit-delete') == 'confirm') {
+			$this->load->model('consumables_model');
+			if ( $this->consumables_model->delete($id) ) {
+				$msg = create_alert_message('success', 'Consumable deleted successfull!!', 'The consumable <em>'.$this->input->post('CAS_description').'</em> has been deleted.');
+				$this->session->set_flashdata('message', $msg);			
+			} else {
+				$msg = create_alert_message('error', 'Something went wrong!!', 'The consumable <em>'.$this->input->post('CAS_description').'</em> could not be deleted.');
+				$this->session->set_flashdata('message', $msg);
+			}
+			redirect('admin/consumables/view');
+		}
 		
+		$this->load->model('consumables_model');
+		$query = $this->consumables_model->get($id, 'id', 'id, vendor, catalog_number, CAS_description, category, package_size, price_unit, currency');
+		$data['CAS_description'] = $query->row(0)->CAS_description;
+		
+		$this->load->library('table');
+		$this->table->set_heading(array('id', 'vendor', 'catalog_number', 'CAS_description', 'category', 
+							'package_size', 'price_unit', 'currency'));
+        $data['table'] = $this->table->generate($query);
+		
+		$data['main_content'] = 'admin/consumables_delete';
+		$this->load->view('layout/template', $data);
 	}
 	
 }
