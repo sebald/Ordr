@@ -10,5 +10,5 @@
 	<script src="<?php echo base_url();?>js/bootstrap-twipsy.js"></script>
 	<script src="<?php echo base_url();?>js/bootstrap-typeahead.js"></script>
 	<script src="<?php echo base_url();?>js/functions.js"></script>
-<body>
+</body>
 </html>

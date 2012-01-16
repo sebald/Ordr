@@ -1,5 +1,8 @@
+html, body {
+  height: 100%;
+}
+
 body {
-	padding-top: 40px;
 	background-color: #FCFCFC;
 }
 
@@ -33,14 +36,53 @@ body {
 
 /*================================= LAYOUT =================================*/
 
+.content {
+  margin-bottom: -30px;
+  min-height: 100%;
+  position: relative;
+}
+
+.content:before {
+	display: table;
+  	content: "";
+  	height: 40px;
+  	zoom: 1;
+}
+
 .content.controls:before {
 	background: none repeat scroll 0 0 #F1F1F1;
     border-bottom: 1px solid #D2D2D2;
     content: " ";
     display: block;
-    height: 46px;
+    height: 86px;
     margin-bottom: -47px;
     width: 100%;	
+}
+
+.container:after {
+  clear: both;
+  height: 30px;
+}
+
+footer {
+  height: 30px;
+  position: relative;
+}
+
+footer p {
+	border-top: 1px solid #DDDDDD;
+	margin: 0;
+	padding: 5px 10px;	
+}
+
+footer p, footer a {
+	font-size: 12px;
+	color: #BBBBBB;
+}
+
+footer a:hover {
+	color: #0069D6;
+	text-decoration: none;
 }
 
 /*================================ BUTTONS ================================*/
@@ -219,7 +261,7 @@ a.btn-flat {
 	display: none;
 }
 
-/*================================ HEADER ================================*/
+/*================================ NAVIGATION ================================*/
 
 .navbar .brand, .navbar .brand:hover {
 	color: #049CDB;
@@ -384,29 +426,6 @@ table .action.edit:hover {
 
 .modal-body .help-block {
 	margin-bottom: 15px;
-}
-
-/*================================ FOOTER ================================*/
-
-footer {
-	position:absolute;
-   	width: 100%;
-	clear: both;
-}
-
-footer p {
-	border-top: 1px solid #DDDDDD;
-	margin: 18px 20px 10px 20px;
-	padding: 5px 10px;	
-}
-
-footer p, footer a {
-	font-size: 12px;
-	color: #BBBBBB;
-}
-footer a:hover {
-	color: #0069D6;
-	text-decoration: none;
 }
 
 /*============================= WELCOME PAGE =============================*/
