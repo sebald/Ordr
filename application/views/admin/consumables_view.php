@@ -27,6 +27,13 @@
 			<h1>Consumables</h1>
 		</div>	
 		
+		<ul class="well nav list">
+			<li class="nav-header">Category</li>
+			<li<?php echo empty($filter['category']) ? ' class="active"' : ''; ?>><?php echo anchor('admin/consumables/view/','All' ); ?></li>
+			<?php foreach ($consumable_categories as $c) : ?>
+				<li<?php echo @($filter['category'] == strtolower($c)) ? ' class="active"' : ''; ?>><?php echo anchor('admin/consumables/view/category='.strtolower($c).'/', $c ); ?></li>
+			<?php endforeach;	?>
+		</ul>		
 		
 	</aside>
 	
@@ -45,7 +52,7 @@
 			  <thead>
 			    <?php foreach( $fields as $field_name => $field_display): ?>
 			    <th class="sortable blue header<?php if ($by == $field_name) echo ($order == 'asc') ? ' headerSortUp' : ' headerSortDown'; ?>">
-			      <?php echo anchor("admin/consumables/view/$field_name/" .
+			      <?php echo anchor("admin/consumables/view/$query/$field_name/" .
 			        (($order == 'asc' && $by == $field_name) ? 'desc' : 'asc') ,
 			        $field_display); ?>
 			    </th>
@@ -82,3 +89,4 @@
 	</div>
 	
 </div>
+<div class="clearfooter"></div>

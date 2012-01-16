@@ -68,6 +68,9 @@ $route['admin/consumables/view/(:any)/(:any)/(asc|desc)/(:num)'] = 'admin/consum
 
 $route['admin/consumables/new'] = 'admin/consumables_new';
 
+$route['admin/consumables/edit'] = 'admin/consumables_edit';
+$route['admin/consumables/edit/(:any)'] = 'admin/consumables_edit/$1';
+
 $route['orders/new'] = 'orders/new_order';
 
 

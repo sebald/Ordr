@@ -1,35 +1,41 @@
 <?php $this->load->helper('taxonomies'); ?>
-
-<?php if(isset($consumable)) : ?>
-	<form class="form-horizontal">
-		<legend>Internal Information</legend>
-		<fieldset class="control-group">
-          <label for="identifier" class="control-label">ID</label>
-          <div class="controls">
-            <input type="text" disabled="" placeholder="<?php echo $consumable->id; ?>" name="disabledInput" id="identifier" class="span1 disabled">
-          </div>
-        </fieldset>
-		<fieldset class="control-group">
-          <label for="date_created" class="control-label">Created on</label>
-          <div class="controls">
-            <input type="text" disabled="" placeholder="<?php echo $consumable->date_created; ?>" name="date_created" id="disabledInput" class="span2 disabled">
-          </div>
-        </fieldset>
-		<fieldset class="control-group">
-          <label for="date_modified" class="control-label">Last modified</label>
-          <div class="controls">
-            <input type="text" disabled="" placeholder="<?php echo (strtotime($consumable->date_modified)) ? $consumable->date_modified : 'never'; ?>" name="date_modified" id="disabledInput" class="span2 disabled">
-          </div>
-        </fieldset>                		
-	</form>
-<?php endif; ?>
+<?php $mode = empty($mode) ? 'edit' : $mode; ?>
 
 <?php echo form_open($action, 'class="form-horizontal" autocomplete="off"'); ?>
+<?php if($mode == 'edit') : ?>
+	<legend>Internal Information</legend>
+	<fieldset class="control-group">
+      <label for="identifier" class="control-label">ID</label>
+      <div class="controls">
+        <input type="text" disabled="" placeholder="<?php echo $consumable->id; ?>" name="disabledInput" class="span1 disabled">
+        <input type="hidden" name="id" value="<?php echo set_value('id', isset($consumable->id) ? $consumable->id : ''); ?>">
+      </div>
+    </fieldset>
+	<fieldset class="control-group">
+      <label for="date_created" class="control-label">Created on</label>
+      <div class="controls">
+        <input type="text" disabled="" placeholder="<?php echo $consumable->date_created; ?>" name="date_created_disabled" class="span2 disabled">
+        <input type="hidden" name="date_created" value="<?php echo set_value('id', isset($consumable->date_created) ? $consumable->date_created : ''); ?>">
+      </div>
+    </fieldset>
+	<fieldset class="control-group">
+      <label for="date_modified" class="control-label">Last modified</label>
+      <div class="controls">
+        <input type="text" disabled="" placeholder="<?php echo (strtotime($consumable->date_modified)) ? $consumable->date_modified : 'never'; ?>" name="date_modified_disabled" id="disabledInput" class="span2 disabled">
+        <input type="hidden" name="date_modified" value="<?php echo set_value('id', isset($consumable->date_modified) ? $consumable->date_modified : ''); ?>">
+      </div>
+    </fieldset>                		
+<?php endif; ?>
 <legend>Item Information</legend>
 <fieldset class="control-group<?php if(form_error('CAS_description')) echo ' error'; ?>">
   <label for="CAS_description" class="control-label">CAS / Description</label>
   <div class="controls">
-    <input type="text" name="CAS_description" class="span4" value="<?php echo set_value('CAS_description', isset($consumable->CAS_description) ? $consumable->CAS_description : ''); ?>">
+  	<?php if($mode == 'edit') : ?>
+  		<input type="text" name="CAS_description_disabled" disabled="" placeholder="<?php echo $consumable->CAS_description; ?>" class="span4 disabled">
+  		<input type="hidden" name="CAS_description" value="<?php echo set_value('CAS_description', isset($consumable->CAS_description) ? $consumable->CAS_description : ''); ?>">
+  	<?php else : ?>
+  		<input type="text" name="CAS_description" class="span4" value="<?php echo set_value('CAS_description', isset($consumable->CAS_description) ? $consumable->CAS_description : ''); ?>">
+  	<?php endif; ?>
     <?php echo form_error('CAS_description','<span class="help-inline">','</span>'); ?>
   </div>
 </fieldset>

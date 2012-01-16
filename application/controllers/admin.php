@@ -80,7 +80,7 @@ class Admin extends MY_Controller {
 	 * 	@param	page	used by the CI pagination
 	 */
     public function users_view($query = 'all', $by = 'username', $order = 'asc', $page = 1) {   
-        $limit = 10;
+        $limit = 15;
         $data['fields'] = array(
                     'username' 		=> 'Username',
                     'first_name' 	=> 'First Name',
@@ -287,7 +287,7 @@ class Admin extends MY_Controller {
 	 * 	@param	order	asc or desc ordering
 	 * 	@param	page	used by the CI pagination
 	 */
-	public function consumables_view($by = 'description', $order = 'asc', $page = 1){
+	public function consumables_view($query = 'all', $by = 'description', $order = 'asc', $page = 1){
 		$limit = 15;
         $data['fields'] = array(
                     'CAS_description' 		=> 'CAS / Description',
@@ -295,30 +295,42 @@ class Admin extends MY_Controller {
                     'catalog_number' 		=> 'Catalog Number',
                     'vendor' 				=> 'Vendor',
                     'package_size' 			=> 'Package Size',
-                    'price_unit'			=> 'Unit Price'
+                    'price_unit'			=> 'Unit Price',
+                    'currency'				=> 'Currency'
         );
         $data['by'] = $by;
         $data['order'] = $order;
+		$data['query'] = $query;
+		$data['filter'] = '';
 
+		$filter = FALSE;
+		if ( $query != 'all' ) {
+			parse_str($query, $filter);
+			$data['filter'] = $filter;	
+		}
+			
         // get users
         $offset = ($page-1)*$limit;
         $this->load->model('consumables_model');
-        $result = $this->consumables_model->search($limit, $offset, $by, $order);
+        $result = $this->consumables_model->search($limit, $offset, $by, $order, $filter);
         $data['consumables'] = $result['consumables']->result();
         $data['count'] = $result['count'];
 
         // pagination config
         $config = array();
-        $config['base_url'] = site_url("admin/consumables/view/$by/$order");
+        $config['base_url'] = site_url("admin/consumables/view/$query/$by/$order");
         $config['total_rows'] = $data['count'];
         $config['per_page'] = $limit;
-        $config['uri_segment'] = 6;
+        $config['uri_segment'] = 7;
         $config['num_links'] = 5;
         
         // pagination
         $this->load->library('pagination');
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links(); 		
+		
+		$this->load->helper('taxonomies');
+		$data['consumable_categories'] = get_consumable_categories();
 		
 		$data['main_content'] = 'admin/consumables_view';
         $this->load->view('layout/template', $data);
@@ -355,6 +367,44 @@ class Admin extends MY_Controller {
 	        }
 	    }		
         $this->load->view('layout/template', $data);
+	}
+	
+	public function consumables_edit($id = FALSE) {
+		if ( $id ) {
+			$this->load->model('consumables_model');
+			$data['consumable'] = $this->consumables_model->get($id)->row(0);
+		} else {
+			$data['consumable'] = (object) $this->input->post();
+		}
+		
+		// field name, error message, validation rules
+	    $this->load->library('form_validation');
+	    $this->form_validation->set_rules('category', 'Category', 'trim|required');
+	    $this->form_validation->set_rules('catalog_number', 'Catalog Number', 'trim|required');
+		$this->form_validation->set_rules('vendor', 'Vendor', 'trim|required');
+		$this->form_validation->set_rules('package_size', 'Package Size', 'trim|required');
+		$this->form_validation->set_rules('price_unit', 'Unit Price', 'trim|required');
+		$this->form_validation->set_rules('comment', 'Comment', 'trim|max_length[140]');		
+		
+	    if( $this->form_validation->run() == FALSE ) {
+	        $data['main_content'] = 'admin/consumables_edit';
+	    } else {		
+	        $this->load->model('consumables_model');
+	        if($this->consumables_model->update()) {
+	        	$msg = create_alert_message('success', 'Consumables updated successfull!!', 'The consumable <em>'.$this->input->post('CAS_description').'</em> has been updated.');
+				$this->session->set_flashdata('message', $msg);
+	        	redirect('admin/consumables/view');
+	    	} else {
+	        	$msg = create_alert_message('error', 'Something went wrong!!', 'The consumables has not been updated.');
+				$this->session->set_flashdata('message', $msg);
+	        	redirect('admin/consumables/edit/'.$this->input->post('id'));			
+	        }
+	    }
+        $this->load->view('layout/template', $data);
+	}
+	
+	public function consumables_delete($id) {
+		
 	}
 	
 }

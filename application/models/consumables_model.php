@@ -34,8 +34,8 @@ class Consumables_model extends CI_Model {
           'date_modified'		=> date('Y-m-d H:i:s')
         );		
 		// update
-        $this->db->where('CAS_description', $this->input->post('CAS_description'));
-        $this->db->update('c_consumables', $data);			
+        $this->db->where('id', $this->input->post('id'));
+        return $this->db->update('c_consumables', $data);			
 	}
 	
 	public function delete($CAS_description) {
@@ -43,7 +43,7 @@ class Consumables_model extends CI_Model {
 		return $this->db->delete('c_consumables');
 	}
 	
-	public function search($limit, $offset, $by, $order){
+	public function search($limit, $offset, $by, $order, $filter = FALSE){
 		// error correction
         $order = ($order == 'desc') ? 'desc' : 'asc';
         $by = (in_array($by, $this->fields)) ? $by : 'CAS_description';
@@ -53,6 +53,15 @@ class Consumables_model extends CI_Model {
         $query =  $this->db->select(implode(",", $this->fields))
                   ->from('c_consumables')
                   ->order_by($by, $order);
+				  
+		// filter query ?
+        if ( $filter ) {
+	        foreach ($filter as $field => $value) {
+				if( in_array($field, $this->fields) ) {
+					$query->like($field,$value);
+				}	            
+	        }       	
+        }				  
 		$this->db->stop_cache();
 		
 		// count
@@ -65,11 +74,11 @@ class Consumables_model extends CI_Model {
         return $result;		
 	}
 	
-	public function get($consumables, $by = 'CAS_description', $select = FALSE) {
-		// error correction	
-		if ( $consumables = '' ) return false;
-		if ( $select == FALSE )	$select = $fields;
-        $by = (in_array($by, $fields)) ? $by : 'CAS_description';
+	public function get($consumables, $by = 'id', $select = FALSE) {
+		// error correction
+		if ( $consumables == '' ) return false;
+		if ( $select == FALSE )	$select = '*';
+        $by = (in_array($by, $this->fields)) ? $by : 'id';
 		
 		// selected fields
 		$this->db->select($select);
@@ -78,6 +87,7 @@ class Consumables_model extends CI_Model {
 		if( is_array($consumables) ){
 			$this->db->where_in($by, $consumables);
 		} else {
+			
 			$this->db->where($by, $consumables);
 		}
 		return $this->db->get('c_consumables');		
