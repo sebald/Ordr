@@ -32,4 +32,3 @@
 		
 	</div>
 </div>
-<?php print_a($_POST); ?>
