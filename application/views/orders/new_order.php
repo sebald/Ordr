@@ -24,6 +24,7 @@
 			    </div>
 				
 				<?php $data['order'] = isset($order) ? $order : FALSE; ?>
+				<?php $data['mode'] = 'new'; ?>
 				<?php $data['action'] = 'orders/new'; ?>
 				<?php $this->load->view('forms/form_order', $data); ?>
 				

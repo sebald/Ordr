@@ -43,7 +43,7 @@
       <label for="price_unit" class="control-label">Unit Price</label>
       <div class="controls">
         <input type="text" name="price_unit" class="span2" value="<?php echo set_value('price_unit', isset($order->price_unit) ? $order->price_unit : ''); ?>">
-        <input type="text" name="currency" class="span1" value="<?php echo set_value('currency', isset($order->currency) ? $order->currency : ''); ?>" data-provide="typeahead" data-data='<?php echo convert_for_typeahead(get_currencies()); ?>'>
+        <input type="text" name="currency" class="span1" value="<?php echo set_value('currency', isset($order->currency) ? $order->currency : 'EUR'); ?>" data-provide="typeahead" data-data='<?php echo convert_for_typeahead(get_currencies()); ?>'>
       </div>
     </fieldset>
     <fieldset class="control-group">
@@ -53,9 +53,11 @@
       </div>
     </fieldset>
 	<fieldset class="control-group">
-      <label for="disabledInput" class="control-label">Total Price</label>
+      <label for="price_total" class="control-label">Total Price</label>
       <div class="controls">
-      	<input type="text" disabled="" placeholder="$$$$" name="disabledInput" id="disabledInput" class="span2 disabled">
+      	<input type="text" disabled="" placeholder="0.0" name="price_total_disabled" class="span2 disabled">
+      	<input type="text" disabled="" placeholder="<?php echo set_value('currency', isset($order->currency) ? $order->currency : 'EUR'); ?>" name="currency_disabled" class="span1 disabled">
+      	<input type="hidden" name="price_total" value="<?php echo set_value('price_total', isset($order->price_total) ? $order->price_total : '0'); ?>">
       </div>
 	</fieldset>
 	<legend>Optional Information</legend>
