@@ -92,4 +92,11 @@ class Consumables_model extends CI_Model {
 		}
 		return $this->db->get('c_consumables');		
 	}
+	
+	public function get_all($field = 'id'){
+		// error correction
+		$field = (in_array($field, $this->fields)) ? $field : 'id';
+		$this->db->select($field);
+		return $this->db->get('c_consumables');
+	}
 }
