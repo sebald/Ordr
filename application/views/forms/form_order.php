@@ -75,6 +75,6 @@
     </fieldset>
 	<fieldset class="form-actions">
     	<button type="submit" class="btn large primary"><?php echo ($mode == 'edit') ? 'Edit' : 'Place'; ?> Order</button>
-    	<button type="reset" class="btn large">Cancel</button>
+    	<a href="<?php echo base_url();?>orders/" type="reset" class="btn large">Cancel</a>
 	</fieldset>      					        
 <?php echo form_close(); ?>
