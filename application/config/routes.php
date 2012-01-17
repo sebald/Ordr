@@ -76,6 +76,7 @@ $route['admin/consumables/delete/(:num)'] = 'admin/consumables_delete/$1';
 
 
 $route['orders/new'] = 'orders/new_order';
+$route['orders/autocomplete'] = 'orders/autocomplete_order';
 
 
 
