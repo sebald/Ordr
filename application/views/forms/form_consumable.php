@@ -89,7 +89,7 @@
   </div>
 </fieldset>
 <fieldset class="form-actions">
-	<button type="submit" class="btn large primary">Create Consumable</button>
+	<button type="submit" class="btn large primary"><?php echo ($mode == 'edit') ? 'Edit' : 'Create'; ?> Consumable</button>
 	<button type="reset" class="btn large">Cancel</button>
 </fieldset>      					        
 <?php echo form_close(); ?>
