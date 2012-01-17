@@ -46,16 +46,16 @@
 			
 			<div class="actions">
 				
-				<a href="<?php echo base_url();?>orders/new" rel="twipsy" data-original-title="New" class="btn-flat single"><i class="shop"></i></a> 
+				<a href="<?php echo base_url();?>orders/new" rel="tooltip" data-original-title="New" class="btn-flat single"><i class="shop"></i></a> 
 				
 				<div class="btn-group marking-needed">
-					<button rel="twipsy" data-original-title="Edit" value="edit" type="submit" name="action" class="btn-flat"><i class="pencil"></i></button>
-					<button rel="twipsy" data-original-title="Delete" value="delete" type="submit" name="action" class="btn-flat"><i class="trash"></i></button>	  
+					<button rel="tooltip" data-original-title="Edit" value="edit" type="submit" name="action" class="btn-flat"><i class="pencil"></i></button>
+					<button rel="tooltip" data-original-title="Delete" value="delete" type="submit" name="action" class="btn-flat"><i class="trash"></i></button>	  
 				</div>
 				
 				<div class="btn-group">
-					<a href="#modal-filter" rel="twipsy" data-original-title="Filter Options" class="btn-flat" data-toggle="modal"><i class="abacus"></i></a>
-					<a href="#modal-display" rel="twipsy" data-original-title="Display Options" class="btn-flat" data-toggle="modal"><i class="eye"></i></a>
+					<a href="#modal-filter" rel="tooltip" data-original-title="Filter Options" class="btn-flat" data-toggle="modal"><i class="abacus"></i></a>
+					<a href="#modal-display" rel="tooltip" data-original-title="Display Options" class="btn-flat" data-toggle="modal"><i class="eye"></i></a>
 				</div>	
 				
 			</div>		

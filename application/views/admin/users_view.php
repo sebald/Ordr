@@ -52,11 +52,11 @@
 			<div class="actions">
 				
 				<div class="btn-group marking-needed">
-					<button rel="twipsy" data-original-title="Change Role" class="btn-flat group" name="action" type="submit" value="role"><i class="group"></i></button>
-					<button rel="twipsy" data-original-title="Delete" class="btn-flat delete" name="action" type="submit" value="delete"><i class="trash"></i></button>	  
+					<button rel="tooltip" data-original-title="Change Role" class="btn-flat group" name="action" type="submit" value="role"><i class="group"></i></button>
+					<button rel="tooltip" data-original-title="Delete" class="btn-flat delete" name="action" type="submit" value="delete"><i class="trash"></i></button>	  
 				</div>
 				
-				<a href="#modal-display" rel="twipsy" data-original-title="Display Options" class="btn-flat single" data-toggle="modal"><i class="eye"></i></a>
+				<a href="#modal-display" rel="tooltip" data-original-title="Display Options" class="btn-flat single" data-toggle="modal"><i class="eye"></i></a>
 				
 			</div>		
 			
