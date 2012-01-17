@@ -93,14 +93,15 @@ footer div{
 
 footer .icon-html {
 	background-image: url(../img/sprite.png);
-	background-position: -27px -214px;
+	background-position: -174px -214px;
 	width: 60px;
+	margin-left: 114px;
 }
 
 footer .icon-dbs {
 	background-image: url(../img/sprite.png);
 	background-position: 0px -214px;
-	width: 27px;
+	width: 174px;
 	margin-left: 50px;	
 }
 
