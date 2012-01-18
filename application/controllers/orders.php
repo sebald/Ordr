@@ -3,8 +3,7 @@
 class Orders extends MY_Controller {
 
     public function index() {   
-      	$data['main_content'] = 'orders/index';
-      	$this->load->view('layout/template', $data);		
+      	redirect('orders/view');		
     }    
 
 	public function new_order() {
@@ -39,7 +38,7 @@ class Orders extends MY_Controller {
 	        if($this->orders_model->create()) {
 	        	$msg = create_alert_message('success', 'Order placed successfully!!', 'You will be notified as soon a purchaser has processed your order.');
 				$this->session->set_flashdata('message', $msg);
-	        	redirect('orders');
+	        	redirect('orders/view');
 	    	} else {
 	        	$msg = create_alert_message('error', 'Something went wrong!!', 'The consumables has not been added to the databse.');
 				$this->session->set_flashdata('message', $msg);
@@ -47,6 +46,47 @@ class Orders extends MY_Controller {
 	        }
 	    }
       	$this->load->view('layout/template', $data);			
+	}
+	
+	public function view($query = 'all', $by = 'date_created', $order = 'desc', $page = 1) {
+		// set defaults
+        $limit = 15;
+        $data['fields'] = array(
+        			'date_created'			=> 	'Date created',
+                    'CAS_description' 		=> 	'CAS / Description',
+                    'price_total' 			=> 	'Price Total',
+                    'work_status'			=>	'Status',
+                    'username'				=>	'Ordered by'
+        );
+		$data['query'] = $query;
+
+        // set offset
+        $offset = ($page-1)*$limit;
+		
+		// get orders
+        $this->load->model('orders_model');
+        $result = $this->orders_model->query($limit, $offset, $by, $order, $query);
+        $data['data'] 	= $result['data']->result();
+        $data['count'] 	= $result['count'];
+		$data['filter'] = $result['filter'];
+		$data['order'] 	= $result['order'];
+		$data['by'] 	= $result['by'];
+
+        // pagination config
+        $config = array();
+        $config['base_url'] = site_url("orders/view/$query/$by/$order");
+        $config['total_rows'] = $data['count'];
+        $config['per_page'] = $limit;
+        $config['uri_segment'] = 6;
+        $config['num_links'] = 5;
+		
+        // pagination
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+        $data['pagination'] = $this->pagination->create_links(); 		
+				
+        $data['main_content'] = 'orders/view';
+        $this->load->view('layout/template', $data);						
 	}
 	
 	public function autocomplete_order() {
