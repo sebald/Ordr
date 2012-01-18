@@ -182,4 +182,3 @@
               <a data-dismiss="modal" class="btn" href="#">Close</a>
             </div>
 </div>
-<?php print_a($data); ?>

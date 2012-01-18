@@ -1,10 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
 
-class Orders_model extends CI_Model {
-	
-	private $fields = array('id', 'username', 'vendor', 'catalog_number', 'CAS_description', 'category', 
+class Orders_model extends MY_Model {
+		
+	protected $table = 'orders';
+	protected $fields = array('id', 'username', 'vendor', 'catalog_number', 'CAS_description', 'category', 
 							'package_size', 'price_unit', 'quantity', 'price_total', 'currency', 'comment', 'work_status', 'date_created',
 							'date_modified', 'date_ordered', 'date_completed');
+	protected $default_order_by = 'date_created';							
 	
 	public function create() {
         $new_order = array(
@@ -40,87 +42,7 @@ class Orders_model extends CI_Model {
 	 * 						[by]		- field name by which the data is ordered 
 	 */
     public function query($limit, $offset, $by, $order, $query = FALSE) {
-        // error correction + add to result
-        $order = ($order == 'desc') ? 'desc' : 'asc';
-		$result['order'] = $order;
-        $by = (in_array($by, $this->fields)) ? $by : 'date_created';
-		$result['by'] = $by;
-		
-		// parse query
-		$filter = $this->parse_query($query);
-		$result['filter'] = $filter;
-		
-		// field selection ?
-		if( isset($filter['display']) ) {
-			// remove unknown fields from display filter
-			foreach ($filter['display'] as $i => $field) {
-				if( !in_array($field, $this->fields) ) {
-					unset($filter['display'][$i]);
-				}
-			}
-			// set display options
-			$select = implode(",", $filter['display']);
-		} else {
-			// fallback
-			$select = implode(",", $this->fields);
-		}
-	
-        // starting query
-        $this->db->start_cache();
-        $query =  $this->db->select($select)
-                  ->from('orders')
-                  ->order_by($by, $order);
-		
-		// search query ?
-		if ( isset($filter['search']) ) {
-			$query->where('MATCH ('.$select.') AGAINST (\''.$filter['search'].'\' IN BOOLEAN MODE)', NULL, FALSE);
-		}
-				  
-        // filter query with likes?
-        if ( isset($filter['like'])) {
-	        foreach ($filter['like'] as $field => $value) {
-	        	// 'like'-clause only for known fields
-				if( in_array($field, $this->fields) ) {
-					$query->like($field,$value);
-				}	            
-	        }       	
-        }
-		$this->db->stop_cache();
-		
-		// count
-		$result['count'] = $this->db->count_all_results('orders');
-		
-		$query->limit($limit, $offset);
-		$result['data'] = $query->get();
-       
-       	$this->db->flush_cache();
-        return $result;
+  		return parent::query($limit, $offset, $by, $order, $query = FALSE);
     }
-	
-	private function parse_query($query) {
-		if ($query = 'all') return FALSE;
-		
-		parse_str($query, $filter);
-		foreach ($filter as $key => $value) {
-			// display options
-			if( $key == 'display' ) {
-				// seperate display values with commas
-				$filter['display'] = explode(' ', $filter['display']);
-				// remove unwanted fields from table (this is done to remove them from the view template)
-				foreach ($data['fields'] as $key => $value) {
-					if( !in_array($key, $filter['display']) )
-						unset($data['fields'][$key]);
-				}
-			// search query					
-			} elseif ($key == 'search') {
-				// do nothing (for now) TODO the parse_str has removed the + is that ok?
-			// if there are fields left => these are 'like'-clauses
-			} else {
-				$filter['like'][$key] = $value;
-				unset($filter[$key]);
-			}
-		}
-		return $filter;		
-	}
 }
 	
