@@ -39,8 +39,7 @@ class Orders extends MY_Controller {
 	        if($this->orders_model->create()) {
 	        	$msg = create_alert_message('success', 'Order placed successfully!!', 'You will be notified as soon a purchaser has processed your order.');
 				$this->session->set_flashdata('message', $msg);
-				$data['main_content'] = 'orders/new_order';
-	        	//redirect('orders');
+	        	redirect('orders');
 	    	} else {
 	        	$msg = create_alert_message('error', 'Something went wrong!!', 'The consumables has not been added to the databse.');
 				$this->session->set_flashdata('message', $msg);
