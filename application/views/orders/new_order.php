@@ -34,5 +34,3 @@
 		</div>
 	</div>
 </div>
-<?php print_a($order); ?>
-<?php print_a($this->session->userdata('username')); ?>
