@@ -6,13 +6,11 @@ $config['acl'] = array (
                 'admin' => array (
                         'account' => TRUE,
                         'admin'   => TRUE,
-                        'orders'  => TRUE,
-                        'welcome' => TRUE
+                        'orders'  => TRUE
                     ),
                  'user' => array (
                         'account' => TRUE,
-                        'orders'  => TRUE,
-                        'welcome' => TRUE
+                        'orders'  => TRUE
                     ),
                  'visitor' => array (
                         'account' => array (
@@ -21,9 +19,8 @@ $config['acl'] = array (
                             'login'             => TRUE,
                             'logout'            => TRUE,
                             'permission_denied' => TRUE
-                        ),
-                        'welcome' => TRUE
-                    ),            
+                        )
+                    )            
         );
 
 /* End of file acl.php */
