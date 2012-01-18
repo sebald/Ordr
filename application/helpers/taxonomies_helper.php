@@ -34,4 +34,4 @@ if (!function_exists('convert_for_typeahead')) {
 	}
 }
 
-/* End of file currency.php */
+/* End of file taxonomy_helper.php */
