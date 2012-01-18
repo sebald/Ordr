@@ -22,6 +22,8 @@
 				<div class="alert alert-info">
 			        <strong>Notice!</strong> If you want to order a common consumable use the <em>search on the right</em>. Maybe the consumable is already in the data base. If so, the order form will be filled out for you.
 			    </div>
+			    
+			    <?php echo $this->session->flashdata('message'); ?>
 				
 				<?php $data['order'] = isset($order) ? $order : FALSE; ?>
 				<?php $data['mode'] = 'new'; ?>
@@ -33,3 +35,4 @@
 	</div>
 </div>
 <?php print_a($order); ?>
+<?php print_a($this->session->userdata('username')); ?>
