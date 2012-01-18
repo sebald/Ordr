@@ -17,8 +17,7 @@ class Consumables_model extends CI_Model {
           'currency'			=> $this->input->post('currency'),
           'comment'				=> $this->input->post('comment')
         );
-        $insert = $this->db->insert('c_consumables', $new_consumable);
-        return $insert;
+        return $this->db->insert('c_consumables', $new_consumable);
     }
 	
 	public function update() {

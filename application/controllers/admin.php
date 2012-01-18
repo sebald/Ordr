@@ -357,7 +357,7 @@ class Admin extends MY_Controller {
 	    } else {		
 	        $this->load->model('consumables_model');
 	        if($this->consumables_model->create()) {
-	        	$msg = create_alert_message('success', 'Consumables added successfull!!', '<em>'.$this->input->post('CAS_description').'</em> added to the databse.');
+	        	$msg = create_alert_message('success', 'Consumables added successfully!!', '<em>'.$this->input->post('CAS_description').'</em> added to the databse.');
 				$this->session->set_flashdata('message', $msg);
 	        	redirect('admin/consumables_view');
 	    	} else {
