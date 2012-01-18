@@ -57,7 +57,6 @@
       <div class="controls">
       	<input type="text" disabled="" placeholder="0.0" name="price_total_disabled" class="span2 disabled">
       	<input type="text" disabled="" placeholder="<?php echo set_value('currency', isset($order->currency) ? $order->currency : 'EUR'); ?>" name="currency_disabled" class="span1 disabled">
-      	<input type="hidden" name="price_total" value="<?php echo set_value('price_total', isset($order->price_total) ? $order->price_total : '0'); ?>">
       </div>
 	</fieldset>
 	<legend>Optional Information</legend>
