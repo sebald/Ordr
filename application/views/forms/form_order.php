@@ -6,7 +6,7 @@
 	<fieldset class="control-group">
       <label for="CAS_description" class="control-label">CAS / Description</label>
       <div class="controls">
-        <input type="text" name="CAS_description" class="span3" value="<?php echo set_value('CAS_description', isset($order->CAS_description) ? $order->CAS_description : ''); ?>">
+        <input type="text" name="CAS_description" class="span4" value="<?php echo set_value('CAS_description', isset($order->CAS_description) ? $order->CAS_description : ''); ?>">
       </div>
     </fieldset>
     <fieldset class="control-group<?php if(form_error('category')) echo ' error'; ?>">
@@ -21,16 +21,16 @@
       </div>
     </fieldset>
     <fieldset class="control-group">
-      <label for="catalog_number" class="control-label">Catalog Number</label>
-      <div class="controls">
-        <input type="text" name="catalog_number" class="span3" value="<?php echo set_value('catalog_number', isset($order->catalog_number) ? $order->catalog_number : ''); ?>">
-      </div>
-    </fieldset>
-    <fieldset class="control-group">
       <label for="vendor" class="control-label">Vendor</label>
       <div class="controls">
-        <input type="text" name="vendor" class="span3" value="<?php echo set_value('vendor', isset($order->vendor) ? $order->vendor : ''); ?>">
+        <input type="text" name="vendor" class="span2" value="<?php echo set_value('vendor', isset($order->vendor) ? $order->vendor : ''); ?>">
       </div>				          			          
+    </fieldset>    
+    <fieldset class="control-group">
+      <label for="catalog_number" class="control-label">Catalog Number</label>
+      <div class="controls">
+        <input type="text" name="catalog_number" class="span2" value="<?php echo set_value('catalog_number', isset($order->catalog_number) ? $order->catalog_number : ''); ?>">
+      </div>
     </fieldset>
     <fieldset class="control-group">
       <label for="package_size" class="control-label">Package Size</label>
