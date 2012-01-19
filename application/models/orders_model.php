@@ -2,10 +2,21 @@
 
 class Orders_model extends MY_Model {
 		
-	protected $table = 'orders';
-	protected $fields = array('id', 'username', 'vendor', 'catalog_number', 'CAS_description', 'category', 
-							'package_size', 'price_unit', 'quantity', 'price_total', 'currency', 'comment', 'work_status', 'date_created',
-							'date_modified', 'date_ordered', 'date_completed');
+	protected $table 			= 'orders';
+	
+	protected $fields 			= array('id', 'username', 'vendor', 'catalog_number', 'CAS_description', 'category', 
+										'package_size', 'price_unit', 'quantity', 'price_total', 'currency', 'comment', 'work_status', 'date_created',
+										'date_modified', 'date_ordered', 'date_completed'
+										);
+	protected $field_names		= array(
+					        			'date_created'			=> 	'Date created',
+					                    'CAS_description' 		=> 	'CAS / Description',
+					                    'price_unit'			=>	'Unit Price',
+					                    'price_total'			=>	'Total',
+					                    'work_status'			=>	'Status',
+					                    'username'				=>	'Ordered by'										
+										);
+	
 	protected $default_order_by = 'date_created';							
 	
 	public function create() {
@@ -34,7 +45,7 @@ class Orders_model extends MY_Model {
 	 * 						(2) search	- match against search in SQL
 	 * 						(3) like	- which data base fields has to be like XY
 	 * 
-	 *   @return 	result	Array with three fields:
+	 *  @return 	result	Array with three fields:
 	 * 						[data]		- query data result (with limit + offset)
 	 * 						[count]		- query data count
 	 * 						[filter]	- parsed filters (see parse_query function)
@@ -42,7 +53,7 @@ class Orders_model extends MY_Model {
 	 * 						[by]		- field name by which the data is ordered 
 	 */
     public function query($limit, $offset, $by, $order, $query = FALSE) {
-  		return parent::query($limit, $offset, $by, $order, $query = FALSE);
+  		return parent::query($limit, $offset, $by, $order, $query);
     }
 }
 	
