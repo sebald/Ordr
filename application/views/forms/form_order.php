@@ -2,15 +2,18 @@
 <?php $mode = empty($mode) ? 'new' : $mode; ?>
 
 <?php
-	$hidden = array(
-					'id'				=>	$order->id,
-					'work_status'		=> 	$order->work_status,
-					'username'			=>	$order->username,
-					'date_created'		=>	$order->date_created,
-					'date_modified'		=>	$order->date_modified,
-					'date_ordered'		=>	$order->date_ordered,
-					'date_completed'	=> 	$order->date_completed
-					);
+	$hidden = '';
+	if($mode == 'edit') {
+		$hidden = array(
+						'id'				=>	$order->id,
+						'work_status'		=> 	$order->work_status,
+						'username'			=>	$order->username,
+						'date_created'		=>	$order->date_created,
+						'date_modified'		=>	$order->date_modified,
+						'date_ordered'		=>	$order->date_ordered,
+						'date_completed'	=> 	$order->date_completed
+						);		
+	}
 ?>
 
 <?php echo form_open($action, 'class="form-horizontal" autocomplete="off"', $hidden); ?>
@@ -65,14 +68,17 @@
 	
 	<?php
 		// load template based on work status
-		if( in_array($this->session->userdata('role'), $allowed_to_change_status) ) {
+		if( empty($order->work_status) ) {
+			// new order
+			$this->load->view('forms/form_order_editable');
+		} elseif( in_array($this->session->userdata('role'), $allowed_to_change_status) ) {
 			// user is allowd to change status: can always edit
 			$this->load->view('forms/form_order_editable');
-		} elseif( $order->work_status == 'open' ) {
-			// open or new order: user placed the order and purchaser/admins can edit
+		} elseif( $order->work_status == 'open' && $order->username == $this->session->userdata('role') ) {
+			// open order: user placed the order and purchaser/admins can edit
 			$this->load->view('forms/form_order_editable');
 		} else {
-			// ordered/completed: user can not edit
+			// ordered/completed or new order but user didnt place it: user can not edit 
 			$this->load->view('forms/form_order_closed');			
 		}
 	?>
