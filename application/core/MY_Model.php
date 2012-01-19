@@ -10,7 +10,9 @@ class MY_Model extends CI_Model {
 	protected $primary = 'id';
 	
 	protected $fields;
-	protected $fields_default;
+	/** If some fields should have a 'special' name add them here as array
+	 * 	(key = field name in db, value = display name)
+	*/
 	protected $field_names;
 	
 	protected $default_order_by;
@@ -104,7 +106,7 @@ class MY_Model extends CI_Model {
 				$filter['display'] = explode(' ', $filter['display']);
 				// add the primary key to the options if it is missing
 				if( !in_array($this->primary, $filter['display']) )
-					array_push($filter['display'], $this->primary);
+					array_unshift($filter['display'], $this->primary);
 			// search query					
 			} elseif ($key == 'search') {
 				// do nothing (for now) TODO the parse_str has removed the + is that ok?
@@ -120,7 +122,7 @@ class MY_Model extends CI_Model {
 	/**
 	 * 	Get field name(s) real name for displaying it.
 	 */
-	public function get_field_name($input) {
+	public function get_field_names($input) {
 		$output = FALSE;
 		if( !is_array($input) && in_array($input, $this->fields) ){
 			// check if there already is a field name set
@@ -128,7 +130,7 @@ class MY_Model extends CI_Model {
 		} else {
 			foreach ($input as $field) {
 				if ( in_array($field, $this->fields) )
-					$output[$field] = (in_array($input, $this->field_names)) ? $this->field_names : ucwords(str_replace('_', ' ', $input));
+					$output[$field] = (in_array($field, $this->field_names)) ? $this->field_names : ucwords(str_replace('_', ' ', $field));
 			}			
 		}		
 		return $output;
