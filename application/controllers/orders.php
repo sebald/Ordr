@@ -51,29 +51,37 @@ class Orders extends MY_Controller {
 	public function view($query = 'all', $by = 'date_created', $order = 'desc', $page = 1) {
 		// set defaults
         $limit = 15;
-        $data['fields'] = array(
-        			'date_created'			=> 	'Date created',
-                    'CAS_description' 		=> 	'CAS / Description',
-                    'price_total' 			=> 	'Price Total',
-                    'work_status'			=>	'Status',
-                    'username'				=>	'Ordered by'
-        );
-		$data['query'] = $query;
-
-        // set offset
-        $offset = ($page-1)*$limit;
+		$offset = ($page-1)*$limit;
 		
+		$data['query_all'] = get_query_parts($query);
+
 		// get orders
         $this->load->model('orders_model');
         $result = $this->orders_model->query($limit, $offset, $by, $order, $query);
+		
+		// set stuff to pass to the view
         $data['data'] 	= $result['data']->result();
         $data['count'] 	= $result['count'];
 		$data['filter'] = $result['filter'];
 		$data['order'] 	= $result['order'];
 		$data['by'] 	= $result['by'];
+		$data['query'] = $query;
+
+		// set field name for the view (these fields will be displayed)
+		if( isset($result['filter']['display']) ) {
+			$data['fields'] = $this->orders_model->get_field_names($result['filter']['display']);
+		// default display	
+		} else {
+	        $data['fields'] = array(
+	        			'date_created'			=> 	'Date created',
+	                    'CAS_description' 		=> 	'CAS / Description',
+	                    'price_total' 			=> 	'Price Total',
+	                    'work_status'			=>	'Status',
+	                    'username'				=>	'Ordered by'
+	        );			
+		}
 
         // pagination config
-        $config = array();
         $config['base_url'] = site_url("orders/view/$query/$by/$order");
         $config['total_rows'] = $data['count'];
         $config['per_page'] = $limit;
