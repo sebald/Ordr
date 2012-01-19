@@ -100,10 +100,14 @@ class Orders extends MY_Controller {
 		if ( $this->input->post() ) {
 			// use post if some form errors occured
 			$data['order'] = (object) $this->input->post();
-		} else {
+		} elseif( $id ) {
 			$this->load->model('orders_model');
 			$data['order'] = $this->orders_model->get($id)->row(0);			
-		}		
+		} else {
+	        	$msg = create_alert_message('error', 'No order specified!!', 'You have been redirected to the order overview.');
+				$this->session->set_flashdata('message', $msg);
+	        	redirect('orders/view');			
+		}	
 
 		// field name, error message, validation rules
 	    $this->load->library('form_validation');
