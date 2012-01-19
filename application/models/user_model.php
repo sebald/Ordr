@@ -3,6 +3,7 @@
 class User_model extends CI_Model {
 
 	private $fields = array('username', 'first_name', 'last_name', 'email', 'role');
+	private $not_activated = array( 'inactive', 'new');
 
     public function create() {
         // check if username already exists
@@ -36,7 +37,7 @@ class User_model extends CI_Model {
         
         if($query->num_rows == 1) {
           // is user active?
-          if ( $query->row(0)->role == 'inactive' )
+          if ( in_array($query->row(0)->role, $this->not_activated) )
             return false;
           
           // is pwd correct?
