@@ -10,6 +10,8 @@ class MY_Session extends CI_Session {
     }
     
     public function hasPermission($role, $controller, $method) {
+      // error correction (role to lower)	
+	  $role = strtolower($role);
       // if there exist a policy for the controller: grant permission     
       if ( isset($this->acl[$role][$controller]) && (@$this->acl[$role][$controller] === TRUE) )
         return true;
