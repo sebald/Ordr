@@ -75,7 +75,7 @@ class Orders extends MY_Controller {
 	                    'CAS_description' 		=> 	'CAS / Description',
 	                    'price_total' 			=> 	'Price Total',
 	                    'work_status'			=>	'Status',
-	                    'username'				=>	'Ordered by'
+	                    'username'				=>	'Placed by'
 	        );			
 		}
 
@@ -93,6 +93,48 @@ class Orders extends MY_Controller {
 				
         $data['main_content'] = 'orders/view';
         $this->load->view('layout/template', $data);						
+	}
+	
+	public function edit($id = FALSE) {		
+		// get order
+		if ( $this->input->post() ) {
+			// use post if some form errors occured
+			$data['order'] = (object) $this->input->post();
+		} else {
+			$this->load->model('orders_model');
+			$data['order'] = $this->orders_model->get($id)->row(0);			
+		}		
+
+		// field name, error message, validation rules
+	    $this->load->library('form_validation');
+	    $this->form_validation->set_rules('CAS_description', 'CAS / Description', 'trim|required|max_length[80]');
+	    $this->form_validation->set_rules('category', 'Category', 'trim|required|max_length[30]');
+	    $this->form_validation->set_rules('catalog_number', 'Catalog Number', 'trim|required|max_length[30]');
+		$this->form_validation->set_rules('vendor', 'Vendor', 'trim|required|max_length[40]');
+		$this->form_validation->set_rules('package_size', 'Package Size', 'trim|required|max_length[30]');
+		$this->form_validation->set_rules('price_unit', 'Unit Price', 'trim|required|decimal|max_length[10]');
+		$this->form_validation->set_rules('quantity', 'Quantity', 'trim|required|is_natural_no_zero|max_length[5]');
+		$this->form_validation->set_rules('account', 'Account', 'trim|max_length[40]');
+		$this->form_validation->set_rules('comment', 'Comment', 'trim|max_length[140]');		
+		
+		// set who can change the work status
+		$data['allowed_to_change_status'] = array ('purchaser', 'admin');
+
+	    if( $this->form_validation->run() == FALSE ) {
+	        $data['main_content'] = 'orders/edit_order';
+	    } else {		
+	        $this->load->model('orders_model');
+	        if($this->orders_model->update()) {
+	        	$msg = create_alert_message('success', 'Order updated successfully!!', 'The Order <em>#'.$this->input->post('id').'</em> has been updated.');
+				$this->session->set_flashdata('message', $msg);
+	        	redirect('orders/view');
+	    	} else {
+	        	$msg = create_alert_message('error', 'Something went wrong!!', 'The order could not be updated.');
+				$this->session->set_flashdata('message', $msg);
+	        	$data['main_content'] = 'orders/edit_order';			
+	        }
+	    }
+        $this->load->view('layout/template', $data);
 	}
 	
 	public function change_view() {

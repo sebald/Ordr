@@ -14,7 +14,7 @@ class Orders_model extends MY_Model {
 					                    'price_unit'			=>	'Unit Price',
 					                    'price_total'			=>	'Total',
 					                    'work_status'			=>	'Status',
-					                    'username'				=>	'Ordered by'										
+					                    'username'				=>	'Placed by'										
 										);
 	
 	protected $default_order_by = 'date_created';
@@ -26,7 +26,7 @@ class Orders_model extends MY_Model {
 	
 	public function create() {
         $new_order = array(
-          'user_id' 			=> $this->session->userdata('username'),
+          'username' 			=> $this->session->userdata('username'),
           'vendor' 				=> $this->input->post('vendor'),
           'catalog_number' 		=> $this->input->post('catalog_number'),
           'CAS_description' 	=> $this->input->post('CAS_description'),
@@ -60,5 +60,65 @@ class Orders_model extends MY_Model {
     public function query($limit, $offset, $by, $order, $query = FALSE) {
   		return parent::query($limit, $offset, $by, $order, $query);
     }
+	
+	public function get($orders, $by = 'id', $select = FALSE) {
+		// error correction
+		if ( $orders == '' ) return false;
+		if ( $select == FALSE )	$select = '*';
+        $by = (in_array($by, $this->fields)) ? $by : 'id';
+		
+		// selected fields
+		$this->db->select($select);
+		
+		// get multiple order?
+		if( is_array($orders) ){
+			$this->db->where_in($by, $orders);
+		} else {
+			$this->db->where($by, $orders);
+		}
+		return $this->db->get('orders');		
+	}
+	
+	public function update() {
+        $data = array(
+          'username' 			=> $this->session->userdata('username'),
+          'vendor' 				=> $this->input->post('vendor'),
+          'catalog_number' 		=> $this->input->post('catalog_number'),
+          'CAS_description' 	=> $this->input->post('CAS_description'),
+          'category' 			=> $this->input->post('category'),			
+          'package_size' 		=> $this->input->post('package_size'),
+          'price_unit'			=> str_replace(',', '.', $this->input->post('price_unit')),
+          'quantity'			=> $this->input->post('quantity'),
+          'price_total'			=> str_replace(',', '.', $this->input->post('price_unit'))*$this->input->post('quantity'),
+          'currency'			=> $this->input->post('currency'),
+          'account'				=> $this->input->post('account'),
+          'comment'				=> $this->input->post('comment'),
+          'work_status'			=> $this->input->post('work_status'),
+          'date_modified'		=> date('Y-m-d H:i:s')
+        );
+		
+		// get latest status to check if something has changed
+		$latest_status = $this->get($this->input->post('id'), 'id', 'work_status')->row(0)->work_status;
+		
+		// set date_ordered/date_completed
+		if( $latest_status != $this->input->post('work_status') ) {
+			switch ($this->input->post('work_status')) {
+				case 'ordered':
+					$data['date_ordered'] = date('Y-m-d H:i:s');
+					break;
+				case 'completed':
+					$data['date_completed'] = date('Y-m-d H:i:s');
+					break;				
+				default:
+					// woops!!!
+					break;
+			}
+		}
+				
+		// update
+        $this->db->where('id', $this->input->post('id'));
+        return $this->db->update('orders', $data);			
+	}
+		
 }
 	
