@@ -18,6 +18,12 @@ if (!function_exists('get_user_categories')) {
 	}
 }
 
+if (!function_exists('get_work_statuses')) {
+	function get_work_statuses() {
+		return array( 'open', 'ordered', 'completed' );	
+	}
+}
+
 if (!function_exists('convert_for_typeahead')) {
 	function convert_for_typeahead($array) {
 		if ( !is_array($array) )
