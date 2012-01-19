@@ -122,15 +122,20 @@ class MY_Model extends CI_Model {
 	/**
 	 * 	Get field name(s) real name for displaying it.
 	 */
-	public function get_field_names($input) {
+	public function get_field_names($input, $display_id = FALSE) {
 		$output = FALSE;
 		if( !is_array($input) && in_array($input, $this->fields) ){
 			// check if there already is a field name set
 			$output[$input] = (in_array($input, $this->field_names)) ? $this->field_names : ucwords(str_replace('_', ' ', $input));
 		} else {
 			foreach ($input as $field) {
-				if ( in_array($field, $this->fields) )
+				if ( in_array($field, $this->fields) ) {
+					// want to display the primary key?
+					if ( $field == $this->primary && $display_id == FALSE )
+						continue;
 					$output[$field] = (in_array($field, $this->field_names)) ? $this->field_names : ucwords(str_replace('_', ' ', $field));
+				} // $field == $this->primary
+					
 			}			
 		}		
 		return $output;
