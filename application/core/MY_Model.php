@@ -7,7 +7,12 @@ class MY_Model extends CI_Model {
     } 
 
 	protected $table;
+	protected $primary = 'id';
+	
 	protected $fields;
+	protected $fields_default;
+	protected $field_names;
+	
 	protected $default_order_by;
 	
 	/**
@@ -84,6 +89,10 @@ class MY_Model extends CI_Model {
         return $result;
     }
 	
+	/**
+	 * 	Format the query so that display options, search query and 'like'-clauses are
+	 * 	seperated in an array.
+	 */
 	protected function parse_query($query) {
 		if ($query == 'all') return FALSE;
 		
@@ -93,11 +102,9 @@ class MY_Model extends CI_Model {
 			if( $key == 'display' ) {
 				// seperate display values with commas
 				$filter['display'] = explode(' ', $filter['display']);
-				// remove unwanted fields from table (this is done to remove them from the view template)
-				foreach ($data['fields'] as $key => $value) {
-					if( !in_array($key, $filter['display']) )
-						unset($data['fields'][$key]);
-				}
+				// add the primary key to the options if it is missing
+				if( !in_array($this->primary, $filter['display']) )
+					array_push($filter['display'], $this->primary);
 			// search query					
 			} elseif ($key == 'search') {
 				// do nothing (for now) TODO the parse_str has removed the + is that ok?
@@ -110,6 +117,22 @@ class MY_Model extends CI_Model {
 		return $filter;		
 	}
 	
+	/**
+	 * 	Get field name(s) real name for displaying it.
+	 */
+	public function get_field_name($input) {
+		$output = FALSE;
+		if( !is_array($input) && in_array($input, $this->fields) ){
+			// check if there already is a field name set
+			$output[$input] = (in_array($input, $this->field_names)) ? $this->field_names : ucwords(str_replace('_', ' ', $input));
+		} else {
+			foreach ($input as $field) {
+				if ( in_array($field, $this->fields) )
+					$output[$field] = (in_array($input, $this->field_names)) ? $this->field_names : ucwords(str_replace('_', ' ', $input));
+			}			
+		}		
+		return $output;
+	}
 }
 
 /* End of file MY_Model.php */
