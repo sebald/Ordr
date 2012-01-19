@@ -6,7 +6,7 @@
 	// delimiter
 	$next_display = isset($filter['display']) ? '&' : '';
 
-
+	print_a($fields);
 ?>	
 <div class="fluid-container sidebar-left">
 	
@@ -77,6 +77,19 @@
 		
 		<?php echo $this->session->flashdata('message'); ?>
 		
+		<?php if( empty($data) ) : ?>
+			<div class="row">
+				<div class="span6">
+					<div class="alert alert-block alert-error">
+			            <h4 class="alert-heading">Oh snap! I got nothing!</h4>
+			            <p>Your query didn't return any data. Maybe try to use less filter.</p>
+			            <p>
+			              <a href="<?php echo base_url();?>orders/" class="btn danger small">Reset the query</a> <?php echo isset($_SERVER['HTTP_REFERER']) ? '<a href="'.$_SERVER['HTTP_REFERER'].'" class="btn small">Return to last page</a>' : ''; ?>
+			            </p>
+		          	</div>
+				</div>
+			</div>
+		<?php else: ?>
 		<table>
 			
 			  <thead>
@@ -122,6 +135,8 @@
 		</div>
 		<?php endif; ?>
 
+		<?php endif; ?>
+		
 	</div>
 </div>
 <div id="modal-filter" class="modal hide fade">
@@ -142,57 +157,59 @@
               <a href="#" class="close" data-dismiss="modal">×</a>
               <h3>Display Options</h3>
             </div>
+            <?php echo form_open('orders/change_view'); ?>
             <div class="modal-body">
             	<p class="help-block"><span class="label notice">Notice</span> If the displayed information is too cluttered, deselect some fields below. This will temporaly remove them from your view and should help you stay on top of things.</p>
-				<form class="checklist">
+				<div class="checklist">
 					<fieldset class="left">
 			            <label class="checkbox">
-			              <input type="checkbox" value="user_id" name="display[]">
-			              Purchaser
-			            </label>
+			              <input type="checkbox" value="date_created" name="display[]" <?php echo isset($fields['date_created']) ? 'checked="yes"' : ''; ?>>
+			              Date Created
+			            </label>						
 			            <label class="checkbox">
-			              <input type="checkbox" value="vendor" name="display[]">
+			              <input type="checkbox" value="CAS_description" name="display[]" <?php echo isset($fields['CAS_description']) ? 'checked="yes"' : ''; ?>>
+			              CAS / Description
+			            </label>						
+			            <label class="checkbox">
+			              <input type="checkbox" value="vendor" name="display[]" <?php echo isset($fields['vendor']) ? 'checked="yes"' : ''; ?>>
 			              Vendor
 			            </label>
 			            <label class="checkbox">
-			              <input type="checkbox" value="catalog_number" name="display[]">
+			              <input type="checkbox" value="catalog_number" name="display[]" <?php echo isset($fields['catalog_number']) ? 'checked="yes"' : ''; ?>>
 			              Catalog Number
 			            </label>
 			            <label class="checkbox">
-			              <input type="checkbox" value="CAS_description" name="display[]">
-			              CAS / Description
-			            </label>
-			            <label class="checkbox">
-			              <input type="checkbox" value="price_unit" name="display[]">
+			              <input type="checkbox" value="price_unit" name="display[]" <?php echo isset($fields['price_unit']) ? 'checked="yes"' : ''; ?>>
 			              Unit Price
 			            </label>						
 					</fieldset>
 					<fieldset class="right">
 			            <label class="checkbox">
-			              <input type="checkbox" value="quantity" name="display[]">
+			              <input type="checkbox" value="quantity" name="display[]" <?php echo isset($fields['quantity']) ? 'checked="yes"' : ''; ?>>
 			              Quantity
 			            </label>
 			            <label class="checkbox">
-			              <input type="checkbox" value="price_total" name="display[]">
+			              <input type="checkbox" value="price_total" name="display[]" <?php echo isset($fields['price_total']) ? 'checked="yes"' : ''; ?>>
 			              Total Price
 			            </label>
 			            <label class="checkbox">
-			              <input type="checkbox" value="account" name="display[]">
+			              <input type="checkbox" value="account" name="display[]" <?php echo isset($fields['account']) ? 'checked="yes"' : ''; ?>>
 			              Account
 			            </label>
 			            <label class="checkbox">
-			              <input type="checkbox" value="work_status" name="display[]">
+			              <input type="checkbox" value="work_status" name="display[]" <?php echo isset($fields['work_status']) ? 'checked="yes"' : ''; ?>>
 			              Work Status
 			            </label>
 			            <label class="checkbox">
-			              <input type="checkbox" value="date_created" name="display[]">
-			              Date Created
+			              <input type="checkbox" value="usernamae" name="display[]" <?php echo isset($fields['username']) ? 'checked="yes"' : ''; ?>>
+			              Ordered by
 			            </label>							
-					</fieldset>            		            		            		            
-				</form>
+					</fieldset>
+				</div>            		            		            		            
             </div>
             <div class="modal-footer">
-              <a class="btn primary" href="#">Apply Changes</a>
-              <a data-dismiss="modal" class="btn" href="#">Close</a>
+              <button type="submit" class="btn large primary">Apply Changes</button>
+              <a data-dismiss="modal" class="btn large" href="#">Cancel</a>
             </div>
+            <?php echo form_close(); ?>
 </div>
