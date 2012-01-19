@@ -36,6 +36,13 @@ if (!function_exists('create_alert_message')) {
 
 }
 
+if (!function_exists('get_filter_part_as_query')) {
+	function get_filter_part_as_query($query, $part) {
+		return $part.'='.implode('+',$query[$part]);
+	}
+
+}
+
 if (!function_exists('print_a')) {
 	function print_a() {
 		$numargs = func_num_args();
