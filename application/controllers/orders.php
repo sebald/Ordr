@@ -52,8 +52,6 @@ class Orders extends MY_Controller {
 		// set defaults
         $limit = 15;
 		$offset = ($page-1)*$limit;
-		
-		$data['query_all'] = get_query_parts($query);
 
 		// get orders
         $this->load->model('orders_model');
@@ -65,7 +63,7 @@ class Orders extends MY_Controller {
 		$data['filter'] = $result['filter'];
 		$data['order'] 	= $result['order'];
 		$data['by'] 	= $result['by'];
-		$data['query'] = $query;
+		$data['query'] 	= $query;
 
 		// set field name for the view (these fields will be displayed)
 		if( isset($result['filter']['display']) ) {
