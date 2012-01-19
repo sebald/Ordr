@@ -120,7 +120,13 @@ class MY_Model extends CI_Model {
 	}
 	
 	/**
-	 * 	Get field name(s) real name for displaying it.
+	 * 	Get field name(s) real name in order to display them.
+	 * 
+	 * 	@param	input 			the fields, whose names you want
+	 * 			display_id		should the id be also displaye?
+	 * 
+	 * 	@return array 			key 	= field name in db
+	 * 							value 	= display name
 	 */
 	public function get_field_names($input, $display_id = FALSE) {
 		$output = FALSE;
