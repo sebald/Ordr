@@ -17,6 +17,12 @@ class MY_Model extends CI_Model {
 	
 	protected $default_order_by;
 	
+	/** Add some select constraints like: if x is selected, select y also.
+	 *	Constraints has to be an array. The keys of that array are the premise. 
+	 * 	The premise is an array, which consits of a list of consquences.
+	 */
+	protected $constraints = FALSE;
+	
 	/**
 	 *	Extended query with search, filter and display options.
 	 * 	Supports paging and sorting. 
@@ -56,9 +62,19 @@ class MY_Model extends CI_Model {
 			$select = implode(",", $filter['display']);
 			// add the primary key to the selection if it's missing
 			if( !in_array($this->primary, $filter['display']) )
-				$select = $this->primary.','.$select;			
+				$select = $this->primary.','.$select;	
+			// check for constraints
+			if( is_array($this->constraints) ) {
+				foreach ($filter['display'] as $field) {
+					if( array_key_exists($field, $this->constraints) ) {
+						foreach ($this->constraints[$field] as $value) {
+							$select .= ', '.$value;
+						}
+					}
+				}					
+			}
 		} else {
-			// fallback
+			// fallback (select all fields)
 			$select = implode(",", $this->fields);
 		}
 	

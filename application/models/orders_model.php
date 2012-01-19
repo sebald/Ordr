@@ -17,7 +17,12 @@ class Orders_model extends MY_Model {
 					                    'username'				=>	'Ordered by'										
 										);
 	
-	protected $default_order_by = 'date_created';							
+	protected $default_order_by = 'date_created';
+	
+	protected $constraints 		= array(
+										'price_unit'			=>	array( 'currency' ),
+										'price_total'			=>	array( 'currency' )
+										);							
 	
 	public function create() {
         $new_order = array(
