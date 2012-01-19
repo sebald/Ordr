@@ -17,7 +17,7 @@ class Account extends MY_Controller {
         $data = array(
           'username'  => $this->input->post('username'),
           'logged_in' => TRUE,
-          'role'      => $query
+          'role'      => strtolower($query)
         );
         $this->session->set_userdata($data);
         // is there a redirect to handle?
