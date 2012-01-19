@@ -38,10 +38,18 @@ if (!function_exists('create_alert_message')) {
 
 if (!function_exists('create_query_string')) {
 	function create_query_string($query, $part) {
-		if (is_array($part))
-			return $part.'='.implode('+',$query[$part]);
-		return $part.'='.str_replace(' ', '+', $query);
+		switch ($part) {
+			case 'display':
+				return $part.'='.implode('+',$query[$part]);
+			case 'search':
+				return $part.'='.str_replace(' ', '+', $query[$part]);
+			case 'like':
+				return http_build_query($query[$part]);								
+			default:
+				return false;
+		}
 	}
+
 }
 
 if (!function_exists('print_a')) {
