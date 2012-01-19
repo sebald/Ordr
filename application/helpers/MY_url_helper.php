@@ -36,11 +36,12 @@ if (!function_exists('create_alert_message')) {
 
 }
 
-if (!function_exists('create__query_string')) {
-	function create__query_string($query, $part) {
-		return $part.'='.implode('+',$query[$part]);
+if (!function_exists('create_query_string')) {
+	function create_query_string($query, $part) {
+		if (is_array($part))
+			return $part.'='.implode('+',$query[$part]);
+		return $part.'='.str_replace(' ', '+', $query);
 	}
-
 }
 
 if (!function_exists('print_a')) {
