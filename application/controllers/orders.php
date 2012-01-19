@@ -95,6 +95,13 @@ class Orders extends MY_Controller {
         $this->load->view('layout/template', $data);						
 	}
 	
+	public function change_view() {
+		$display 	= create_query_string($_POST, 'display');
+		$like 		= isset($_POST['like']) ? '&'.$_POST['like'] : '';
+		$search 	= isset($_POST['search']) ? '&'.$_POST['search'] : '';
+		redirect('orders/view/'.$display.$like.$search);
+	}
+	
 	public function autocomplete_order() {
 		$this->load->model('consumables_model');
 		$result = $this->consumables_model->get($this->input->post('search'), $by = 'CAS_description')->row(0);

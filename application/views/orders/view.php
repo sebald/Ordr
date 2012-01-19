@@ -1,11 +1,15 @@
 <?php
 	// set url values for quick filters
-	$url_display = isset($filter['display']) ? get_filter_part_as_query($filter, 'display') : FALSE;
-	$url_this_user = 'username='.$this->session->userdata('username');
+	$query_string_display 	= isset($filter['display']) ? create_query_string($filter, 'display') : FALSE;
+	$query_string_like 		= isset($filter['like']) ? create_query_string($filter, 'like') : FALSE;
+	$query_string_search	= isset($filter['search']) ? create_query_string($filter, 'search') : FALSE;
+	$url_this_user 			= 'username='.$this->session->userdata('username');
 
 	// delimiter
 	$next_display = isset($filter['display']) ? '&' : '';
 
+	print_a($query_string_like);
+	print_a($query_string_search);
 	print_a($fields);
 ?>	
 <div class="fluid-container sidebar-left">
@@ -19,29 +23,29 @@
 		<ul class="well nav list">
 			<li class="nav-header">My Orders: Status</li>
 	        <li <?php echo ( empty($filter['like']['work_status']) && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
-	        	<?php echo anchor('orders/view/'.$url_this_user.$next_display.$url_display,'All' ); ?>
+	        	<?php echo anchor('orders/view/'.$url_this_user.$next_display.$query_string_display,'All' ); ?>
 	        </li>
 	        <li <?php echo ( (@$filter['like']['work_status'] == 'open') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
-	        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=open'.$next_display.$url_display,'Open' ); ?>
+	        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=open'.$next_display.$query_string_display,'Open' ); ?>
 	        </li>
 	        <li <?php echo ( (@$filter['like']['work_status'] == 'ordered') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
-	        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=ordered'.$next_display.$url_display,'Ordered' ); ?>
+	        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=ordered'.$next_display.$query_string_display,'Ordered' ); ?>
 	        </li>
 	        <li <?php echo ( (@$filter['like']['work_status'] == 'closed') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
-	        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=completed'.$next_display.$url_display,'Completed' ); ?>
+	        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=completed'.$next_display.$query_string_display,'Completed' ); ?>
 	        </li>	
 			<li class="nav-header">All Orders: Status</li>
 	        <li <?php echo ( empty($filter['like']['work_status']) && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
-	        	<?php echo anchor('orders/view/'.$next_display.$url_display,'All' ); ?>
+	        	<?php echo anchor('orders/view/'.$next_display.$query_string_display,'All' ); ?>
 	        </li>
 	        <li <?php echo ( (@$filter['like']['work_status'] == 'open') && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
-	        	<?php echo anchor('orders/view/work_status=open'.$next_display.$url_display,'Open' ); ?>
+	        	<?php echo anchor('orders/view/work_status=open'.$next_display.$query_string_display,'Open' ); ?>
 	        </li>
 	        <li <?php echo ( (@$filter['like']['work_status'] == 'ordered') && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
-	        	<?php echo anchor('orders/view/work_status=ordered'.$next_display.$url_display,'Ordered' ); ?>
+	        	<?php echo anchor('orders/view/work_status=ordered'.$next_display.$query_string_display,'Ordered' ); ?>
 	        </li>
 	        <li <?php echo ( (@$filter['like']['work_status'] == 'closed') && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
-	        	<?php echo anchor('orders/view/work_status=completed'.$next_display.$url_display,'Completed' ); ?>
+	        	<?php echo anchor('orders/view/work_status=completed'.$next_display.$query_string_display,'Completed' ); ?>
 	        </li>		
 		</ul>
 		
@@ -79,10 +83,10 @@
 		
 		<?php if( empty($data) ) : ?>
 			<div class="row">
-				<div class="span6">
+				<div class="span8">
 					<div class="alert alert-block alert-error">
-			            <h4 class="alert-heading">Oh snap! I got nothing!</h4>
-			            <p>Your query didn't return any data. Maybe try to use less filter.</p>
+			            <h4 class="alert-heading">Oh snap! Nothing to display!</h4>
+			            <p>Your query didn't return any data. Try to use less filter. You can also reset your querry completely or go to your last setting by using the buttons down below.</p>
 			            <p>
 			              <a href="<?php echo base_url();?>orders/" class="btn danger small">Reset the query</a> <?php echo isset($_SERVER['HTTP_REFERER']) ? '<a href="'.$_SERVER['HTTP_REFERER'].'" class="btn small">Return to last page</a>' : ''; ?>
 			            </p>
@@ -158,6 +162,12 @@
               <h3>Display Options</h3>
             </div>
             <?php echo form_open('orders/change_view'); ?>
+            <?php if ( $query_string_like ) : ?>
+            	<input type="hidden" name="like" value="<?php echo $query_string_like; ?>">
+            <?php endif; ?>
+            <?php if ( $query_string_search ) : ?>
+            	<input type="hidden" name="search" value="<?php echo $query_string_search; ?>">
+            <?php endif; ?>            
             <div class="modal-body">
             	<p class="help-block"><span class="label notice">Notice</span> If the displayed information is too cluttered, deselect some fields below. This will temporaly remove them from your view and should help you stay on top of things.</p>
 				<div class="checklist">
@@ -201,7 +211,7 @@
 			              Work Status
 			            </label>
 			            <label class="checkbox">
-			              <input type="checkbox" value="usernamae" name="display[]" <?php echo isset($fields['username']) ? 'checked="yes"' : ''; ?>>
+			              <input type="checkbox" value="username" name="display[]" <?php echo isset($fields['username']) ? 'checked="yes"' : ''; ?>>
 			              Ordered by
 			            </label>							
 					</fieldset>
