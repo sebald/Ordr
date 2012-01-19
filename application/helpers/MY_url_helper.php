@@ -36,8 +36,8 @@ if (!function_exists('create_alert_message')) {
 
 }
 
-if (!function_exists('get_filter_part_as_query')) {
-	function get_filter_part_as_query($query, $part) {
+if (!function_exists('create__query_string')) {
+	function create__query_string($query, $part) {
 		return $part.'='.implode('+',$query[$part]);
 	}
 
