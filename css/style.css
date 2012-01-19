@@ -203,6 +203,14 @@ a.btn-flat {
 	background-position: -54px -18px;
 }
 
+.btn-flat i.reset {
+	background-position: -162px 0;
+}
+
+.btn-flat:hover i.reset {
+	background-position: -162px -18px;
+}
+
 .page-controls .btn-group, .page-controls .actions, .page-controls .btn-flat {
 	float: left;
 	display: block;

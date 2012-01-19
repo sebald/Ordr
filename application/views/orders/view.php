@@ -8,9 +8,6 @@
 	// delimiter
 	$next_display = isset($filter['display']) ? '&' : '';
 
-	print_a($query_string_like);
-	print_a($query_string_search);
-	print_a($fields);
 ?>	
 <div class="fluid-container sidebar-left">
 	
@@ -21,19 +18,6 @@
 		</div>
 		
 		<ul class="well nav list">
-			<li class="nav-header">My Orders: Status</li>
-	        <li <?php echo ( empty($filter['like']['work_status']) && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
-	        	<?php echo anchor('orders/view/'.$url_this_user.$next_display.$query_string_display,'All' ); ?>
-	        </li>
-	        <li <?php echo ( (@$filter['like']['work_status'] == 'open') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
-	        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=open'.$next_display.$query_string_display,'Open' ); ?>
-	        </li>
-	        <li <?php echo ( (@$filter['like']['work_status'] == 'ordered') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
-	        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=ordered'.$next_display.$query_string_display,'Ordered' ); ?>
-	        </li>
-	        <li <?php echo ( (@$filter['like']['work_status'] == 'closed') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
-	        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=completed'.$next_display.$query_string_display,'Completed' ); ?>
-	        </li>	
 			<li class="nav-header">All Orders: Status</li>
 	        <li <?php echo ( empty($filter['like']['work_status']) && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
 	        	<?php echo anchor('orders/view/'.$next_display.$query_string_display,'All' ); ?>
@@ -46,7 +30,20 @@
 	        </li>
 	        <li <?php echo ( (@$filter['like']['work_status'] == 'closed') && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
 	        	<?php echo anchor('orders/view/work_status=completed'.$next_display.$query_string_display,'Completed' ); ?>
-	        </li>		
+	        </li>			
+			<li class="nav-header">My Orders: Status</li>
+	        <li <?php echo ( empty($filter['like']['work_status']) && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
+	        	<?php echo anchor('orders/view/'.$url_this_user.$next_display.$query_string_display,'All' ); ?>
+	        </li>
+	        <li <?php echo ( (@$filter['like']['work_status'] == 'open') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
+	        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=open'.$next_display.$query_string_display,'Open' ); ?>
+	        </li>
+	        <li <?php echo ( (@$filter['like']['work_status'] == 'ordered') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
+	        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=ordered'.$next_display.$query_string_display,'Ordered' ); ?>
+	        </li>
+	        <li <?php echo ( (@$filter['like']['work_status'] == 'closed') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
+	        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=completed'.$next_display.$query_string_display,'Completed' ); ?>
+	        </li>			
 		</ul>
 		
 	</aside>
@@ -74,6 +71,9 @@
 				<div class="btn-group">
 					<a href="#modal-filter" rel="tooltip" data-original-title="Filter Options" class="btn-flat" data-toggle="modal"><i class="abacus"></i></a>
 					<a href="#modal-display" rel="tooltip" data-original-title="Display Options" class="btn-flat" data-toggle="modal"><i class="eye"></i></a>
+					<?php if( $filter ) : ?>
+					<a href="<?php echo base_url();?>orders/" rel="tooltip" data-original-title="Reset Options" class="btn-flat"><i class="reset"></i></a>
+					<?php endif; ?>
 				</div>	
 				
 			</div>		
