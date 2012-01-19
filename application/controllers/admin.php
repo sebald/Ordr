@@ -391,7 +391,7 @@ class Admin extends MY_Controller {
 	    } else {		
 	        $this->load->model('consumables_model');
 	        if($this->consumables_model->update()) {
-	        	$msg = create_alert_message('success', 'Consumables updated successfull!!', 'The consumable <em>'.$this->input->post('CAS_description').'</em> has been updated.');
+	        	$msg = create_alert_message('success', 'Consumables updated successfully!!', 'The consumable <em>'.$this->input->post('CAS_description').'</em> has been updated.');
 				$this->session->set_flashdata('message', $msg);
 	        	redirect('admin/consumables/view');
 	    	} else {
