@@ -1,14 +1,12 @@
 <?php
-	$attr_input_search = array(
-          'name'        => 'search',
-          'type'		=> 'search',
-          'size'        => '30',
-          'placeholder' => 'Search'
-	);	
-	$attr_submit_search = array(
-		  'type'		=> 'submit',
-          'content'		=> 'Search'
-	);
+	// set url values for quick filters
+	$url_display = isset($filter['display']) ? get_filter_part_as_query($filter, 'display') : FALSE;
+	$url_this_user = 'username='.$this->session->userdata('username');
+
+	// delimiter
+	$next_display = isset($filter['display']) ? '&' : '';
+
+
 ?>	
 <div class="fluid-container sidebar-left">
 	
@@ -19,16 +17,32 @@
 		</div>
 		
 		<ul class="well nav list">
-			<li class="nav-header">My Orders</li>
-	        <li class="active"><a href="#" class="nav-item">All</a></li>
-	        <li><a href="#" class="nav-item">Open</a></li>
-	        <li><a href="#" class="nav-item">On order</a></li>
-	        <li><a href="#" class="nav-item">Completed</a></li>	
-			<li class="nav-header">Work Status</li>
-	        <li><a href="#" class="nav-item">All</a></li>
-	        <li><a href="#" class="nav-item">Open</a></li>
-	        <li><a href="#" class="nav-item">On order</a></li>
-	        <li><a href="#" class="nav-item">Completed</a></li>		
+			<li class="nav-header">My Orders: Status</li>
+	        <li <?php echo ( empty($filter['like']['work_status']) && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
+	        	<?php echo anchor('orders/view/'.$url_this_user.$next_display.$url_display,'All' ); ?>
+	        </li>
+	        <li <?php echo ( (@$filter['like']['work_status'] == 'open') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
+	        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=open'.$next_display.$url_display,'Open' ); ?>
+	        </li>
+	        <li <?php echo ( (@$filter['like']['work_status'] == 'ordered') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
+	        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=ordered'.$next_display.$url_display,'Ordered' ); ?>
+	        </li>
+	        <li <?php echo ( (@$filter['like']['work_status'] == 'closed') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
+	        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=completed'.$next_display.$url_display,'Completed' ); ?>
+	        </li>	
+			<li class="nav-header">All Orders: Status</li>
+	        <li <?php echo ( empty($filter['like']['work_status']) && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
+	        	<?php echo anchor('orders/view/'.$next_display.$url_display,'All' ); ?>
+	        </li>
+	        <li <?php echo ( (@$filter['like']['work_status'] == 'open') && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
+	        	<?php echo anchor('orders/view/work_status=open'.$next_display.$url_display,'Open' ); ?>
+	        </li>
+	        <li <?php echo ( (@$filter['like']['work_status'] == 'ordered') && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
+	        	<?php echo anchor('orders/view/work_status=ordered'.$next_display.$url_display,'Ordered' ); ?>
+	        </li>
+	        <li <?php echo ( (@$filter['like']['work_status'] == 'closed') && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
+	        	<?php echo anchor('orders/view/work_status=completed'.$next_display.$url_display,'Completed' ); ?>
+	        </li>		
 		</ul>
 		
 	</aside>
@@ -38,9 +52,9 @@
 		<div class="page-controls">
 
 			<div class="input-append search">
-				<?php echo form_input($attr_input_search, (isset($filter['search'])) ? $filter['search'] : ''); ?>
+				<input type="search" placeholder="Search" size="50" name="search">
 				<label class="add-on">
-					<?php echo form_button($attr_submit_search); ?>
+					<button type="submit" name="">Search</button>
 				</label>
 		    </div>		
 			
