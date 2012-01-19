@@ -85,7 +85,7 @@ class MY_Model extends CI_Model {
     }
 	
 	protected function parse_query($query) {
-		if ($query = 'all') return FALSE;
+		if ($query == 'all') return FALSE;
 		
 		parse_str($query, $filter);
 		foreach ($filter as $key => $value) {
