@@ -19,7 +19,7 @@ class MY_Model extends CI_Model {
 	
 	/**
 	 *	Extended query with search, filter and display options.
-	 * 	Also supports paging and sorting. 
+	 * 	Supports paging and sorting. 
 	 *
 	 * 	@param 		filter	Has to be an array. The array fields are:
 	 * 						(1) display	- which data base fields are selected
@@ -54,6 +54,9 @@ class MY_Model extends CI_Model {
 			}
 			// set display options
 			$select = implode(",", $filter['display']);
+			// add the primary key to the selection if it's missing
+			if( !in_array($this->primary, $filter['display']) )
+				$select = $this->primary.','.$select;			
 		} else {
 			// fallback
 			$select = implode(",", $this->fields);
@@ -104,9 +107,6 @@ class MY_Model extends CI_Model {
 			if( $key == 'display' ) {
 				// seperate display values with commas
 				$filter['display'] = explode(' ', $filter['display']);
-				// add the primary key to the options if it is missing
-				if( !in_array($this->primary, $filter['display']) )
-					array_unshift($filter['display'], $this->primary);
 			// search query					
 			} elseif ($key == 'search') {
 				// do nothing (for now) TODO the parse_str has removed the + is that ok?
