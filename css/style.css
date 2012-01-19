@@ -34,6 +34,12 @@ body {
    	clear: both;
 }
 
+/*================================ BT FIXES ================================*/
+
+.tooltip {
+	z-index: 2000
+}
+
 /*================================= LAYOUT =================================*/
 
 .content {
@@ -578,3 +584,16 @@ hgroup .info {
 .action-header {
 	margin-bottom: 15px;
 }
+
+/*============================== FORMS ==============================*/
+
+.control-group.information {
+	margin: 0;
+}
+
+.control-group.information p {
+	padding: 5px 0;
+	color: #AAAAAA;
+}
+
+
