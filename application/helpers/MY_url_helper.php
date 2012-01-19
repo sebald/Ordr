@@ -52,6 +52,22 @@ if (!function_exists('create_query_string')) {
 
 }
 
+if (!function_exists('create_work_status_html')) {
+	function create_work_status_html($status) {
+		switch ($status) {
+			case 'open':
+				return '<span class="label important">open</span>';
+			case 'ordered':
+				return '<span class="label warning">ordered</span>';
+			case 'completed':
+				return '<span class="label success">completed</span>';								
+			default:
+				return false;
+		}
+	}
+
+}
+
 if (!function_exists('print_a')) {
 	function print_a() {
 		$numargs = func_num_args();
