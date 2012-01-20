@@ -125,7 +125,15 @@ class Orders_model extends MY_Model {
 		
 		// update
         $this->db->where('id', $id);
-        return $this->db->update($this->table, $data);			
+		$update = $this->db->update($this->table, $data);
+		
+		// should a notification be send?
+		if( isset($data['date_ordered']) && $update )
+			$update = 'ordered';
+		if( isset($data['date_completed']) && $update )
+			$update = 'completed';
+		
+        return $update;	
 	}
 	
 	public function delete($ids) {

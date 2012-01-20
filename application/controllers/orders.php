@@ -165,9 +165,14 @@ class Orders extends MY_Controller {
 	        $data['main_content'] = 'orders/edit_order';
 	    } else {		
 	        $this->load->model('orders_model');
-	        if($this->orders_model->update()) {
+			$result = $this->orders_model->update();
+	        if( $result ) {
 	        	$msg = create_alert_message('success', 'Order updated successfully!!', 'The Order <em>#'.$this->input->post('id').'</em> has been updated.');
 				$this->session->set_flashdata('message', $msg);
+				
+				if( $result === 'ordered' || $result === 'completed' )
+					$this->notification($result, $this->input->post('username'), $this->input->post('CAS_description'), current_url());
+				
 	        	redirect('orders/view');
 	    	} else {
 	        	$msg = create_alert_message('error', 'Something went wrong!!', 'The order could not be updated.');
@@ -268,6 +273,39 @@ class Orders extends MY_Controller {
 		
 		$this->session->set_flashdata('consumable', $result);
 		redirect('orders/new');
+	}
+
+	private function notification($status, $username, $CAS_description, $visit){
+		// dont send anything if the user has changed the status of his/her own order
+		if( $this->session->userdata('username') == $username )
+			return FALSE;
+		
+		// get email adress
+		$this->load->model('user_model');
+		$to = $this->user_model->get($username, 'username', 'email')->row(0)->email;
+		
+		// from
+		$url = str_replace('http://', '', base_url());
+		$url = str_replace('www.', '', $url);
+
+		// msg
+		switch ($status) {
+			case 'ordered':
+				$msg = 'Your order of '.$CAS_description.' has been orderd.\n';
+				break;
+			default:
+				$msg = 'Your order of '.$CAS_description.' has arrived.\n';
+				break;
+		}
+		$msg .=  'You can check if out here: '.$visit.'\n\n Cheers,\n your favorite OMS';
+
+		$this->load->library('email');
+		$this->email->from('noreply@'.$url, '[ordr] Notification');
+		$this->email->to($to);
+		$this->email->subject('Notification about your order of '.$CAS_description);
+		$this->email->message($msg);
+		
+		$this->email->send();
 	}
 
 }
