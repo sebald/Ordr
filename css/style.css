@@ -73,7 +73,6 @@ body {
 footer {
 	height: 53px;
     margin: 0 20px;
-
     position: relative;
     text-align: center;
 }
@@ -81,7 +80,7 @@ footer {
 footer a {
 	display: inline-block;
 	height: 26px;	
-	opacity: 0.3;	
+	opacity: 0.5;	
 	-webkit-transition: all 0.5s ease 0s;
 	-moz-transition: all 0.5s ease 0s;
 	-o-transition: all 0.5s ease 0s;
@@ -92,7 +91,7 @@ footer a:hover {
 	opacity: 1;
 }
 
-footer div{
+footer .copy{
 	border-top: 1px solid #E5E5E5;
 	padding-top: 15px;
 }
@@ -107,8 +106,7 @@ footer .icon-html {
 footer .icon-dbs {
 	background-image: url(../img/sprite.png);
 	background-position: 0px -214px;
-	width: 174px;
-	margin-left: 50px;	
+	width: 174px;	
 }
 
 footer:before {
@@ -365,6 +363,9 @@ th.sortable {
 	cursor: pointer;
 	background-color: #E0F3FF;
 }
+th.sortable.headerSortDown, th.sortable.headerSortUp {
+	background-color: #C7E9FF;
+}
 th, th a {
 	color: #0064CD;
 }
@@ -595,5 +596,3 @@ hgroup .info {
 	padding: 5px 0;
 	color: #AAAAAA;
 }
-
-
