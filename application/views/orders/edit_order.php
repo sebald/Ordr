@@ -21,7 +21,12 @@
 					<div class="alert alert-block">
 				        <h4 class="alert-heading">Warning!</h4>
 				        <p>Once an item is ordered you can not edit it anymore. Only viewing is allowed. If some of the information displayed here is wrong please contact an purchaser immediately.</p>
-				    </div>				    
+				    </div>
+				<?php else : ?>
+					<div class="alert alert-block alert-info">
+				        <h4 class="alert-heading">You can only view this order!</h4>
+				        <p>Since this is not your order you are only allowed to view the order.</p>
+				    </div>									    
 				<?php endif; ?>
 				
 				<?php $data['order'] = isset($order) ? $order : FALSE; ?>
