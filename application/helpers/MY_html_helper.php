@@ -1,6 +1,4 @@
-<?php
-if (!defined('BASEPATH'))
-	exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 if (!function_exists('table_action')) {
 	function table_action($type, $uri, $username) {
@@ -18,7 +16,6 @@ if (!function_exists('table_action')) {
 
 		return $output;
 	}
-
 }
 
 if (!function_exists('create_alert_message')) {
@@ -33,7 +30,6 @@ if (!function_exists('create_alert_message')) {
 
 		return $output;
 	}
-
 }
 
 if (!function_exists('create_query_string')) {
@@ -49,7 +45,6 @@ if (!function_exists('create_query_string')) {
 				return false;
 		}
 	}
-
 }
 
 if (!function_exists('create_work_status_html')) {
@@ -65,7 +60,13 @@ if (!function_exists('create_work_status_html')) {
 				return false;
 		}
 	}
+}
 
+if (!function_exists('create_timestamp_format')) {
+	function create_timestamp_format($timestamp) {
+		$output = explode(' ', $timestamp);
+		return $output[0].' <span>@</span>'.$output[1];
+	}
 }
 
 if (!function_exists('print_a')) {
@@ -89,7 +90,6 @@ if (!function_exists('print_a')) {
 			echo "</pre>";
 		}
 	}
-
 }
 /* End of file MY_url_helper.php */
 /* Location: ./applicatuion/helpers/MY_url_helper.php */
