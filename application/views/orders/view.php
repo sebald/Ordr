@@ -5,6 +5,8 @@
 	$query_string_search	= isset($filter['search']) ? create_query_string($filter, 'search') : FALSE;
 	$url_this_user 			= 'username='.$this->session->userdata('username');
 
+	$hidden['display']		= $query_string_display;
+
 	// delimiter
 	$next_display = isset($filter['display']) ? '&' : '';
 
@@ -49,14 +51,14 @@
 	</aside>
 	
 	<div class="fluid-content">
-	<?php echo form_open('orders/actions'); ?>
+	<?php echo form_open('orders/actions', '', $hidden); ?>
 		
 		<div class="page-controls">
 
 			<div class="input-append search">
 				<input type="search" placeholder="Search" size="50" name="search">
 				<label class="add-on">
-					<button type="submit" name="">Search</button>
+					<button type="submit" name="action" value="search">Search</button>
 				</label>
 		    </div>		
 			

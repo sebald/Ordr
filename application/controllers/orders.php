@@ -14,8 +14,6 @@ class Orders extends MY_Controller {
 	 * 	one actions for table data.
 	 */
 	public function actions() {
-		print_a($_POST);
-		
 		switch ($this->input->post('action')) {
 			case 'delete':
 				$this->session->set_flashdata('id', $this->input->post('marked'));
@@ -24,9 +22,14 @@ class Orders extends MY_Controller {
 			case 'status':
 				$this->session->set_flashdata('id', $this->input->post('marked'));
 				redirect('orders/status');				
-				break;				
+				break;
+			case 'search':
+				$query = $this->input->post('display') ? $this->input->post('display').'&' : '';
+				$query .= 'search='.$this->input->post('search');
+				redirect('orders/view/'.$query.'/');				
+				break;								
 			default:
-				$msg = create_alert_message('warning', 'No can do!', 'Please select some records and try again.');
+				$msg = create_alert_message('warning', 'No can do!', 'Unkown action.');
 				$this->session->set_flashdata('message', $msg);			
 				redirect($_SERVER['HTTP_REFERER']);
 				break;
