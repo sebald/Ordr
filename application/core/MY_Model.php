@@ -110,7 +110,8 @@ class MY_Model extends CI_Model {
 		// count
 		$result['count'] = $this->db->count_all_results($this->table);
 		
-		$query->limit($limit, $offset);
+		if( $limit )
+			$query->limit($limit, $offset);
 		$result['data'] = $query->get();
        
        	$this->db->flush_cache();
