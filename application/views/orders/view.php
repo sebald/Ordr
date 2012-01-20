@@ -67,7 +67,7 @@
 				<a href="<?php echo base_url();?>orders/new" rel="tooltip" data-original-title="New" class="btn-flat single"><i class="shop"></i></a> 
 				
 				<div class="btn-group marking-needed">
-					<button rel="tooltip" data-original-title="Change Status" value="status" type="submit" name="action" class="btn-flat"><i class="pencil"></i></button>
+					<button rel="tooltip" data-original-title="Change Status" value="status" type="submit" name="action" class="btn-flat"><i class="clip"></i></button>
 					<button rel="tooltip" data-original-title="Delete" value="delete" type="submit" name="action" class="btn-flat"><i class="trash"></i></button>	  
 				</div>
 				
@@ -159,7 +159,7 @@
               <h3>Filter Options</h3>
             </div>
             <div class="modal-body">
-				TO DO
+				Comming soon
             </div>
             <div class="modal-footer">
               <a class="btn primary" href="#">Save changes</a>

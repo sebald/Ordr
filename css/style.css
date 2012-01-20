@@ -215,6 +215,22 @@ a.btn-flat {
 	background-position: -162px -18px;
 }
 
+.btn-flat i.clip {
+	background-position: -180px 0;
+}
+
+.btn-flat:hover i.clip {
+	background-position: -180px -18px;
+}
+
+.btn-flat i.disk {
+	background-position: -198px 0;
+}
+
+.btn-flat:hover i.disk {
+	background-position: -198px -18px;
+}
+
 .page-controls .btn-group, .page-controls .actions, .page-controls .btn-flat {
 	float: left;
 	display: block;
@@ -515,7 +531,7 @@ table .action.edit:hover {
     margin-bottom: 5px;
 }
 
-##access-denied {
+#access-denied {
 	margin-top: 150px;
 }
 
