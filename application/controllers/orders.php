@@ -27,7 +27,12 @@ class Orders extends MY_Controller {
 				$query = $this->input->post('display') ? $this->input->post('display').'&' : '';
 				$query .= 'search='.$this->input->post('search');
 				redirect('orders/view/'.$query.'/');				
-				break;								
+				break;
+			case 'export':
+				$this->session->set_flashdata('like', $this->input->post('like'));
+				$this->session->set_flashdata('search', $this->input->post('search'));
+				redirect('orders/export');				
+				break;												
 			default:
 				$msg = create_alert_message('warning', 'No can do!', 'Unkown action.');
 				$this->session->set_flashdata('message', $msg);			
@@ -227,6 +232,27 @@ class Orders extends MY_Controller {
 		
 		$data['main_content'] = 'orders/status_order';
         $this->load->view('layout/template', $data);		
+	}
+	
+	public function export() {
+		$query = FALSE;
+		if( $this->session->flashdata('search') && $this->session->flashdata('like') ){
+			$query = $this->session->flashdata('like').'&'.$this->session->flashdata('search');
+		} else {
+			$query = $this->session->flashdata('like').$this->session->flashdata('search');
+		}		
+
+		// get orders
+        $this->load->model('orders_model');
+        $result = $this->orders_model->query(FALSE, 0, 'date_created', 'desc', $query);
+		
+		$this->load->dbutil();
+		$delimiter = ";";
+		$data = str_replace('.', ',', $this->dbutil->csv_from_result($result['data'], $delimiter));
+		
+		header("Content-type: text/csv");
+		header("Content-disposition: attachment;filename=ordr_".date('Y-m-d_H:i:s').".csv");
+        echo "$data";
 	}
 	
 	public function change_view() {

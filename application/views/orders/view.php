@@ -6,6 +6,8 @@
 	$url_this_user 			= 'username='.$this->session->userdata('username');
 
 	$hidden['display']		= $query_string_display;
+	$hidden['like']		= $query_string_like;
+	$hidden['search']		= $query_string_search;
 
 	// delimiter
 	$next_display = isset($filter['display']) ? '&' : '';
@@ -78,6 +80,8 @@
 					<a href="<?php echo base_url();?>orders/" rel="tooltip" data-original-title="Reset Options" class="btn-flat"><i class="reset"></i></a>
 					<?php endif; ?>
 				</div>	
+				
+				<button rel="tooltip" data-original-title="Save current View" value="export" type="submit" name="action" class="btn-flat"><i class="download"></i></button>
 				
 			</div>		
 		</div>

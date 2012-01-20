@@ -223,11 +223,11 @@ a.btn-flat {
 	background-position: -180px -18px;
 }
 
-.btn-flat i.disk {
+.btn-flat i.download {
 	background-position: -198px 0;
 }
 
-.btn-flat:hover i.disk {
+.btn-flat:hover i.download {
 	background-position: -198px -18px;
 }
 
