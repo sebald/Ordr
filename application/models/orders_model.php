@@ -22,7 +22,8 @@ class Orders_model extends MY_Model {
 	protected $constraints 		= array(
 										'price_unit'			=>	array( 'currency' ),
 										'price_total'			=>	array( 'currency' )
-										);							
+										);
+	protected $select_always	= 'username';																	
 	
 	public function create() {
         $new_order = array(

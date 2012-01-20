@@ -22,6 +22,10 @@ class MY_Model extends CI_Model {
 	 * 	The premise is an array, which consits of a list of consquences.
 	 */
 	protected $constraints = FALSE;
+	/** Which fields should be always selected but aren't the primary key.
+	 * 	CI-like selection list.
+	 */
+	protected $select_always = FALSE;
 	
 	/**
 	 *	Extended query with search, filter and display options.
@@ -73,6 +77,9 @@ class MY_Model extends CI_Model {
 					}
 				}					
 			}
+			// add fields, which should be always selected
+			if ( $this->select_always )
+				$select .= ', '.$this->select_always;
 		} else {
 			// fallback (select all fields)
 			$select = implode(",", $this->fields);
