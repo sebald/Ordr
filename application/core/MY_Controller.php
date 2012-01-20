@@ -12,7 +12,7 @@ class MY_Controller extends CI_Controller {
           $this->session->set_userdata($data);
       }
       if ( !$this->session->hasPermission($this->session->userdata('role'), $this->router->class, $this->router->method) )
-        redirect( 'account/permission_denied' );
+        redirect( 'access_denied' );
     } 
     
 }

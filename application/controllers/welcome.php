@@ -8,6 +8,12 @@ class Welcome extends CI_Controller {
 		$data['controls'] = FALSE;
     	$this->load->view('layout/template', $data);
 	}
+	
+	public function access_denied() {
+		$data['controls'] = FALSE;
+      	$data['main_content'] = 'layout/access_denied';
+      	$this->load->view('layout/template', $data);    	
+	}
 }
 
 /* End of file welcome.php */

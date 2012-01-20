@@ -503,16 +503,24 @@ table .action.edit:hover {
 
 /*============================= ACCOUNT =============================*/
 
-#register-successful {
+#register-successful, #access-denied {
 	margin: 90px 0 50px;
 	text-align: center;	
 }
 
-#register-successful h1 {
+#register-successful h1, #access-denied h1 {
     font-family: 'Anton',sans-serif;
     font-size: 80px;
     line-height: 1;
     margin-bottom: 5px;
+}
+
+##access-denied {
+	margin-top: 150px;
+}
+
+#access-denied h1 {
+	color: #B94A48;
 }
 
 hgroup .info {

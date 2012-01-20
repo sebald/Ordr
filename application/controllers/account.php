@@ -69,12 +69,6 @@ class Account extends MY_Controller {
       }
       $this->load->view('layout/template', $data);
     }
-
-    public function permission_denied() {
-      $data['main_content'] = 'account/login_form';
-      $data['permission_denied'] = TRUE;
-      $this->load->view('layout/template', $data);    
-    }
     
     public function settings() {
       // load settings

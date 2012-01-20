@@ -78,7 +78,7 @@ $route['admin/consumables/delete/(:num)'] = 'admin/consumables_delete/$1';
 $route['orders/new'] = 'orders/new_order';
 $route['orders/autocomplete'] = 'orders/autocomplete_order';
 
-
+$route['access_denied'] = 'welcome/access_denied';
 
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
