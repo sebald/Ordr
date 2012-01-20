@@ -81,7 +81,7 @@
 					<?php endif; ?>
 				</div>	
 				
-				<button rel="tooltip" data-original-title="Save current View" value="export" type="submit" name="action" class="btn-flat"><i class="download"></i></button>
+				<button rel="tooltip" data-original-title="Download View" value="export" type="submit" name="action" class="btn-flat"><i class="download"></i></button>
 				
 			</div>		
 		</div>

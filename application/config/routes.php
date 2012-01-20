@@ -79,6 +79,7 @@ $route['orders/new'] = 'orders/new_order';
 $route['orders/autocomplete'] = 'orders/autocomplete_order';
 
 $route['access_denied'] = 'welcome/access_denied';
+$route['faq'] = 'welcome/faq';
 
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';

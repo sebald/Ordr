@@ -493,7 +493,7 @@ table .action.edit:hover {
 
 /*============================= WELCOME PAGE =============================*/
 
-.welcome.index .content {
+.welcome .content {
 	background: url(../img/bg.png) repeat-x scroll 0 0 #FCFCFC;
 }
 
