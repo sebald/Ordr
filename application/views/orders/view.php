@@ -129,7 +129,11 @@
 			      <?php endif; ?>
 			      <?php foreach($fields as $field_name => $field_display): ?>
 			      <td>
-			        <?php echo $item->$field_name; ?><? echo ($field_name == 'price_total') ? ' '.$item->currency : ''; ?>
+			      	<?php if($field_name == 'work_status') : ?>
+			      		<?php echo create_work_status_html($item->$field_name); ?>
+			      	<?php else : ?>
+			        	<?php echo $item->$field_name; ?><? echo ($field_name == 'price_total') ? ' '.$item->currency : ''; ?>
+			        <?php endif; ?>
 			      </td>
 			      <?php endforeach; ?>
 			      <td>

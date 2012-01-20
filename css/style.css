@@ -378,7 +378,8 @@ th {
 th.sortable {
 	cursor: pointer;
 	background-color: #E0F3FF;
-}
+	}
+
 th.sortable.headerSortDown, th.sortable.headerSortUp {
 	background-color: #C7E9FF;
 }
