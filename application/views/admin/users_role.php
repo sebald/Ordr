@@ -54,11 +54,11 @@
 						</div>
 						
 						<div class="btn-group quick-action left" data-action="role">
-			              <a data-value="user" href="#" class="btn large primary">Set all to User</a>
+			              <a data-value="User" href="#" class="btn large primary">Set all to User</a>
 			              <a href="#" data-toggle="dropdown" class="btn large primary dropdown-toggle"><span class="caret"></span></a>
 			              <ul class="dropdown-menu">
-			                <li><a data-value="inactive" href="#">Set all to Inactive</a></li>
-			                <li><a data-value="purchaser" href="#">Set all to Purchaser</a></li>
+			                <li><a data-value="Inactive" href="#">Set all to Inactive</a></li>
+			                <li><a data-value="Purchaser" href="#">Set all to Purchaser</a></li>
 			              </ul>
 			            </div>						
 						
