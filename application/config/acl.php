@@ -8,6 +8,10 @@ $config['acl'] = array (
                         'admin'   => TRUE,
                         'orders'  => TRUE
                     ),
+                'purchaser' => array (
+                        'account' => TRUE,
+                        'orders'  => TRUE
+                    ),                    
                  'user' => array (
                         'account' => TRUE,
                         'orders'  => TRUE
