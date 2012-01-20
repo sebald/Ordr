@@ -177,8 +177,6 @@ class Admin extends MY_Controller {
 		
 		// role change confirmed?
 		if( $this->input->post('submit-role') ) {
-			print_a($_POST);
-			print_a($this->session->flashdata('marked'));
 			foreach ($_POST['role'] as $user => $role) {
 				$data['role'] = $role;
 				$this->user_model->update($user, $data);

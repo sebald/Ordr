@@ -80,44 +80,51 @@ class Orders_model extends MY_Model {
 		return $this->db->get($this->table);		
 	}
 	
-	public function update() {
-        $data = array(
-          'username' 			=> $this->session->userdata('username'),
-          'vendor' 				=> $this->input->post('vendor'),
-          'catalog_number' 		=> $this->input->post('catalog_number'),
-          'CAS_description' 	=> $this->input->post('CAS_description'),
-          'category' 			=> $this->input->post('category'),			
-          'package_size' 		=> $this->input->post('package_size'),
-          'price_unit'			=> str_replace(',', '.', $this->input->post('price_unit')),
-          'quantity'			=> $this->input->post('quantity'),
-          'price_total'			=> str_replace(',', '.', $this->input->post('price_unit'))*$this->input->post('quantity'),
-          'currency'			=> $this->input->post('currency'),
-          'account'				=> $this->input->post('account'),
-          'comment'				=> $this->input->post('comment'),
-          'work_status'			=> $this->input->post('work_status'),
-          'date_modified'		=> date('Y-m-d H:i:s')
-        );
-		
-		// get latest status to check if something has changed
-		$latest_status = $this->get($this->input->post('id'), 'id', 'work_status')->row(0)->work_status;
-		
-		// set date_ordered/date_completed
-		if( $latest_status != $this->input->post('work_status') ) {
-			switch ($this->input->post('work_status')) {
-				case 'ordered':
-					$data['date_ordered'] = date('Y-m-d H:i:s');
-					break;
-				case 'completed':
-					$data['date_completed'] = date('Y-m-d H:i:s');
-					break;				
-				default:
-					// woops!!!
-					break;
-			}
+	public function update($id = FALSE, $data = FALSE) {
+		if( $id == FALSE )
+			$id = $this->input->post('id');
+		if( $data == FALSE ){
+	        $data = array(
+	          'username' 			=> $this->session->userdata('username'),
+	          'vendor' 				=> $this->input->post('vendor'),
+	          'catalog_number' 		=> $this->input->post('catalog_number'),
+	          'CAS_description' 	=> $this->input->post('CAS_description'),
+	          'category' 			=> $this->input->post('category'),			
+	          'package_size' 		=> $this->input->post('package_size'),
+	          'price_unit'			=> str_replace(',', '.', $this->input->post('price_unit')),
+	          'quantity'			=> $this->input->post('quantity'),
+	          'price_total'			=> str_replace(',', '.', $this->input->post('price_unit'))*$this->input->post('quantity'),
+	          'currency'			=> $this->input->post('currency'),
+	          'account'				=> $this->input->post('account'),
+	          'comment'				=> $this->input->post('comment'),
+	          'work_status'			=> $this->input->post('work_status'),
+	          'date_modified'		=> date('Y-m-d H:i:s')
+	        );			
 		}
-				
+		
+		// maybe a status update => set dates
+		if( isset($data['work_status'])) {
+			// get latest status to check if something has changed
+			$latest_status = $this->get($id, 'id', 'work_status')->row(0)->work_status;
+			
+			// set date_ordered/date_completed
+			if( $latest_status != $data['work_status'] ) {
+				switch ($data['work_status']) {
+					case 'ordered':
+						$data['date_ordered'] = date('Y-m-d H:i:s');
+						break;
+					case 'completed':
+						$data['date_completed'] = date('Y-m-d H:i:s');
+						break;				
+					default:
+						// woops!!!
+						break;
+				}
+			}			
+		}
+		
 		// update
-        $this->db->where('id', $this->input->post('id'));
+        $this->db->where('id', $id);
         return $this->db->update($this->table, $data);			
 	}
 	

@@ -21,6 +21,10 @@ class Orders extends MY_Controller {
 				$this->session->set_flashdata('id', $this->input->post('marked'));
 				redirect('orders/delete');				
 				break;
+			case 'status':
+				$this->session->set_flashdata('id', $this->input->post('marked'));
+				redirect('orders/status');				
+				break;				
 			default:
 				$msg = create_alert_message('warning', 'No can do!', 'Please select some records and try again.');
 				$this->session->set_flashdata('message', $msg);			
@@ -166,14 +170,14 @@ class Orders extends MY_Controller {
         $this->load->view('layout/template', $data);
 	}
 	
-	public function delete($id = FALSE){
+	public function delete($id = FALSE) {
 		if( $id == FALSE) {
 			$id = $this->session->flashdata('id');
 			$this->session->keep_flashdata('id');
 		} else {
 			$this->session->set_flashdata('id', $id);
 		}
-	print_a($_POST);
+
 		if( $this->input->post('submit-delete') == 'confirm') {
 			$this->load->model('orders_model');
 			if ( $this->orders_model->delete($id) ) {
@@ -195,6 +199,31 @@ class Orders extends MY_Controller {
 		
 		$data['main_content'] = 'orders/delete_order';
 		$this->load->view('layout/template', $data);		
+	}
+	
+	public function status() {		
+		$this->load->model('orders_model');
+		
+		if( $this->input->post('submit-status') == 'confirm' ) {
+			foreach ($this->input->post('work_status') as $id => $work_status) {
+				$data['work_status'] = $work_status;
+				$this->orders_model->update($id, $data);
+			}
+			$msg = create_alert_message('success', 'Status update successfull!', count($this->input->post('work_status')).' statuses updated.');
+			$this->session->set_flashdata('message', $msg);
+			redirect('orders/view');
+		}
+		
+		$data['orders'] = $this->orders_model->get($this->session->flashdata('id'))->result();
+		$data['fields'] = array(
+                    'id'    	  		=> '#',
+                    'CAS_description'  	=> 'CAS / Description',
+                    'work_status'   	=> 'Status',
+                    'username'       	=> 'Placed by'
+        );
+		
+		$data['main_content'] = 'orders/status_order';
+        $this->load->view('layout/template', $data);		
 	}
 	
 	public function change_view() {

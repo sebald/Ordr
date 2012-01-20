@@ -65,7 +65,7 @@
 				<a href="<?php echo base_url();?>orders/new" rel="tooltip" data-original-title="New" class="btn-flat single"><i class="shop"></i></a> 
 				
 				<div class="btn-group marking-needed">
-					<button rel="tooltip" data-original-title="Edit" value="edit" type="submit" name="action" class="btn-flat"><i class="pencil"></i></button>
+					<button rel="tooltip" data-original-title="Change Status" value="status" type="submit" name="action" class="btn-flat"><i class="pencil"></i></button>
 					<button rel="tooltip" data-original-title="Delete" value="delete" type="submit" name="action" class="btn-flat"><i class="trash"></i></button>	  
 				</div>
 				
