@@ -97,9 +97,11 @@
 		<table>
 			
 			  <thead>
+			  	<?php if( in_array($this->session->userdata('role'), $allowed_to_change_status) ) : ?>
 			  	<th class="center">
 			  		<?php echo form_checkbox('mark_all', 'all'); ?>
 			  	</th>
+			  	<?php endif; ?>
 			    <?php foreach( $fields as $field_name => $field_display): ?>
 			    <th class="sortable blue header<?php if ($by == $field_name) echo ($order == 'asc') ? ' headerSortUp' : ' headerSortDown'; ?>">
 			      <?php echo anchor("orders/view/$query/$field_name/" .
@@ -113,9 +115,11 @@
 			  <tbody>
 			    <?php foreach($data as $item): ?>
 			    <tr>
+			      <?php if( in_array($this->session->userdata('role'), $allowed_to_change_status) ) : ?>
 			      <td class="center">
 			      	<?php echo form_checkbox('marked[]', $item->id); ?>
 			      </td>
+			      <?php endif; ?>
 			      <?php foreach($fields as $field_name => $field_display): ?>
 			      <td>
 			        <?php echo $item->$field_name; ?><? echo ($field_name == 'price_total') ? ' '.$item->currency : ''; ?>
@@ -123,7 +127,9 @@
 			      <?php endforeach; ?>
 			      <td>
 			      	<?php echo anchor('orders/edit/'.$item->id, 'edit', 'class="action edit" title="Edit Order"'); ?>
+			      	<?php if( in_array($this->session->userdata('role'), $allowed_to_change_status) || $this->session->userdata('username') == @$item->username) : ?>
 			      	<?php echo anchor('orders/delete/'.$item->id, 'delete', 'class="action delete" title="Delete Order"'); ?>
+			      	<?php endif; ?>
 			      </td>
 			    </tr>
 			    <?php endforeach; ?>			
