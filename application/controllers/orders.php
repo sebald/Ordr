@@ -2,6 +2,8 @@
 
 class Orders extends MY_Controller {
 
+	private $allowed_to_change_status = array ('purchaser', 'admin');
+
     public function index() {   
       	redirect('orders/view');		
     }    
@@ -65,6 +67,8 @@ class Orders extends MY_Controller {
 		$data['by'] 	= $result['by'];
 		$data['query'] 	= $query;
 
+		$data['allowed_to_change_status'] = $this->allowed_to_change_status;
+
 		// set field name for the view (these fields will be displayed)
 		if( isset($result['filter']['display']) ) {
 			$data['fields'] = $this->orders_model->get_field_names($result['filter']['display']);
@@ -122,7 +126,7 @@ class Orders extends MY_Controller {
 		$this->form_validation->set_rules('comment', 'Comment', 'trim|max_length[140]');		
 		
 		// set who can change the work status
-		$data['allowed_to_change_status'] = array ('purchaser', 'admin');
+		$data['allowed_to_change_status'] = $this->allowed_to_change_status;
 
 	    if( $this->form_validation->run() == FALSE ) {
 	        $data['main_content'] = 'orders/edit_order';
