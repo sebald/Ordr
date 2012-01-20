@@ -85,7 +85,6 @@ class Orders_model extends MY_Model {
 			$id = $this->input->post('id');
 		if( $data == FALSE ){
 	        $data = array(
-	          'username' 			=> $this->session->userdata('username'),
 	          'vendor' 				=> $this->input->post('vendor'),
 	          'catalog_number' 		=> $this->input->post('catalog_number'),
 	          'CAS_description' 	=> $this->input->post('CAS_description'),
