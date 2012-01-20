@@ -40,7 +40,7 @@ class Orders_model extends MY_Model {
           'account'				=> $this->input->post('account'),
           'comment'				=> $this->input->post('comment')
         );
-        return $this->db->insert('orders', $new_order);	
+        return $this->db->insert($this->table, $new_order);	
 	}	
 
 	/**
@@ -77,7 +77,7 @@ class Orders_model extends MY_Model {
 		} else {
 			$this->db->where($by, $orders);
 		}
-		return $this->db->get('orders');		
+		return $this->db->get($this->table);		
 	}
 	
 	public function update() {
@@ -118,7 +118,17 @@ class Orders_model extends MY_Model {
 				
 		// update
         $this->db->where('id', $this->input->post('id'));
-        return $this->db->update('orders', $data);			
+        return $this->db->update($this->table, $data);			
+	}
+	
+	public function delete($ids) {
+		// delete multiple orders?
+		if( is_array($ids) ) {
+			$this->db->where_in('id', $ids);
+		} else {
+			$this->db->where('id', $ids);
+		}
+		return $this->db->delete($this->table);
 	}
 		
 }

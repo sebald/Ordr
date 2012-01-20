@@ -42,9 +42,7 @@ class Admin extends MY_Controller {
 	 * 	The redirect is needed because there is only one form action, but there are more than
 	 * 	one actions for table data.
 	 */
-	public function users_actions(){
-		print_a($_POST);
-		
+	public function users_actions(){		
 		// request search
 		if ( $this->input->post('action') == 'search' ) {
 			$this->session->set_flashdata('search', $this->input->post('search'));

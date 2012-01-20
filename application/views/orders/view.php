@@ -49,6 +49,7 @@
 	</aside>
 	
 	<div class="fluid-content">
+	<?php echo form_open('orders/actions'); ?>
 		
 		<div class="page-controls">
 
@@ -146,7 +147,8 @@
 		<?php endif; ?>
 
 		<?php endif; ?>
-		
+	
+	<?php echo form_close(); ?>	
 	</div>
 </div>
 <div id="modal-filter" class="modal hide fade">

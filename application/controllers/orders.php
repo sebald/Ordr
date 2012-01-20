@@ -6,7 +6,28 @@ class Orders extends MY_Controller {
 
     public function index() {   
       	redirect('orders/view');		
-    }    
+    }  
+	  
+	/**
+	 * 	Redirecting to the requested action.
+	 * 	The redirect is needed because there is only one form action, but there are more than
+	 * 	one actions for table data.
+	 */
+	public function actions() {
+		print_a($_POST);
+		
+		switch ($this->input->post('action')) {
+			case 'delete':
+				$this->session->set_flashdata('id', $this->input->post('marked'));
+				redirect('orders/delete');				
+				break;
+			default:
+				$msg = create_alert_message('warning', 'No can do!', 'Please select some records and try again.');
+				$this->session->set_flashdata('message', $msg);			
+				redirect($_SERVER['HTTP_REFERER']);
+				break;
+		}
+	}
 
 	public function new_order() {
 		// field name, error message, validation rules
@@ -143,6 +164,37 @@ class Orders extends MY_Controller {
 	        }
 	    }
         $this->load->view('layout/template', $data);
+	}
+	
+	public function delete($id = FALSE){
+		if( $id == FALSE) {
+			$id = $this->session->flashdata('id');
+			$this->session->keep_flashdata('id');
+		} else {
+			$this->session->set_flashdata('id', $id);
+		}
+	print_a($_POST);
+		if( $this->input->post('submit-delete') == 'confirm') {
+			$this->load->model('orders_model');
+			if ( $this->orders_model->delete($id) ) {
+				$msg = create_alert_message('success', 'Order deleted successfull!', 'The consumable <em>#'.$id.'</em> has been deleted.');
+				$this->session->set_flashdata('message', $msg);			
+			} else {
+				$msg = create_alert_message('error', 'Something went wrong!', 'The Order <em>#'.$id.'</em> could not be deleted.');
+				$this->session->set_flashdata('message', $msg);
+			}
+			redirect('orders/view');
+		}
+
+		$this->load->model('orders_model');
+		$query = $this->orders_model->get($id, 'id', 'id, date_created, CAS_description, work_status, username');
+
+		$this->load->library('table');
+		$this->table->set_heading(array('#', 'Date Created', 'CAS / Description', 'Status', 'Placed by'));
+        $data['table'] = $this->table->generate($query);
+		
+		$data['main_content'] = 'orders/delete_order';
+		$this->load->view('layout/template', $data);		
 	}
 	
 	public function change_view() {
