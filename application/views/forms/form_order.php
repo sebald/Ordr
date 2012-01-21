@@ -49,19 +49,19 @@
     <fieldset class="control-group information">
       <label for="date_created" class="control-label">Last modified on</label>
       <div class="controls">
-        <p><?php echo (strtotime($order->date_modified)) ? $order->date_modified : 'never'; ?></p>
+        <p><?php echo ($order->date_modified == '0000-00-00 00:00:00') ? $order->date_modified : 'never'; ?></p>
       </div>
     </fieldset>
     <fieldset class="control-group information">
       <label for="date_created" class="control-label">Ordered on</label>
       <div class="controls">
-        <p><?php echo (strtotime($order->date_ordered)) ? $order->date_ordered : 'not yet'; ?></p>
+        <p><?php echo ($order->date_ordered == '0000-00-00 00:00:00') ? $order->date_ordered : 'not yet'; ?></p>
       </div>
     </fieldset>
     <fieldset class="control-group information">
       <label for="date_created" class="control-label">Completed on</label>
       <div class="controls">
-        <p><?php echo (strtotime($order->date_completed)) ? $order->date_completed : 'not yet'; ?></p>
+        <p><?php echo ($order->date_completed == '0000-00-00 00:00:00') ? $order->date_completed : 'not yet'; ?></p>
       </div>
     </fieldset> 
 	<?php endif; ?>
