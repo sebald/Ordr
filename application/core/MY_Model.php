@@ -43,7 +43,7 @@ class MY_Model extends CI_Model {
 	 * 						[order]		- asc or desc
 	 * 						[by]		- field name by which the data is ordered 
 	 */
-    protected function query($limit, $offset, $by, $order, $query = FALSE) {
+    public function query($limit, $offset, $by, $order, $query = FALSE) {
         // error correction + add to result
         $order = ($order == 'desc') ? 'desc' : 'asc';
 		$result['order'] = $order;

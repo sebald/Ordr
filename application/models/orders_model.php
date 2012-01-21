@@ -42,25 +42,6 @@ class Orders_model extends MY_Model {
         );
         return $this->db->insert($this->table, $new_order);	
 	}	
-
-	/**
-	 *	Order search, filter and display options. 
-	 *
-	 * 	@param 		filter	Has to be an array. The array fields are:
-	 * 						(1) display	- which data base fields are selected
-	 * 						(2) search	- match against search in SQL
-	 * 						(3) like	- which data base fields has to be like XY
-	 * 
-	 *  @return 	result	Array with three fields:
-	 * 						[data]		- query data result (with limit + offset)
-	 * 						[count]		- query data count
-	 * 						[filter]	- parsed filters (see parse_query function)
-	 * 						[order]		- asc or desc
-	 * 						[by]		- field name by which the data is ordered 
-	 */
-    public function query($limit, $offset, $by, $order, $query = FALSE) {
-  		return parent::query($limit, $offset, $by, $order, $query);
-    }
 	
 	public function get($orders, $by = 'id', $select = FALSE) {
 		// error correction
