@@ -283,29 +283,25 @@ class Orders extends MY_Controller {
 		// get email adress
 		$this->load->model('user_model');
 		$to = $this->user_model->get($username, 'username', 'email')->row(0)->email;
-		
-		// from
-		$url = str_replace('http://', '', base_url());
-		$url = str_replace('www.', '', $url);
+
+		$to = 'sebastian.sebald@gmail.com';
+		$subject = '[DistractedBySquirrels] ';
+		$from = str_replace('http://', '', base_url());
+		$from = str_replace('www.', '', $from);
 
 		// msg
-		switch ($status) {
-			case 'ordered':
-				$msg = 'Your order of '.$CAS_description.' has been orderd.\n';
-				break;
-			default:
-				$msg = 'Your order of '.$CAS_description.' has arrived.\n';
-				break;
-		}
-		$msg .=  'You can check if out here: '.$visit.'\n\n Cheers,\n your favorite OMS';
+		$data['item'] = $CAS_description;
+		$data['status'] = $status;
+		$data['link'] = $visit;		
+		$msg = $this->load->view('email/notification', $data, true);
 
-		$this->load->library('email');
-		$this->email->from('noreply@'.$url, '[ordr] Notification');
-		$this->email->to($to);
-		$this->email->subject('Notification about your order of '.$CAS_description);
-		$this->email->message($msg);
-		
-		$this->email->send();
+		//headers
+		$headers  = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		$headers .= 'To: '.$username.' <'.$to.'>' . "\r\n";
+		$headers .= 'From: ordr <noreply'.$from.'>' . "\r\n";
+  		
+		// send
+  		mail($to, $subject, $message, $headers);		
 	}
-
 }
