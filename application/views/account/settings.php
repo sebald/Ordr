@@ -3,16 +3,8 @@
 		<h1>Account Settings</h1>
 	</div>
 	
-  <?php if ( isset($error) ) : ?>
-  <div class="alert-message block-message error">
-    <p><strong>Oh snap! There was an problem with displaying your settings.</strong> Please try again.</p>
-  </div>
-  <?php endif; ?>
-  <?php if ( isset($settings_updated) ) : ?>
-  <div class="alert-message block-message success">
-    <p><strong>Updated completed.</strong> Your account information has been updated successfully.</p>
-  </div>
-  <?php endif; ?>
+	<?php echo $this->session->flashdata('message'); ?>
+
   <?php
       $attr_form = array(
               'class'       => 'settings form-horizontal'

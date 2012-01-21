@@ -89,11 +89,15 @@ class Account extends MY_Controller {
           // form error
       } elseif ( !$this->user_model->validate($this->session->userdata('username'),$this->input->post('confirmation') ) ) {
           // confirmation error
-          $data['confirmation_error'] = TRUE;
+          $msg = create_alert_message('error', 'Oh snap! There was an problem with displaying your settings.', 'Please try again.');
+		  $this->session->set_flashdata('message', $msg);
+		  redirect('account/settings');
       } else {      
           // update settings
           $this->user_model->update();
-          $data['settings_updated'] = TRUE;
+          $msg = create_alert_message('success', 'Update successfully!!', 'Your account information has been updated successfully.');
+		  $this->session->set_flashdata('message', $msg);
+		  redirect('account/settings');
       }
       $data['main_content'] = 'account/settings'; 
       $this->load->view('layout/template', $data);
