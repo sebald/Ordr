@@ -5,7 +5,7 @@ class Orders_model extends MY_Model {
 	protected $table 			= 'orders';
 	
 	protected $fields 			= array('id', 'username', 'vendor', 'catalog_number', 'CAS_description', 'category', 
-										'package_size', 'price_unit', 'quantity', 'price_total', 'currency', 'comment', 'work_status', 'date_created',
+										'package_size', 'price_unit', 'quantity', 'price_total', 'currency', 'account', 'comment', 'work_status', 'date_created',
 										'date_modified', 'date_ordered', 'date_completed'
 										);
 	protected $field_names		= array(
