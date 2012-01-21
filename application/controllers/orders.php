@@ -285,8 +285,7 @@ class Orders extends MY_Controller {
 		$this->load->model('user_model');
 		$to = $this->user_model->get($username, 'username', 'email')->row(0)->email;
 
-		$to = 'sebastian.sebald@gmail.com';
-		$subject = '[DistractedBySquirrels] ';
+		$subject = '[ordr] Notification for '.$CAS_description;
 		$from = str_replace('http://', '', base_url());
 		$from = str_replace('www.', '', $from);
 
@@ -303,6 +302,6 @@ class Orders extends MY_Controller {
 		$headers .= 'From: ordr <noreply'.$from.'>' . "\r\n";
   		
 		// send
-  		mail($to, $subject, $message, $headers);		
+  		mail($to, $subject, $msg, $headers);		
 	}
 }
