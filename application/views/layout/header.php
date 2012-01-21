@@ -11,6 +11,8 @@
   	?>
   	<title>Ordr | <? echo $title ?></title>
 	
+	<link href="<?php echo base_url(); ?>img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+	
 	<link href='http://fonts.googleapis.com/css?family=Anton&subset=latin,latin-ext' rel='stylesheet' type='text/css'>	
   
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css" type="text/css" media="screen">
