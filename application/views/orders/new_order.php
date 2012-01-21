@@ -1,5 +1,3 @@
-<?php $this->load->helper('taxonomies'); ?>
-
 <div class="fluid-container">
 	<div class="fluid-content">
 		<div class="page-controls">

@@ -1,4 +1,3 @@
-<?php $this->load->helper('taxonomies'); ?>
 <?php $mode = empty($mode) ? 'edit' : $mode; ?>
 
 <?php echo form_open($action, 'class="form-horizontal" autocomplete="off"'); ?>

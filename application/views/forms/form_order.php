@@ -1,4 +1,3 @@
-<?php $this->load->helper('taxonomies'); ?>
 <?php $mode = empty($mode) ? 'new' : $mode; ?>
 
 <?php

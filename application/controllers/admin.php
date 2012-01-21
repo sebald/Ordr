@@ -161,7 +161,6 @@ class Admin extends MY_Controller {
 			redirect('admin/users/edit/'.$username);
 	    }
 		
-		$this->load->helper('taxonomies');
 		$data['user_categories'] = get_user_categories();
 		
 		$data['main_content'] = 'admin/users_edit';
@@ -196,7 +195,6 @@ class Admin extends MY_Controller {
                     'role'        => 'Role'
         );
 		
-		$this->load->helper('taxonomies');
 		$data['user_categories'] = get_user_categories();
 		
 		$data['main_content'] = 'admin/users_role';
@@ -325,7 +323,6 @@ class Admin extends MY_Controller {
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links(); 		
 		
-		$this->load->helper('taxonomies');
 		$data['consumable_categories'] = get_consumable_categories();
 		
 		$data['main_content'] = 'admin/consumables_view';
@@ -344,7 +341,6 @@ class Admin extends MY_Controller {
 		$this->form_validation->set_rules('comment', 'Comment', 'trim|max_length[140]');
 
 		// load some additionals stuff
-		$this->load->helper('taxonomies');
 		$data['currencies'] = convert_for_typeahead(get_currencies());
 		$data['consumable_categories'] = get_consumable_categories();
 
