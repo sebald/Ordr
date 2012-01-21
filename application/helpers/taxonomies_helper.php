@@ -24,6 +24,12 @@ if (!function_exists('get_work_statuses')) {
 	}
 }
 
+if (!function_exists('get_timezone')) {
+	function get_timezone() {
+		return date_default_timezone_set('Europe/Berlin');;	
+	}
+}
+
 if (!function_exists('convert_for_typeahead')) {
 	function convert_for_typeahead($array) {
 		if ( !is_array($array) )

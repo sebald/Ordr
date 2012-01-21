@@ -21,6 +21,7 @@ class Consumables_model extends CI_Model {
     }
 	
 	public function update() {
+		get_timezone();
         $data = array(
           'vendor' 				=> $this->input->post('vendor'),
           'catalog_number' 		=> $this->input->post('catalog_number'),

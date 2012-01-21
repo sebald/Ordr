@@ -255,6 +255,7 @@ class Orders extends MY_Controller {
 		$delimiter = ";";
 		$data = str_replace('.', ',', $this->dbutil->csv_from_result($result['data'], $delimiter));
 		
+		get_timezone();
 		header("Content-type: text/csv");
 		header("Content-disposition: attachment;filename=ordr_".date('Y-m-d_H:i:s').".csv");
         echo "$data";

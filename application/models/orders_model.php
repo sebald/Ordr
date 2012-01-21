@@ -81,6 +81,7 @@ class Orders_model extends MY_Model {
 	}
 	
 	public function update($id = FALSE, $data = FALSE) {
+		get_timezone();
 		if( $id == FALSE )
 			$id = $this->input->post('id');
 		if( $data == FALSE ){
