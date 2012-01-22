@@ -546,6 +546,14 @@ hgroup .info {
 	line-height: 24px;
 }
 
+.account.login_failed h1 {
+	border-bottom: 1px solid #EEEEEE;
+	font-family: 'Anton',sans-serif;
+	font-size: 50px;
+	line-height: 50px;
+	margin: 80px 0 20px;
+	padding-bottom: 5px;
+}
 
 /*============================== ADMIN AREA ==============================*/
 

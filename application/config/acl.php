@@ -21,6 +21,7 @@ $config['acl'] = array (
                             'index'             => TRUE,
                             'register'          => TRUE,
                             'login'             => TRUE,
+                            'login_failed'		=> TRUE,
                             'logout'            => TRUE,
                             'permission_denied' => TRUE
                         )

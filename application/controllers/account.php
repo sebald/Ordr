@@ -1,7 +1,19 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
 
+/**
+ * Account Controller.
+ *
+ * @package		Ordr
+ * @subpackage	MY_Controller
+ * @author		Sebastian Sebald (http://www.distractedbysquirrels.com)
+ */
 class Account extends MY_Controller {
 
+	/**
+	 *	There is no direct link in the system to the index, but if someone
+	 * 	requests the url, (s)he will be redirected accordinly. Meaning 
+	 * 	registration if not logged in, account settings otherwise.
+	 */
     public function index() {
       if ( $this->session->userdata('logged_in') ) {
         redirect('account/settings');
@@ -10,33 +22,40 @@ class Account extends MY_Controller {
       }
     }
 
-    public function login() {
+	/**
+	 * 	Method to log a user into the system. If credentials are correct the
+	 * 	session data will be set and (s)he will be redirected to the 'main'
+	 * 	page. In this case the order overview. If the credentials aren't
+	 * 	correct (s)he will be redirected to a view, where (s)he can try to
+	 * 	log in again.
+	 * 	
+	 * 	There is no view associated with this method. This is only used as
+	 * 	actions by forms.
+	 */
+    public function login() {		
       $this->load->model('user_model');
-      $query = $this->user_model->validate();      
-      if($query) {
+	  $query = $this->user_model->validate();   
+      if( $query ) {
         $data = array(
           'username'  => $this->input->post('username'),
           'logged_in' => TRUE,
           'role'      => strtolower($query)
         );
         $this->session->set_userdata($data);
-        // is there a redirect to handle?
-        if( !isset($_POST['redirect']) ) {
-          redirect('orders/');
-          return;
-        }
-        // check to make sure we aren't redirecting to the login page
-        if( $_POST['redirect'] === current_url() ) {
-          redirect('orders/');
-          return;
-        }
-        redirect($_POST['redirect']);
-      } else {
-        $data['main_content'] = 'account/login_form';
-        $data['error'] = TRUE;
-        $this->load->view('layout/template', $data);
+        redirect('orders/view');
+      } else {        
+		$msg = create_alert_message('error', 'Oh snap! You entered the wrong unsername and/or password.', 'Please try it again. If you still can not log in make sure that your account is activated and you haven\'t enabled caps lock on your keyboard. ');
+		$this->session->set_flashdata('message', $msg);
+		$this->session->set_flashdata('username', $this->input->post('username'));
+        redirect('account/login_failed');
       }
     }    
+ 
+ 	public function login_failed() {
+ 		$data['controls'] = FALSE;
+ 		$data['main_content'] = 'account/login_failed';
+ 		$this->load->view('layout/template', $data);
+ 	}
  
     public function logout() {
       $this->session->sess_destroy();
