@@ -67,7 +67,8 @@ class Consumables_model extends CI_Model {
 		// count
 		$result['count'] = $this->db->count_all_results('c_consumables');
 		
-		$query->limit($limit, $offset);
+		if( $limit )
+			$query->limit($limit, $offset);
 		$result['consumables'] = $query->get();
        
        	$this->db->flush_cache();
