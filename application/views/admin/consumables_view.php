@@ -47,7 +47,7 @@
 		
 		<?php echo $this->session->flashdata('message'); ?>
 		
-		<table>
+		<table class="table">
 			
 			  <thead>
 			    <?php foreach( $fields as $field_name => $field_display): ?>

@@ -101,7 +101,7 @@
 				</div>
 			</div>
 		<?php else: ?>
-		<table>
+		<table class="table">
 			
 			  <thead>
 			  	<?php if( in_array($this->session->userdata('role'), $allowed_to_change_status) ) : ?>

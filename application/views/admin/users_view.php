@@ -64,7 +64,7 @@
 		
 		<?php echo $this->session->flashdata('message'); ?>
 		
-		<table>
+		<table class="table">
 			
 			  <thead>
 			  	<th class="center">

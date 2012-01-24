@@ -286,6 +286,7 @@ a.btn-flat {
 	background-image: url(../img/sprite.png);
 	background-position: 0px -68px;
 	background-color: #F5F5F5;
+	border: none;
 	height: 18px;
 	width: 18px;
 	display: inline-block;
