@@ -17,7 +17,7 @@
 					</ol>
 		      	</div>			
 
-				<div class="well">
+				<div class="bordered">
 					<?php echo form_open('orders/autocomplete', 'class="form-inline right" autocomplete="off"', (isset($filter['display'])) ? array( 'display' => $query_display ) : ''); ?>
 							<input type="search" data-provide="typeahead" data-data='<?php echo convert_for_typeahead($common_consumables); ?>' placeholder="Search Consumables" size="50" name="search">
 							<button class="btn" type="submit" name="search_consumable">Create Order</button>
