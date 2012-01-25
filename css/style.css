@@ -178,10 +178,10 @@ a.btn-flat {
 	background-position: -90px -18px;
 }
 
-.btn-flat i.shop {
+.btn-flat i.add {
 	background-position: -108px 0px;
 }
-.btn-flat:hover i.shop {
+.btn-flat:hover i.add {
 	background-position: -108px -18px;
 }
 

@@ -41,7 +41,7 @@
 
 		<div class="page-controls">		
 			<div class="actions">
-				<a href="<?php echo base_url();?>admin/consumables/new/" rel="tooltip" data-original-title="New" class="btn-flat single"><i class="shop"></i></a> 
+				<a href="<?php echo base_url();?>admin/consumables/new/" rel="tooltip" data-original-title="New" class="btn-flat single"><i class="add"></i></a> 
 			</div>
 		</div>	
 		
