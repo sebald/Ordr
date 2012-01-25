@@ -41,6 +41,26 @@ class Orders extends MY_Controller {
 		}
 	}
 
+	public function new_order_splash(){
+		// get common consumables
+		$this->load->model('consumables_model');
+		foreach (get_consumable_categories() as $category) {
+			$filter['category'] = $category;
+			$consumables = $this->consumables_model->search(FALSE, 0, 'CAS_description', 'asc', $filter);
+			$data['categories'][$category] = $consumables['consumables']->result();
+		}
+		
+		// data for autocomplete of common consumables
+		$result = $this->consumables_model->get_all('CAS_description')->result();
+		$data['common_consumables'] = array();
+		foreach ($result as $row) {
+			array_push($data['common_consumables'], $row->CAS_description);
+		}
+		
+		$data['main_content'] = 'orders/new_order_splash';
+		$this->load->view('layout/template', $data);
+	}
+
 	public function new_order() {
 		// field name, error message, validation rules
 	    $this->load->library('form_validation');
@@ -268,9 +288,16 @@ class Orders extends MY_Controller {
 		redirect('orders/view/'.$display.$like.$search);
 	}
 	
-	public function autocomplete_order() {
+	public function autocomplete_order($item = FALSE, $by = 'CAS_description') {
+		if( $item == FALSE )
+			$item = $this->input->post('search');
 		$this->load->model('consumables_model');
-		$result = $this->consumables_model->get($this->input->post('search'), $by = 'CAS_description')->row(0);
+		$result = $this->consumables_model->get($item, $by)->row(0);
+		
+		if( $reulst == FALSE ) {
+			$msg = create_alert_message('error', 'Something went wrong!', 'There is no consumable in the database that maches your search.');
+			$this->session->set_flashdata('message', $msg);			
+		}
 		
 		$this->session->set_flashdata('consumable', $result);
 		redirect('orders/new');

@@ -630,3 +630,65 @@ hgroup .info {
 	padding: 5px 0;
 	color: #AAAAAA;
 }
+
+/*=========================== ORDER SPLASH ===========================*/
+
+.accordion {
+	margin-top: 5px;
+}
+
+.accordion li {
+    background-color: #EAEAEA;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px 0;
+    padding: 12px 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-transition: background-color 0.1s ease 0s;
+	-moz-transition: background-color 0.1s ease 0s;
+	-o-transition: background-color 0.1s ease 0s;
+	transition: background-color 0.1s ease 0s;				
+}
+
+.accordion li:hover {
+	background-color: #DDDDDD;
+}
+
+
+.accordion li span {
+	font-size: 13px;
+	color: #A0A0A0;
+}
+
+.accordion-heading {
+	background-color: #333333;
+	padding: 0;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;	
+	-webkit-transition: background-color 0.1s ease 0s;
+	-moz-transition: background-color 0.1s ease 0s;
+	-o-transition: background-color 0.1s ease 0s;
+	transition: background-color 0.1s ease 0s;	
+}
+
+.accordion-heading a {
+	color: #EEEEEE;
+	display: block;
+	font-size: 18px;
+	font-weight: bold;
+    line-height: 27px;	
+	padding: 8px 15px;
+	text-decoration: none;
+	outline: none;
+	-webkit-transition: color 0.1s ease 0s;
+	-moz-transition: color 0.1s ease 0s;
+	-o-transition: color 0.1s ease 0s;
+	transition: color 0.1s ease 0s;		
+}
+
+.accordion-heading a:hover {
+	color: #049CDB;
+}

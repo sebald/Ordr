@@ -13,6 +13,7 @@
 	<script src="<?php echo base_url();?>js/bootstrap-alert.js"></script>
 	<script src="<?php echo base_url();?>js/bootstrap-tooltip.js"></script>
 	<script src="<?php echo base_url();?>js/bootstrap-typeahead.js"></script>
+	<script src="<?php echo base_url();?>js/bootstrap-collapse.js"></script>
 	<script src="<?php echo base_url();?>js/functions.js"></script>
 </body>
 </html>
