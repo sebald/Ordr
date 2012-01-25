@@ -73,6 +73,15 @@ class User_model extends CI_Model {
 	          $data['password'] = $hashedPassword;
 	        }			
 		}
+		
+		if( isset($data['role']) ) {
+			$user_data = $this->get($username, 'username', 'email, role')->row(0);
+			
+			if( $user_data->role == 'new' &&  $data['role'] != 'new' &&  strtolower($data['role']) != 'inactive' ){
+				$this->notification($username, $user_data->email);
+			}
+		}
+		
 		// update
         $this->db->where('username', $username);
         $this->db->update('users', $data); 
@@ -164,5 +173,24 @@ class User_model extends CI_Model {
 			$this->db->where($by, $users);
 		}
 		return $this->db->delete('users');		
+	}
+	
+	private function notification($username, $to) {		
+		$subject = '[ordr] Yout account has been activated!';
+		$from = str_replace('http://', '', base_url());
+		$from = str_replace('www.', '', $from);
+
+		// msg	
+		$msg = "You account has been activated.\r\n\r\n";
+		$msg .= "Log in here: ".base_url();
+
+		//headers
+		$headers  = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		$headers .= 'To: '.$username.' <'.$to.'>' . "\r\n";
+		$headers .= 'From: ordr <noreply'.$from.'>' . "\r\n";
+  		
+		// send
+  		mail($to, $subject, $msg, $headers);		
 	}
 }
