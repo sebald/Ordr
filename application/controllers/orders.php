@@ -294,7 +294,7 @@ class Orders extends MY_Controller {
 		$this->load->model('consumables_model');
 		$result = $this->consumables_model->get($item, $by)->row(0);
 		
-		if( $reulst == FALSE ) {
+		if( $result == FALSE ) {
 			$msg = create_alert_message('error', 'Something went wrong!', 'There is no consumable in the database that maches your search.');
 			$this->session->set_flashdata('message', $msg);			
 		}
