@@ -1,7 +1,6 @@
 <?php  ?>
 
-<div class="fluid-container">
-	<div class="fluid-content">
+<div class="container-fluid">
 		
 		<div class="page-controls">
 			<h1>Change Status of Order(s)</h1>
@@ -15,7 +14,7 @@
 				</div>
 				
 				<?php echo form_open('orders/status'); ?>
-					<table>
+					<table class="table">
 						
 					  <thead>
 					    <?php foreach( $fields as $field_name => $field_display): ?>
@@ -50,13 +49,13 @@
 					
 					<fieldset class="form-actions">
 						<div class="right">
-				    		<button name="submit-status" type="submit" value="confirm" class="btn large danger">Submit Change</button>
-				    		<a href="<?php echo @$_SERVER['HTTP_REFERER']; ?>" type="reset" class="btn large">Cancel</a>							
+				    		<button name="submit-status" type="submit" value="confirm" class="btn btn-large btn-danger">Submit Change</button>
+				    		<a href="<?php echo @$_SERVER['HTTP_REFERER']; ?>" type="reset" class="btn btn-large">Cancel</a>							
 						</div>
 						
 						<div class="btn-group quick-action left" data-action="work_status">
-			              <a data-value="ordered" href="#" class="btn large primary">Set all as ordered</a>
-			              <a href="#" data-toggle="dropdown" class="btn large primary dropdown-toggle"><span class="caret"></span></a>
+			              <a data-value="ordered" href="#" class="btn btn-large btn-primary">Set all as ordered</a>
+			              <a href="#" data-toggle="dropdown" class="btn btn-large btn-primary dropdown-toggle"><span class="caret"></span></a>
 			              <ul class="dropdown-menu">
 			                <li><a data-value="completed" href="#">Set all as completed</a></li>
 			              </ul>
@@ -68,5 +67,4 @@
 			</div>
 		</div>		
 
-	</div>
 </div>

@@ -1,4 +1,4 @@
-<div class="fluid-container">
+<div class="container-fluid">
 	<div class="page-controls">
 		<h1>Account Settings</h1>
 	</div>
@@ -104,8 +104,8 @@
   <div class="row">
 	  <div class="span12">  
 		<fieldset class="form-actions">
-	      <button class="btn large primary" type="submit">Save changes</button>
-	      <button class="btn large" type="reset">Cancel</button>
+	      <button class="btn btn-large btn-primary" type="submit">Save changes</button>
+	      <button class="btn btn-large" type="reset">Cancel</button>
 		</fieldset>
 	  </div> 
   </div>	   	  		   

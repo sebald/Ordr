@@ -1,5 +1,4 @@
-<div class="fluid-container">
-	<div class="fluid-content">
+<div class="container-fluid">
 		
 		<div class="page-controls">
 			<h1>Delete User(s)</h1>
@@ -20,8 +19,8 @@
 					
 					<fieldset class="form-actions">
 						<div class="right">
-				    		<button name="submit-delete" type="submit" value="confirm" class="btn large danger">Confirm</button>
-				    		<a href="<?php echo @$_SERVER['HTTP_REFERER']; ?>" type="reset" class="btn large">Cancel</a>							
+				    		<button name="submit-delete" type="submit" value="confirm" class="btn btn-large btn-danger">Confirm</button>
+				    		<a href="<?php echo @$_SERVER['HTTP_REFERER']; ?>" type="reset" class="btn btn-large">Cancel</a>							
 						</div>
 					</fieldset>
 					
@@ -30,5 +29,4 @@
 			</div>
 		</div>
 		
-	</div>
 </div>

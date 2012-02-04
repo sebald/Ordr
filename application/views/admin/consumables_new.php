@@ -1,5 +1,4 @@
-<div class="fluid-container">
-	<div class="fluid-content">
+<div class="container-fluid">
 		
 		<div class="page-controls">
 			<h1>New Consumable</h1>
@@ -15,5 +14,4 @@
 					
 			</div>
 		</div>
-	</div>
 </div>

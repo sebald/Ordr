@@ -1,10 +1,10 @@
-<div class="fluid-container">
+<div class="container-fluid">
 	<div class="fluid-content">
 		<div class="page-controls">			
 			<h1>Create an Account</h1>
 		</div>
 		
-		<div class="row">
+		<div class="row-fluid">
 			<div class="span10">
 				<?php echo $this->session->flashdata('message'); ?>
 				
@@ -52,8 +52,8 @@
 			          </div>
 			        </fieldset>
 					<fieldset class="form-actions">
-				    	<button type="submit" class="btn large primary">Create Account</button>
-				    	<a href="<?php echo base_url(); ?>" type="reset" class="btn large">Cancel</a>
+				    	<button type="submit" class="btn btn-large btn-primary">Create Account</button>
+				    	<a href="<?php echo base_url(); ?>" type="reset" class="btn btn-large">Cancel</a>
 					</fieldset>			        				        		        				        		        				
 				<?php echo form_close(); ?>
 			</div>

@@ -1,4 +1,4 @@
-<div class="fluid-container">
+<div class="container-fluid">
 	<div class="page-controls">
 		<h1>Overview</h1>
 	</div>

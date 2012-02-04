@@ -132,8 +132,14 @@ class MY_Model extends CI_Model {
 				// seperate display values with commas
 				$filter['display'] = explode(' ', $filter['display']);
 			// search query					
-			} elseif ($key == 'search') {
+			} elseif ( $key == 'search' ) {
 				// do nothing (for now) TODO the parse_str has removed the + is that ok?
+			} elseif ( $key == 'where' ) {
+				// process the were clauses
+				$clauses = explode(' ', $filter['where']);
+				foreach ($clauses as $clause => $constraint) {
+					// TODO add where clauses if needed
+				}
 			// if there are fields left => these are 'like'-clauses
 			} else {
 				$filter['like'][$key] = $value;
@@ -147,7 +153,7 @@ class MY_Model extends CI_Model {
 	 * 	Get field name(s) real name in order to display them.
 	 * 
 	 * 	@param	input 			the fields, whose names you want
-	 * 			display_id		should the id be also displaye?
+	 * 			display_id		should the id be also displayed?
 	 * 
 	 * 	@return array 			key 	= field name in db
 	 * 							value 	= display name

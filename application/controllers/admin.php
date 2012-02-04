@@ -222,6 +222,7 @@ class Admin extends MY_Controller {
 		
 		$this->load->library('table');
 		$this->table->set_heading(array('Username', 'First Name', 'Last Name', 'Email', 'Role'));
+		$this->table->set_template(array ( 'table_open'  => '<table class="table">' ));
         $data['table_users'] = $this->table->generate($query); 
 		
 		$data['main_content'] = 'admin/users_delete';
@@ -415,6 +416,7 @@ class Admin extends MY_Controller {
 		$this->load->library('table');
 		$this->table->set_heading(array('id', 'vendor', 'catalog_number', 'CAS_description', 'category', 
 							'package_size', 'price_unit', 'currency'));
+		$this->table->set_template(array ( 'table_open'  => '<table class="table">' ));							
         $data['table'] = $this->table->generate($query);
 		
 		$data['main_content'] = 'admin/consumables_delete';

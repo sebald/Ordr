@@ -43,6 +43,10 @@ body {
 
 /*================================ BT FIXES ================================*/
 
+.sidebar-nav {
+    padding: 9px 0;
+}
+
 .tooltip {
 	z-index: 2000
 }
@@ -113,6 +117,7 @@ footer .icon-html {
 footer .icon-dbs {
 	background-image: url(../img/sprite.png);
 	background-position: 0px -214px;
+	height: 26px;
 	width: 174px;	
 }
 
@@ -148,6 +153,11 @@ footer:before {
 
 a.btn-flat {
 	cursor: pointer;
+	height: 18px;
+}
+
+button.btn-flat {
+	height: 30px;
 }
 
 .btn-flat:hover {
@@ -167,6 +177,7 @@ a.btn-flat {
 
 .btn-flat i {
 	background-image: url(../img/sprite.png);
+	display: inline-block;
 	height: 18px;
 	width: 18px;
 }

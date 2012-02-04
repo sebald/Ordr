@@ -1,10 +1,9 @@
-<div class="fluid-container">
-	<div class="fluid-content">
+<div class="container-fluid">
 		<div class="page-controls">
 			
 			<?php echo form_open('orders/autocomplete', 'class="search-form" autocomplete="off"', (isset($filter['display'])) ? array( 'display' => $query_display ) : ''); ?>
 				<div class="input-append search">
-					<input type="search" data-provide="typeahead" data-data='<?php echo convert_for_typeahead($common_consumables); ?>' placeholder="Search Consumables" size="50" name="search">
+					<input type="search" data-provide="typeahead" data-source='<?php echo convert_for_typeahead($common_consumables); ?>' placeholder="Search Consumables" size="50" name="search">
 					<label class="add-on">
 						<button class="autocomplete" type="submit" name="search_consumable">Search</button>
 					</label>
@@ -14,7 +13,7 @@
 			<h1>Place a new Order</h1>
 			
 		</div>
-		<div class="row">
+		<div class="row-fluid">
 			<div class="span8">
 				
 				<div class="alert alert-info">
@@ -30,5 +29,4 @@
 				
 			</div>
 		</div>
-	</div>
 </div>

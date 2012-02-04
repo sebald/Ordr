@@ -228,6 +228,7 @@ class Orders extends MY_Controller {
 
 		$this->load->library('table');
 		$this->table->set_heading(array('#', 'Date Created', 'CAS / Description', 'Status', 'Placed by'));
+		$this->table->set_template(array ( 'table_open'  => '<table class="table">' )); 
         $data['table'] = $this->table->generate($query);
 		
 		$data['main_content'] = 'orders/delete_order';

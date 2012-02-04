@@ -8,4 +8,3 @@
  	<?php $this->load->view('faq/faq_misc'); ?>
     	
 </div>
-<script src="<?php echo base_url();?>js/bootstrap-tab.js"></script>

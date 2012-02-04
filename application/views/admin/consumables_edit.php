@@ -1,5 +1,4 @@
-<div class="fluid-container">
-	<div class="fluid-content">
+<div class="container-fluid">
 		
 		<div class="page-controls">
 			<h1>Edit Consumable</h1>
@@ -17,6 +16,5 @@
 				
 			</div>
 		</div>
-	</div>
+		
 </div>
-<?php print_a($_POST); ?>

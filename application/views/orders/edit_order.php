@@ -1,5 +1,4 @@
-<div class="fluid-container">
-	<div class="fluid-content">
+<div class="container-fluid">
 		<div class="page-controls">
 			
 			<h1>Edit Order #<?php echo $order->id; ?></h1>
@@ -34,5 +33,4 @@
 				
 			</div>
 		</div>
-	</div>
 </div>

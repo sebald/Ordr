@@ -6,8 +6,7 @@
               'size'        => '30'
             );
 ?>
-<div class="fluid-container">
-	<div class="fluid-content">
+<div class="container-fluid">
 		
 		<div class="page-controls">
 			<h1>Account Settings for <?php echo $settings->username; ?></h1>
@@ -56,13 +55,12 @@
 			        </fieldset>
 			        
 					<fieldset class="form-actions">
-				      <button class="btn large primary" type="submit">Save changes</button>
-				      <a href="<?php echo ($this->session->flashdata('referer')) ? $this->session->flashdata('referer') : $_SERVER['HTTP_REFERER']; ?>"" class="btn large" type="reset">Cancel</a>
+				      <button class="btn btn-large btn-primary" type="submit">Save changes</button>
+				      <a href="<?php echo ($this->session->flashdata('referer')) ? $this->session->flashdata('referer') : $_SERVER['HTTP_REFERER']; ?>"" class="btn btn-large" type="reset">Cancel</a>
 					</fieldset>			        
 			        							  
 				<?php echo form_close(); ?>
 			</div>
 		</div>
 		
-	</div>
 </div>

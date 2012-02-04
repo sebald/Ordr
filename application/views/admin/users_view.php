@@ -19,26 +19,29 @@
 	);
 ?>
 
-<div class="fluid-container sidebar-left">
-	<aside class="fluid-sidebar">
+<div class="container-fluid">
+<div class="row-fluid">
+	<div class="span2">
 		<div class="page-controls">
 			<h1>Users</h1>
 		</div>
-		<ul class="well nav list">
-			<li class="nav-header">Role</li>
-	        <?php $parameter = ( $query_display ) ? 'display='.$query_display.'&' : ''; ?>
-			<?php $parameter = ( isset($filter['search']) ) ? $parameter.'search='.$filter['search'].'&' : $parameter; ?>
-			<li <?php echo empty($filter['role']) ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.substr($parameter, 0, -1),'All' ); ?></li>
-			<li <?php echo @($filter['role'] == 'new') ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.$parameter.'role=new','New' ); ?></li>
-			<li <?php echo @($filter['role'] == 'inactive') ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.$parameter.'role=inactive','Inactive' ); ?></li>
-			<li <?php echo @($filter['role'] == 'user') ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.$parameter.'role=user','User' ); ?></li>
-			<li <?php echo @($filter['role'] == 'purchaser') ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.$parameter.'role=purchaser','Purchaser' ); ?></li>
-			<li <?php echo @($filter['role'] == 'admin') ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.$parameter.'role=admin','Admin' ); ?></li>	
-		</ul>		
+		<div class="well sidebar-nav">
+			<ul class="nav nav-list">
+				<li class="nav-header">Role</li>
+		        <?php $parameter = ( $query_display ) ? 'display='.$query_display.'&' : ''; ?>
+				<?php $parameter = ( isset($filter['search']) ) ? $parameter.'search='.$filter['search'].'&' : $parameter; ?>
+				<li <?php echo empty($filter['role']) ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.substr($parameter, 0, -1),'All' ); ?></li>
+				<li <?php echo @($filter['role'] == 'new') ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.$parameter.'role=new','New' ); ?></li>
+				<li <?php echo @($filter['role'] == 'inactive') ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.$parameter.'role=inactive','Inactive' ); ?></li>
+				<li <?php echo @($filter['role'] == 'user') ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.$parameter.'role=user','User' ); ?></li>
+				<li <?php echo @($filter['role'] == 'purchaser') ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.$parameter.'role=purchaser','Purchaser' ); ?></li>
+				<li <?php echo @($filter['role'] == 'admin') ? 'class="active"' : ''; ?>><?php echo anchor('admin/users/view/'.$parameter.'role=admin','Admin' ); ?></li>	
+			</ul>
+		</div>		
 	
-	</aside>
+	</div>
 	
-	<div class="fluid-content">
+	<div class="span10">
 		<?php echo form_open('admin/users/actions'); ?>
 		<div class="page-controls">
 
@@ -112,6 +115,7 @@
 		<?php echo form_close(); ?>
 	</div>
 </div>
+</div>
 <div id="modal-display" class="modal hide fade">
 	<?php echo form_open('admin/users/changeview', 'class="checklist"', $keep_query ); ?>
 	<?php if( empty($filter['display']) ) $filter['display'] = array( 'username', 'first_name', 'last_name', 'email', 'role' ); ?>
@@ -149,7 +153,7 @@
 				</div>
             </div>
             <div class="modal-footer">
-              <button class="btn primary" type="submit">Apply Changes</button>
+              <button class="btn btn-primary" type="submit">Apply Changes</button>
               <a data-dismiss="modal" class="btn" href="#">Close</a>
             </div>
 	<?php echo form_close(); ?>

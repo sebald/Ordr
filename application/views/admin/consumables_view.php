@@ -19,25 +19,28 @@
 	);
 ?>
 
-<div class="fluid-container sidebar-left">
+<div class="container-fluid">
+<div class="row-fluid">
 	
-	<aside class="fluid-sidebar">
+	<div class="span2">
 		
 		<div class="page-controls">
 			<h1>Consumables</h1>
 		</div>	
 		
-		<ul class="well nav list">
-			<li class="nav-header">Category</li>
-			<li<?php echo empty($filter['category']) ? ' class="active"' : ''; ?>><?php echo anchor('admin/consumables/view/','All' ); ?></li>
-			<?php foreach ($consumable_categories as $c) : ?>
-				<li<?php echo @($filter['category'] == strtolower($c)) ? ' class="active"' : ''; ?>><?php echo anchor('admin/consumables/view/category='.strtolower($c).'/', $c ); ?></li>
-			<?php endforeach;	?>
-		</ul>		
+		<div class="well sidebar-nav">
+			<ul class="nav nav-list">
+				<li class="nav-header">Category</li>
+				<li<?php echo empty($filter['category']) ? ' class="active"' : ''; ?>><?php echo anchor('admin/consumables/view/','All' ); ?></li>
+				<?php foreach ($consumable_categories as $c) : ?>
+					<li<?php echo @($filter['category'] == strtolower($c)) ? ' class="active"' : ''; ?>><?php echo anchor('admin/consumables/view/category='.strtolower($c).'/', $c ); ?></li>
+				<?php endforeach;	?>
+			</ul>
+		</div>
 		
-	</aside>
+	</div>
 	
-	<div class="fluid-content">
+	<div class="span10">
 
 		<div class="page-controls">		
 			<div class="actions">
@@ -89,4 +92,4 @@
 	</div>
 	
 </div>
-<div class="clearfooter"></div>
+</div>

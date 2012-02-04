@@ -43,7 +43,7 @@
       <label for="price_unit" class="control-label">Unit Price</label>
       <div class="controls">
         <input type="text" name="price_unit" class="span2" value="<?php echo set_value('price_unit', isset($order->price_unit) ? $order->price_unit : ''); ?>">
-        <input type="text" name="currency" class="span1" value="<?php echo set_value('currency', isset($order->currency) ? $order->currency : 'EUR'); ?>" data-provide="typeahead" data-data='<?php echo convert_for_typeahead(get_currencies()); ?>'>
+        <input type="text" name="currency" class="span1" value="<?php echo set_value('currency', isset($order->currency) ? $order->currency : 'EUR'); ?>" data-provide="typeahead" data-source='<?php echo convert_for_typeahead(get_currencies()); ?>'>
         <?php echo form_error('price_unit','<span class="help-inline">','</span>'); ?>
       </div>
     </fieldset>
@@ -77,6 +77,6 @@
       </div>
     </fieldset>
 	<fieldset class="form-actions">
-    	<button type="submit" class="btn large primary"><?php echo ($mode == 'edit') ? 'Edit' : 'Place'; ?> Order</button>
-    	<a href="<?php echo base_url();?>orders/" type="reset" class="btn large">Cancel</a>
+    	<button type="submit" class="btn btn-large btn-primary"><?php echo ($mode == 'edit') ? 'Edit' : 'Place'; ?> Order</button>
+    	<a href="<?php echo base_url();?>orders/" type="reset" class="btn btn-large">Cancel</a>
 	</fieldset>

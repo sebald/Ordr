@@ -64,5 +64,5 @@
       </div>
     </fieldset>
 	<fieldset class="form-actions">
-    	<a href="<?php echo base_url();?>orders/" type="reset" class="btn large">Cancel</a>
+    	<a href="<?php echo base_url();?>orders/" type="reset" class="btn btn-large">Cancel</a>
 	</fieldset>
