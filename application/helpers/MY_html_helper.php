@@ -51,11 +51,11 @@ if (!function_exists('create_work_status_html')) {
 	function create_work_status_html($status) {
 		switch ($status) {
 			case 'open':
-				return '<span class="label important">open</span>';
+				return '<span class="label label-important">open</span>';
 			case 'ordered':
-				return '<span class="label warning">ordered</span>';
+				return '<span class="label label-warning">ordered</span>';
 			case 'completed':
-				return '<span class="label success">completed</span>';								
+				return '<span class="label label-success">completed</span>';								
 			default:
 				return false;
 		}
