@@ -697,7 +697,7 @@ hgroup .info {
 	display: block;
 	font-size: 18px;
 	font-weight: bold;
-    line-height: 27px;	
+  line-height: 27px;	
 	padding: 8px 15px;
 	text-decoration: none;
 	outline: none;
@@ -710,3 +710,10 @@ hgroup .info {
 .accordion-heading a:hover {
 	color: #049CDB;
 }
+
+/*========================= RESPONSIVE =========================*/
+
+@media (max-width: 1200px) {
+	.page-controls h1 { font-size: 25px; }
+}
+
