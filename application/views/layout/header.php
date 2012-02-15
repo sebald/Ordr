@@ -17,7 +17,12 @@
   
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap-responsive.css" type="text/css" media="screen">
-  	<link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css" type="text/css" media="screen" />
+  <!--[if !IE 7]>
+	<style type="text/css">
+		#wrap {display:table;height:100%}
+	</style>
+	<![endif]-->
 	
 </head>  
 <body class="<?php echo $this->router->class; ?> <?php echo $this->router->method; ?>">

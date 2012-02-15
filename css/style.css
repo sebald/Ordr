@@ -4,6 +4,16 @@ html, body {
 
 body {
 	background-color: #FCFCFC;
+	
+}
+
+/*Opera Fix*/
+body:before {/* thanks to Maleika (Kohoutec)*/
+	content:"";
+	height:100%;
+	float:left;
+	width:0;
+	margin-top:-32767px;/* thank you Erik J - negate effect of float*/
 }
 
 .rounded-box {
@@ -28,10 +38,10 @@ body {
 
 .clear:after {
 	content: ".";
-   	visibility: hidden;
-   	display: block;
-   	height: 0;
-   	clear: both;
+ 	visibility: hidden;
+ 	display: block;
+ 	height: 0;
+ 	clear: both;
 }
 
 .bordered {
@@ -54,38 +64,37 @@ body {
 /*================================= LAYOUT =================================*/
 
 .content {
-  margin-bottom: -53px;
   min-height: 100%;
-  position: relative;
 }
 
 .content:before {
 	display: table;
-  	content: "";
-  	height: 40px;
-  	zoom: 1;
+	content: "";
+	height: 40px;
+	zoom: 1;
 }
 
 .content.controls:before {
 	background: none repeat scroll 0 0 #F1F1F1;
-    border-bottom: 1px solid #D2D2D2;
-    content: "";
-    display: table;
-    height: 86px;
-    margin-bottom: -47px;
-    width: 100%;	
+  border-bottom: 1px solid #D2D2D2;
+  content: "";
+  display: table;
+  height: 86px;
+  margin-bottom: -47px;
+  width: 100%;	
 }
 
-.content .fluid-container:after, .container:after {
-  clear: both;
-  height: 53px;
+.container-fluid, .container {
+  overflow:auto;
+	padding-bottom: 53px;
 }
 
 footer {
+	position: relative;
+	margin: -53px 20px 0; /* negative value of footer height */
 	height: 53px;
-    margin: 0 20px;
-    position: relative;
-    text-align: center;
+	clear:both;
+	text-align: center;
 }
 
 footer a {
@@ -119,14 +128,6 @@ footer .icon-dbs {
 	background-position: 0px -214px;
 	height: 26px;
 	width: 174px;	
-}
-
-footer:before {
-	content: "";
-   	visibility: hidden;
-   	display: table;
-   	height: 0;
-   	clear: both;
 }
 
 /*================================ BUTTONS ================================*/
