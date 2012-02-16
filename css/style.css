@@ -84,7 +84,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
   width: 100%;	
 }
 
-.container-fluid, .container {
+.content .container-fluid, .content .container {
   overflow:auto;
 	padding-bottom: 53px;
 }
