@@ -190,7 +190,7 @@ class Orders extends MY_Controller {
 	        	$msg = create_alert_message('success', 'Order updated successfully!!', 'The Order <em>#'.$this->input->post('id').'</em> has been updated.');
 				$this->session->set_flashdata('message', $msg);
 				
-				if( $result === 'ordered' || $result === 'completed' )
+				if( $result === 'ordered' || $result === 'approved' || $result === 'completed' )
 					$this->notification($result, $this->input->post('username'), $this->input->post('CAS_description'), current_url());
 				
 	        	redirect('orders/view');

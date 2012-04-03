@@ -54,6 +54,8 @@ if (!function_exists('create_work_status_html')) {
 				return '<span class="label label-important">open</span>';
 			case 'ordered':
 				return '<span class="label label-warning">ordered</span>';
+			case 'approved':
+				return '<span class="label label-info">approved</span>';
 			case 'completed':
 				return '<span class="label label-success">completed</span>';								
 			default:

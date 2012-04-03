@@ -94,6 +94,9 @@ class Orders_model extends MY_Model {
 					case 'ordered':
 						$data['date_ordered'] = date('Y-m-d H:i:s');
 						break;
+					case 'approved':
+					    // approving does not change anything...
+					    break;
 					case 'completed':
 						$data['date_completed'] = date('Y-m-d H:i:s');
 						break;				

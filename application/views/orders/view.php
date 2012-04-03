@@ -32,9 +32,12 @@
 		        <li <?php echo ( (@$filter['like']['work_status'] == 'ordered') && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
 		        	<?php echo anchor('orders/view/work_status=ordered'.$next_display.$query_string_display,'Ordered' ); ?>
 		        </li>
+		        <li <?php echo ( (@$filter['like']['work_status'] == 'approved') && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
+		        	<?php echo anchor('orders/view/work_status=approved'.$next_display.$query_string_display,'Approved' ); ?>
+		        </li>
 		        <li <?php echo ( (@$filter['like']['work_status'] == 'completed') && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
 		        	<?php echo anchor('orders/view/work_status=completed'.$next_display.$query_string_display,'Completed' ); ?>
-		        </li>			
+		        </li>
 				<li class="nav-header">My Orders: Status</li>
 		        <li <?php echo ( empty($filter['like']['work_status']) && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
 		        	<?php echo anchor('orders/view/'.$url_this_user.$next_display.$query_string_display,'All' ); ?>
@@ -44,6 +47,9 @@
 		        </li>
 		        <li <?php echo ( (@$filter['like']['work_status'] == 'ordered') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
 		        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=ordered'.$next_display.$query_string_display,'Ordered' ); ?>
+		        </li>
+		        <li <?php echo ( (@$filter['like']['work_status'] == 'approved') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
+		        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=approved'.$next_display.$query_string_display,'Approved' ); ?>
 		        </li>
 		        <li <?php echo ( (@$filter['like']['work_status'] == 'completed') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
 		        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=completed'.$next_display.$query_string_display,'Completed' ); ?>
