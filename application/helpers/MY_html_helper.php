@@ -52,10 +52,10 @@ if (!function_exists('create_work_status_html')) {
 		switch ($status) {
 			case 'open':
 				return '<span class="label label-important">open</span>';
+			case 'approval':
+				return '<span class="label label-info">approval</span>';
 			case 'ordered':
 				return '<span class="label label-warning">ordered</span>';
-			case 'approved':
-				return '<span class="label label-info">approved</span>';
 			case 'completed':
 				return '<span class="label label-success">completed</span>';								
 			default:

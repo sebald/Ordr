@@ -20,7 +20,7 @@ if (!function_exists('get_user_categories')) {
 
 if (!function_exists('get_work_statuses')) {
 	function get_work_statuses() {
-		return array( 'open', 'ordered', 'approved', 'completed' );	
+		return array( 'open', 'approval', 'ordered', 'completed' );	
 	}
 }
 

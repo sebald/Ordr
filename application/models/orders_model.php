@@ -91,12 +91,12 @@ class Orders_model extends MY_Model {
 			// set date_ordered/date_completed
 			if( $latest_status != $data['work_status'] ) {
 				switch ($data['work_status']) {
+					case 'approval':
+					    // approving does not change anything...
+					    break;
 					case 'ordered':
 						$data['date_ordered'] = date('Y-m-d H:i:s');
 						break;
-					case 'approved':
-					    // approving does not change anything...
-					    break;
 					case 'completed':
 						$data['date_completed'] = date('Y-m-d H:i:s');
 						break;				

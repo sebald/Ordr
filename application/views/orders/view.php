@@ -29,11 +29,11 @@
 		        <li <?php echo ( (@$filter['like']['work_status'] == 'open') && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
 		        	<?php echo anchor('orders/view/work_status=open'.$next_display.$query_string_display,'Open' ); ?>
 		        </li>
+		        <li <?php echo ( (@$filter['like']['work_status'] == 'approval') && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
+		        	<?php echo anchor('orders/view/work_status=approval'.$next_display.$query_string_display,'Approval' ); ?>
+		        </li>
 		        <li <?php echo ( (@$filter['like']['work_status'] == 'ordered') && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
 		        	<?php echo anchor('orders/view/work_status=ordered'.$next_display.$query_string_display,'Ordered' ); ?>
-		        </li>
-		        <li <?php echo ( (@$filter['like']['work_status'] == 'approved') && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
-		        	<?php echo anchor('orders/view/work_status=approved'.$next_display.$query_string_display,'Approved' ); ?>
 		        </li>
 		        <li <?php echo ( (@$filter['like']['work_status'] == 'completed') && empty($filter['like']['username']) ) ? 'class="active"' : ''; ?>>
 		        	<?php echo anchor('orders/view/work_status=completed'.$next_display.$query_string_display,'Completed' ); ?>
@@ -45,11 +45,11 @@
 		        <li <?php echo ( (@$filter['like']['work_status'] == 'open') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
 		        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=open'.$next_display.$query_string_display,'Open' ); ?>
 		        </li>
+		        <li <?php echo ( (@$filter['like']['work_status'] == 'approval') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
+		        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=approval'.$next_display.$query_string_display,'Approval' ); ?>
+		        </li>
 		        <li <?php echo ( (@$filter['like']['work_status'] == 'ordered') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
 		        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=ordered'.$next_display.$query_string_display,'Ordered' ); ?>
-		        </li>
-		        <li <?php echo ( (@$filter['like']['work_status'] == 'approved') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
-		        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=approved'.$next_display.$query_string_display,'Approved' ); ?>
 		        </li>
 		        <li <?php echo ( (@$filter['like']['work_status'] == 'completed') && (@$filter['like']['username'] == $this->session->userdata('username')) ) ? 'class="active"' : ''; ?>>
 		        	<?php echo anchor('orders/view/'.$url_this_user.'&work_status=completed'.$next_display.$query_string_display,'Completed' ); ?>

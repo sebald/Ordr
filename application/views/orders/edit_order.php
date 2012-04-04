@@ -14,10 +14,10 @@
 				        <h4 class="alert-heading">Warning!</h4>
 				        <p>Once an item is ordered you can not edit it anymore. Only viewing is allowed. If you really need to change something please contact an purchaser immediately.</p>
 				    </div>
-				<?php elseif( $order->work_status == 'approved' && !in_array($this->session->userdata('role'), $allowed_to_change_status) ) : ?>    
+				<?php elseif( $order->work_status == 'approval' && !in_array($this->session->userdata('role'), $allowed_to_change_status) ) : ?>    
 					<div class="alert alert-block">
 				        <h4 class="alert-heading">Warning!</h4>
-				        <p>Once an item is approved you can not edit it anymore. Only viewing is allowed. If some of the information displayed here is wrong please contact an purchaser immediately.</p>
+				        <p>Once an item is awaiting approval you can not edit it anymore. Only viewing is allowed. If some of the information displayed here is wrong please contact an purchaser immediately.</p>
 				    </div>
 				<?php elseif( $order->work_status == 'completed' && !in_array($this->session->userdata('role'), $allowed_to_change_status) ) : ?>    
 					<div class="alert alert-block">
