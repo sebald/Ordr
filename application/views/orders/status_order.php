@@ -54,10 +54,10 @@
 						</div>
 						
 						<div class="btn-group quick-action left" data-action="work_status">
-			              <a data-value="ordered" href="#" class="btn btn-large btn-primary">Set all as ordered</a>
+			              <a data-value="approval" href="#" class="btn btn-large btn-primary">Set all as in approval</a>
 			              <a href="#" data-toggle="dropdown" class="btn btn-large btn-primary dropdown-toggle"><span class="caret"></span></a>
 			              <ul class="dropdown-menu">
-			                <li><a data-value="approval" href="#">Set all as 'approval'</a></li>
+			                <li><a data-value="ordered" href="#">Set all as ordered</a></li>
 			                <li><a data-value="completed" href="#">Set all as completed</a></li>
 			              </ul>
 			            </div>						
