@@ -15,8 +15,8 @@
       <label for="vendor" class="control-label">Vendor</label>
       <div class="controls">
         <input type="text" name="vendor" class="span2 disabled" disabled="" placeholder="<?php echo set_value('vendor', isset($order->vendor) ? $order->vendor : ''); ?>">
-      </div>				          			          
-    </fieldset>    
+      </div>
+    </fieldset>
     <fieldset class="control-group<?php if(form_error('catalog_number')) echo ' error'; ?>">
       <label for="catalog_number" class="control-label">Catalog Number</label>
       <div class="controls">
@@ -27,7 +27,7 @@
       <label for="package_size" class="control-label">Package Size</label>
       <div class="controls">
         <input type="text" name="package_size" class="span2  disabled" disabled="" placeholder="<?php echo set_value('package_size', isset($order->package_size) ? $order->package_size : ''); ?>">
-      </div>				          			          
+      </div>
     </fieldset>
 	<legend>Pricing</legend>
 	<fieldset class="control-group">
@@ -60,7 +60,7 @@
 	<fieldset class="control-group">
       <label for="input01" class="control-label">Comment</label>
       <div class="controls">
-        <textarea rows="3" id="textarea" name="comment" class="span4 disabled" disabled=""><?php echo set_value('price_unit', isset($order->comment) ? $order->comment : ''); ?></textarea>
+        <textarea rows="3" id="textarea" name="comment" class="span4 disabled" disabled=""><?php echo set_value('comment', isset($order->comment) ? $order->comment : ''); ?></textarea>
       </div>
     </fieldset>
 	<fieldset class="form-actions">
