@@ -22,8 +22,8 @@
       <div class="controls">
         <input type="text" name="vendor" class="span2" value="<?php echo set_value('vendor', isset($order->vendor) ? $order->vendor : ''); ?>">
         <?php echo form_error('vendor','<span class="help-inline">','</span>'); ?>
-      </div>				          			          
-    </fieldset>    
+      </div>
+    </fieldset>
     <fieldset class="control-group<?php if(form_error('catalog_number')) echo ' error'; ?>">
       <label for="catalog_number" class="control-label">Catalog Number</label>
       <div class="controls">
@@ -36,7 +36,7 @@
       <div class="controls">
         <input type="text" name="package_size" class="span2" value="<?php echo set_value('package_size', isset($order->package_size) ? $order->package_size : ''); ?>">
         <?php echo form_error('package_size','<span class="help-inline">','</span>'); ?>
-      </div>				          			          
+      </div>
     </fieldset>
 	<legend>Pricing</legend>
 	<fieldset class="control-group<?php if(form_error('price_unit')) echo ' error'; ?>">
@@ -72,7 +72,7 @@
 	<fieldset class="control-group<?php if(form_error('comment')) echo ' error'; ?>">
       <label for="input01" class="control-label">Comment</label>
       <div class="controls">
-        <textarea rows="3" id="textarea" name="comment" class="span4"><?php echo set_value('price_unit', isset($order->comment) ? $order->comment : ''); ?></textarea>
+        <textarea rows="3" id="textarea" name="comment" class="span4"><?php echo set_value('comment', isset($order->comment) ? $order->comment : ''); ?></textarea>
         <?php echo form_error('comment','<p class="help-block">','</p>'); ?>
       </div>
     </fieldset>
