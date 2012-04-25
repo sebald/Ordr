@@ -37,7 +37,7 @@ if (!function_exists('convert_for_typeahead')) {
 		$output = '[';
 		$length = count($array);
 		for ($i=0; $i < $length; $i++) {
-			$output .= ' "'.$array[$i].'"';
+			$output .= ' "' . htmlentities($array[$i], ENT_QUOTES, "UTF-8") . '"';
 			if( $i+1 != $length )
 				$output .= ',';
 		}
