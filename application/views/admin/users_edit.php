@@ -47,7 +47,7 @@
 			          <div class="controls">
 			            <select name="role" class="span2">
 			            	<?php foreach ($user_categories as $c) { ?>
-								<option><?php echo $c; ?></option>
+								<option <?php echo set_select('role', $c, $c==$settings->role); ?>><?php echo $c; ?></option>
 							<?php } ?>
 			            </select>
 			            <?php echo form_error('category','<span class="help-inline">','</span>'); ?>
