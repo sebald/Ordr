@@ -28,7 +28,7 @@
 					      <?php foreach($fields as $field_name => $field_display): ?>
 					      <td>
 					      	<?php if( $field_name == 'role' ) : ?>
-							    <select id="role-<?php echo $user->username;?>" name="role[]" class="span2">
+							    <select id="role-<?php echo $user->username;?>" name="role[<?php echo $user->username;?>]" class="span2">
 							    		<option value="new">New</option>
 					            	<?php foreach ($user_categories as $c) { ?>
 										<option value="<?php echo $c; ?>"><?php echo $c; ?></option>
