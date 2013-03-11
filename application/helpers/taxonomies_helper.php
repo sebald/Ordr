@@ -8,7 +8,7 @@ if (!function_exists('get_currencies')) {
 
 if (!function_exists('get_consumable_categories')) {
 	function get_consumable_categories() {
-		return array( 'Chemical', 'Equipment', 'Solvent', 'BioLab' );
+		return array( 'Chemical', 'Disposable', 'Solvent', 'BioLab' );
 	}
 }
 
