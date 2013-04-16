@@ -64,5 +64,8 @@
       </div>
     </fieldset>
 	<fieldset class="form-actions">
+        <?php if($order->work_status == 'ordered' or $order->work_status == 'completed'  or $order->work_status == 'approval' ): ?>
+	    <a href="<?php echo base_url().'orders/reorder/'.$order->id;?> " class="btn btn-large btn-success">Reorder</a>
+    	<?php endif; ?>
     	<a href="<?php echo base_url();?>orders/" type="reset" class="btn btn-large">Cancel</a>
 	</fieldset>

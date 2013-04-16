@@ -234,6 +234,44 @@ class Orders extends MY_Controller {
 		$data['main_content'] = 'orders/delete_order';
 		$this->load->view('layout/template', $data);
 	}
+	
+	public function reorder($id = FALSE) {
+        if ($id) {
+			$this->load->model('orders_model');
+			$old_order = $this->orders_model->get($id)->row(0);
+			if (!$old_order) {
+	        	$msg = create_alert_message('error', 'Order not found!!', 'You have been redirected to the order overview.');
+				$this->session->set_flashdata('message', $msg);
+	        	redirect('orders/view');
+			}
+		} else {
+	        	$msg = create_alert_message('error', 'No order specified!!', 'You have been redirected to the order overview.');
+				$this->session->set_flashdata('message', $msg);
+	        	redirect('orders/view');
+		}
+		
+		# copy the old order values to a new order, but only the things needed
+		# reset the id to null to place a new order
+        # unused fields for reference:
+        # username, work_status, date_created,, date_ordered, date_completed, date_modified
+
+		$new_order = new stdClass();
+        $new_order->id              = NULL;
+        $new_order->vendor          = $old_order->vendor;
+        $new_order->catalog_number  = $old_order->catalog_number;
+        $new_order->CAS_description = $old_order->CAS_description;
+        $new_order->category        = $old_order->category;
+        $new_order->package_size    = $old_order->package_size;
+        $new_order->price_unit      = $old_order->price_unit;
+        $new_order->quantity        = $old_order->quantity;
+        $new_order->price_total     = $old_order->price_total;
+        $new_order->currency        = $old_order->currency;
+        $new_order->comment         = $old_order->comment;
+        $new_order->account         = $old_order->account;
+        
+		$this->session->set_flashdata('consumable', $new_order);
+		redirect('orders/new');
+	}
 
 	public function status() {
 		$this->load->model('orders_model');

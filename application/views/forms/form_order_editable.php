@@ -78,5 +78,8 @@
     </fieldset>
 	<fieldset class="form-actions">
     	<button type="submit" class="btn btn-large btn-primary"><?php echo ($mode == 'edit') ? 'Edit' : 'Place'; ?> Order</button>
+	    <?php if( $mode == 'edit' and ($order->work_status == 'ordered' or $order->work_status == 'completed'  or $order->work_status == 'approval' )): ?>
+	    <a href="<?php echo base_url().'orders/reorder/'.$order->id;?> " class="btn btn-large btn-success">Reorder</a>
+    	<?php endif; ?>
     	<a href="<?php echo base_url();?>orders/" type="reset" class="btn btn-large">Cancel</a>
 	</fieldset>
