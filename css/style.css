@@ -718,3 +718,31 @@ hgroup .info {
 	.page-controls h1 { font-size: 25px; }
 }
 
+
+/*================= Additions for CSC Order System ============*/
+
+.navbar-fixed-top .navbar-inner {
+	background-image: -moz-linear-gradient(50% 0%, #0075CD, #0064BC);
+	background-image: -webkit-linear-gradient(top, #0075CD, #0064BC);
+	background-color: #0075CD;
+}
+
+.navbar-fixed-top .navbar-inner .brand {
+	color: #333333;
+}
+
+.navbar .nav > li > a {
+	color: #C2C2C2;
+}
+
+#user-options a {
+	color: #C2C2C2;
+}
+
+#user-options .dropdown-menu a {
+	color:#222222;
+}
+
+#user-options .user-name {
+	color:#FCFCFC;
+}

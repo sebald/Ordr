@@ -9,7 +9,7 @@
 			$page = ' | ' . ucwords(str_replace('_', ' | ', $this->router->method));
 		$title = ucfirst($this->router->class) . $page;
   	?>
-  	<title>Ordr | <? echo $title ?></title>
+  	<title>CSC Order System | <? echo $title ?></title>
 	
 	<link href="<?php echo base_url(); ?>img/favicon.ico" type="image/x-icon" rel="shortcut icon">
 	
@@ -29,7 +29,7 @@
 <header class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a href="<?php echo base_url(); ?>" class="brand">ordr</a>
+          <a href="<?php echo base_url(); ?>" class="brand">csc order system</a>
           <?php $this->load->view('layout/topbar_menu'); ?>
           <?php
 	        if ( $this->session->userdata('logged_in') ){

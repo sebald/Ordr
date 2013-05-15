@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="span12">
 			<hgroup id="welcome">
-				<h1>Welcome to <span class="brand">ordr</span>!</h1>
+				<h1>Welcome to<br><span class="brand">CSC order system</span></h1>
 				<p class="quote">An order management system to simplify your shopping for laboratory supplies.</p>
 			</hgroup>
 		</div>
