@@ -25,12 +25,12 @@
 	</div>
 	
 	<div class="row">
-		<div class="span8">
+		<div class="span12">
 	        <p>&nbsp;</p>
 	        <p>&nbsp;</p>
 	        <h2>What to do about hazardous waste?</h2>
 			<p>
-				Here are some forms, that will help you with your questions on hazardous waste. Unfortunately they are only available in German:
+				Here are some forms, that will help you with your questions on hazardous waste.<br>Unfortunately they are only available in German:
 			</p>
 			<ul>
                 <li><a href="http://www.imtek.de/data/dokumente/sonderabfall-fest">Sonderabfall fest</a></li>
