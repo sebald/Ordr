@@ -25,9 +25,10 @@
 	</div>
 	
 	<div class="row">
-		<div class="span12">
+		<div class="span8">
 	        <p>&nbsp;</p>
-	        <h2>What to do about hazardous waste</h2>
+	        <p>&nbsp;</p>
+	        <h2>What to do about hazardous waste?</h2>
 			<p>
 				Here are some forms, that will help you with your questions on hazardous waste. Unfortunately they are only available in German:
 			</p>
