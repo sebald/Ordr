@@ -37,6 +37,8 @@
                 <li><a href="http://www.imtek.de/data/dokumente/sonderabfall-fluessig">Sonderabfall flüssig</a></li>
                 <li><a href="http://www.imtek.de/data/dokumente/deklaration-von-sonderabfaellen-zur-entsorgung">Deklaration von Sonderabfällen zur Entsorgung</a></li>
 			</ul>
+			<p>Opening hours for the waste deposal are Thurday, 10:00 - 10:30</p>
+			<p>Contact information is available at the <a href="http://www.imtek.de/service-einrichtungen/chemie-service-center/csc-about">official csc page</a>.</p>
 		</div>
 	</div>
 	
