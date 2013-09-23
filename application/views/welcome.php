@@ -4,16 +4,8 @@
 		<div class="span12">
 			<hgroup id="welcome">
 				<h1>Welcome to<br><span class="brand">CSC order system</span></h1>
-				<p class="quote">An order management system to simplify your shopping for laboratory supplies.</p>
+				<p class="quote">An order management system to simplify your shopping for chemical supplies.</p>
 			</hgroup>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="span12">
-			<p>
-				<strong>What can order do for you?</strong> It will simplify the process of ordering laboratory supplies by using the power of the newest web technologies. Interested? Just follow the three steps below!
-			</p>
 		</div>
 	</div>
 	
@@ -29,6 +21,21 @@
 		<div class="span4">
 			<h2>3. Get notified</h2>
 			<p>As soons as your purchase has arrived you will automatically get notified. Or you can use the orders overview to check what the working status is.</p>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="span12">
+	        <p>&nbsp;</p>
+	        <h2>What to do about hazardous waste</h2>
+			<p>
+				Here are some forms, that will help you with your questions on hazardous waste. Unfortunately they are only available in German:
+			</p>
+			<ul>
+                <li><a href="http://www.imtek.de/data/dokumente/sonderabfall-fest">Sonderabfall fest</a></li>
+                <li><a href="http://www.imtek.de/data/dokumente/sonderabfall-fluessig">Sonderabfall flüssig</a></li>
+                <li><a href="http://www.imtek.de/data/dokumente/deklaration-von-sonderabfaellen-zur-entsorgung">Deklaration von Sonderabfällen zur Entsorgung</a></li>
+			</ul>
 		</div>
 	</div>
 	
