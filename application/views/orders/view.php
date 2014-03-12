@@ -135,7 +135,9 @@
 				      <?php endif; ?>
 				      <?php foreach($fields as $field_name => $field_display): ?>
 				      <td>
-				      	<?php if($field_name == 'work_status') : ?>
+				      	<?php if($field_name == 'username' and in_array($this->session->userdata('role'), $allowed_to_change_status)): ?>
+				      	    <?php echo anchor('orders/view/username='.$item->username, $item->username, 'title="click to view all orders from user"'); ?>
+				      	<?php elseif($field_name == 'work_status') : ?>
 				      		<?php echo create_work_status_html($item->$field_name); ?>
 				      	<?php else : ?>
 				        	<?php echo $item->$field_name; ?><? echo ($field_name == 'price_total') ? ' '.$item->currency : ''; ?>

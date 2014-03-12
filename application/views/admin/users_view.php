@@ -91,7 +91,11 @@
 			      </td>
 			      <?php foreach($fields as $field_name => $field_display): ?>
 			      <td>
-			        <?php echo $user->$field_name; ?>
+			        <?php if ($field_name == 'username') : ?>
+                        <?php echo anchor('orders/view/username='.$user->username, $user->username, 'title="click to view all orders from user"'); ?>
+    			    <?php else : ?>
+        			    <?php echo $user->$field_name; ?>
+                    <?php endif; ?>
 			      </td>
 			      <?php endforeach; ?>
 			      <td>
