@@ -7,15 +7,15 @@
             );
 ?>
 <div class="container-fluid">
-		
+
 		<div class="page-controls">
 			<h1>Account Settings for <?php echo $settings->username; ?></h1>
 		</div>
-		
+
 		<div class="row">
 			<div class="span8">
 				<?php echo $this->session->flashdata('message'); ?>
-				
+
 				<?php echo form_open('admin/users/edit/'.$settings->username, 'class="form-horizontal"'); ?>
 				  	<fieldset class="control-group">
 			          <label for="disabledInput" class="control-label">Username</label>
@@ -53,14 +53,15 @@
 			            <?php echo form_error('category','<span class="help-inline">','</span>'); ?>
 			          </div>
 			        </fieldset>
-			        
+
 					<fieldset class="form-actions">
 				      <button class="btn btn-large btn-primary" type="submit">Save changes</button>
 				      <a href="<?php echo ($this->session->flashdata('referer')) ? $this->session->flashdata('referer') : $_SERVER['HTTP_REFERER']; ?>"" class="btn btn-large" type="reset">Cancel</a>
-					</fieldset>			        
-			        							  
+				      <?php echo anchor('admin/users/reset/'.$settings->username, 'Reset Password', 'title="reset user password" class="btn btn-large btn-danger"'); ?>
+					</fieldset>
+
 				<?php echo form_close(); ?>
 			</div>
 		</div>
-		
+
 </div>

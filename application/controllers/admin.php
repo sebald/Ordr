@@ -166,6 +166,41 @@ class Admin extends MY_Controller {
 	}
 
 	/**
+	 * 	Reset a users password.
+	 * 	@param	username	username of the user to reset the password
+	 */
+	public function users_reset_pw($username) {
+        $this->load->model('user_model');
+	    $this->load->library('encrypt');
+
+        // validate user, redirect on wrong username
+		$user_info = $this->user_model->get($username)->row(0);
+		if (!$user_info) {
+    		redirect();
+		}
+
+	    # set the new password to a random string with a length of 8 characters
+	    $newPassword = substr(uniqid(),0,8);
+        $hashedPassword = $this->encrypt->sha1($newPassword);
+
+        # update the password in the database
+        $data = array('password' => $hashedPassword);
+        $this->user_model->update($username, $data);
+
+        # send notification mail
+        $to = $user_info->email;
+		$subject = '[ordr] Your password has been reset!';
+		$msg  = "Your password has been reset to: '".$newPassword."'.\r\n\r\n";
+		$msg .= "Log in here: ".base_url();
+
+		$this->user_model->send_message($username, $to, $subject, $msg);
+
+        $msg = create_alert_message('success', 'Passwod reset successful.', 'The password for '.$username.' has been reset.');
+        $this->session->set_flashdata('message', $msg);
+        redirect('admin/users/view');
+	}
+
+	/**
 	 * 	Change the role of users. This is one of the table actions.
 	 */
 	public function users_role() {

@@ -52,6 +52,7 @@ $route['admin/users/delete/(:any)'] = 'admin/users_delete/$1';
 $route['admin/users/role'] = 'admin/users_role';
 
 $route['admin/users/edit/(:any)'] = 'admin/users_edit/$1';
+$route['admin/users/reset/(:any)'] = 'admin/users_reset_pw/$1';
 
 $route['admin/users/search'] = 'admin/users_search';
 $route['admin/users/filter'] = 'admin/users_filter';
